@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="WGPM.R.UI.UIVehicals.Xjc.CokeCan"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WGPM.R.UI.UIVehicals.Xjc"
+             mc:Ignorable="d" 
+             d:DesignHeight="49" d:DesignWidth="49">
+    <Grid>
+        <Image x:Name="shelf" Height="49" Stretch="Fill" Width="49" Source="/WGPM;component/R/image/Car2D/GG.PNG"  />
+        <Ellipse Margin="6.5" x:Name="can" Height="36" Stroke="Blue" StrokeThickness="1" Width="36" >
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="Red" Offset="0" />
+                    <GradientStop Color="Black" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="WGPM.R.UI.Comm"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid x:Name="GridMain" Width="1024" HorizontalAlignment="Center">
+        <Canvas x:Name="mainCanvas">
+            <Rectangle x:Name="tConnect" Fill="{Binding Stroke,ElementName=tWireless}"  Height="6" Stroke="White" Canvas.Left="-39.506"
+				Canvas.Top="153.6" Width="200" RenderTransformOrigin="1,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-65"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle x:Name="lConnect" Fill="{Binding Stroke,ElementName=lWireless}" Height="6" Stroke="White" Canvas.Left="80.879"
+				Canvas.Top="302.2" Width="78.674" RenderTransformOrigin="1,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-35"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle x:Name="xConnect" Fill="{Binding Stroke,ElementName=xWireless}" Height="6" Stroke="White" Canvas.Left="80.879"
+				Canvas.Top="460.8" Width="78.674" RenderTransformOrigin="1,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="35"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle x:Name="mConnect" Fill="{Binding Stroke,ElementName=mWireless}" Height="6" Stroke="White" Canvas.Left="-39.506"
+				Canvas.Top="614.4" Width="200" RenderTransformOrigin="1,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="65"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Ellipse x:Name="mainComputer" Stroke="Lime" Width="100" Height="100" StrokeThickness="6" Canvas.Top="334">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.85"/>
+                        <GradientStop Color="Cyan" Offset="0.65"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse x:Name="tWireless" Stroke="Red" Width="55" Height="55" StrokeThickness="6" Canvas.Left="157.5" Canvas.Top="126.1">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.85"/>
+                        <GradientStop Color="Cyan" Offset="0.65"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse x:Name="lWireless" Stroke="Red" Width="55" Height="55" StrokeThickness="6" Canvas.Left="157.5" Canvas.Top="279.7">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.85"/>
+                        <GradientStop Color="Cyan" Offset="0.65"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse x:Name="xWireless" Stroke="Red" Width="55" Height="55" StrokeThickness="6" Canvas.Left="157.5" Canvas.Top="433.3">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.85"/>
+                        <GradientStop Color="Cyan" Offset="0.65"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse x:Name="mWireless" Stroke="Red" Width="55" Height="55" StrokeThickness="6" Canvas.Left="157.5" Canvas.Top="586.9">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.85"/>
+                        <GradientStop Color="Cyan" Offset="0.65"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Image Name="ImageComputer" Canvas.Left="0" Canvas.Top="334" Source="/WGPM;component/R/image/Goods/computer.png" Width="100" ToolTip="电脑" MouseLeftButtonDown="ImageComputer_MouseLeftButtonDown"/>
+            <Image Name="tWirelessImg" Height="50" Canvas.Left="160" Canvas.Top="128.6" Width="50" Source="/WGPM;component/R/image/Goods/wireless1.png" ToolTip="推焦车无线网桥" Tag="0" MouseLeftButtonDown="WirelessImg_MouseLeftButtonDown"/>
+            <Image Name="lWirelessImg" Height="50" Canvas.Left="160" Canvas.Top="282.2" Width="50" Source="/WGPM;component/R/image/Goods/wireless1.png" ToolTip="拦焦车无线网桥" Tag="1" MouseLeftButtonDown="WirelessImg_MouseLeftButtonDown"/>
+            <Image Name="xWirelessImg" Height="50" Canvas.Left="160" Canvas.Top="435.8" Width="50" Source="/WGPM;component/R/image/Goods/wireless1.png" ToolTip="熄焦车无线网桥" Tag="2" MouseLeftButtonDown="WirelessImg_MouseLeftButtonDown"/>
+            <Image Name="mWirelessImg" Height="50" Canvas.Left="160" Canvas.Top="589.4" Width="50" Source="/WGPM;component/R/image/Goods/wireless1.png" ToolTip="装煤车无线网桥" Tag="3" MouseLeftButtonDown="WirelessImg_MouseLeftButtonDown"/>
+        </Canvas>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,38 @@
+﻿<Window x:Class="WGPM.R.UI.Print"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WGPM.R.UI"
+        mc:Ignorable="d"
+        Title="Print" Height="500" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="118*"/>
+            <ColumnDefinition Width="219*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="86*"/>
+            <RowDefinition Height="188*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+        </Grid.Background>
+        <Label x:Name="label" Content="日期：" HorizontalAlignment="Left" Height="34" Margin="0,7,0,0" VerticalAlignment="Top" Width="73" FontSize="20"  Grid.Row="1" Grid.Column="1"/>
+        <Label x:Name="label_Copy" Content="时段：" HorizontalAlignment="Left" Height="35" Margin="0,11,0,0" VerticalAlignment="Top" Width="73" FontSize="20" Grid.Row="2"  Grid.Column="1"/>
+        <DatePicker HorizontalAlignment="Left" Margin="20,8,0,0" VerticalAlignment="Top" Width="177" FontSize="20" Grid.Row="1" Grid.Column="2" Height="33"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="33" Margin="20,13,0,0" VerticalAlignment="Top" Width="177" FontSize="20" Grid.Row="2" Grid.Column="2">
+            <ComboBoxItem Content="白班" IsSelected="True"/>
+            <ComboBoxItem Content="中班"/>
+            <ComboBoxItem Content="夜班"/>
+        </ComboBox>
+        <RadioButton x:Name="radioButton" Content="直接打印" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="20" Grid.Row="3" Grid.Column="2" Height="35" Width="107"/>
+        <RadioButton x:Name="radioButton1" Content="预览打印" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" FontSize="20" Grid.Row="3"  Grid.Column="2" Height="26" Width="107"/>
+        <Label x:Name="label_Copy1" Content="打印方式：" HorizontalAlignment="Left" Height="35" Margin="0,10,0,0" VerticalAlignment="Top" Width="114" FontSize="20" Grid.Row="3"  Grid.Column="1"/>
+    </Grid>
+</Window>

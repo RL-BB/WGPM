@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="WGPM.R.UI.MainUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WGPM.R.UI"
+             xmlns:local1="clr-namespace:WGPM.R.UI.UIVehicals"
+             xmlns:local2="clr-namespace:WGPM.R.UI.UIVehicals.Xjc"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Canvas x:Name="mainCanvas">
+            <local1:Tjc Margin="35,320"  x:Name="tjc1"/>
+            <local1:Tjc Margin="896,320" x:Name="tjc2"/>
+            <local1:Ljc Margin="52.5,130" x:Name="ljc1"/>
+            <local1:Ljc Margin="913.5,130" x:Name="ljc2"/>
+            <!--1、2#炉的2#Xjc(干熄_电机车) 1#罐：7,2#罐-42；1#Xjc(水熄焦车)：868-->
+            <!--<local2:D_Xjc1 Margin="7,88" x:Name="xjc11"/>
+            <local2:W_Xjc1 Margin="868,88" x:Name="xjc22"/>-->
+            <!--3、4#炉的1#Xjc(电机车) 1#罐：868,2#罐 868-49=819；2#Xjc(熄焦车)：56-->
+            <!--<local2:D_Xjc2 Margin="868,88" x:Name="xjc11"/>
+            <local2:W_Xjc2 Margin="56,88" x:Name="xjc22"/>-->
+            <local1:Mc Margin="56,210" x:Name="mc1"/>
+            <local1:Mc Margin="917,210" x:Name="mc2"/>
+            <!--<Border Name="model" BorderBrush="Red" BorderThickness="3,3,3,3" Canvas.Left="158" Canvas.Top="171">
+                <Grid Canvas.Left="187" Canvas.Top="231" Height="378" Width="665">
+                    <Rectangle Name="pathwayModel" Fill="Black" Stroke="Black" Width="534" Height="2" Canvas.Top="302" Canvas.Left="238" Margin="66,87,65,289" />
+                    <TextBox x:Name="roomModel" VerticalAlignment="Center" TextWrapping="Wrap" Width="15" Height="110"
+                     Canvas.Top="205" Background="Black" Foreground="White" Cursor="Hand" Canvas.ZIndex="1"
+                     IsTabStop="False" BorderBrush="{x:Null}" Canvas.Left="425" Margin="33,124,617,144" />
+                    <Image x:Name="tjcModel" Height="120" Width="80" Canvas.Top="320" Source="/WGPM;component/R/image/Car2D/TJC.png" Canvas.Left="360" Margin="241,229,344,29" />
+                    <Image x:Name="ljcModel" Height="60" Stretch="Fill" Width="100" Canvas.Top="145"
+                   Source="/WGPM;component/R/image/Car2D/LJC.PNG" Canvas.Left="360" Margin="195,89,370,229" />
+                    <Image x:Name="xjcModel" Height="60" Stretch="Fill" Width="60" Canvas.Top="145"
+                   Source="/WGPM;component/R/image/Car2D/XJC.PNG" Canvas.Left="486" Margin="335,94,270,224" />
+                    <Image x:Name="dryCanModel" Height="50" Stretch="Fill" Width="50" Canvas.Top="155" Canvas.Left="636"
+                   Source="/WGPM;component/R/image/Car2D/GG.PNG" Margin="480,94,135,234" />
+                    <Image x:Name="mcModel" Height="90" Stretch="Fill" Width="60" Canvas.Top="211" Canvas.Left="276"
+                   Source="/WGPM;component/R/image/Car2D/ZMC.PNG" Margin="66,134,539,154" />
+                    <TextBox x:Name="waterCanModel" Height="50" Width="50" Canvas.Top="155" Canvas.Left="569"
+                     BorderBrush="Blue" Margin="414,94,201,234">
+                        <TextBox.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Red" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </RadialGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBox x:Name="pushPoleModel" Canvas.Left="290" Canvas.Top="320" Height="120" Width="10"
+                     Background="Black" Canvas.ZIndex="1" RenderTransformOrigin="0.5,0.5" Margin="346,229,309,29" />
+                    <TextBox x:Name="pingPoleModel" Canvas.Left="328" Canvas.Top="320" Height="110" Width="8"
+                     Background="Black" Canvas.ZIndex="1" Margin="219,239,438,29" />
+                    <Ellipse x:Name="dryCanInsideModel" Canvas.Left="707" Canvas.Top="169" Height="36" Stroke="Blue"
+                     StrokeThickness="1" Width="36" Margin="535,108,94,234">
+                        <Ellipse.Fill>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Red" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </RadialGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBox x:Name="carMarkModel" Canvas.Left="360" Canvas.Top="257" Height="40" Width="40"
+                     TextWrapping="Wrap" Text="1# 000" FontWeight="Bold" TextAlignment="Center"
+                     FontFamily="Arial Black" Background="Green" Foreground="Red" Margin="139,159,486,179" />
+                </Grid>
+            </Border>-->
+
+            <!--推焦车-->
+            <!--
+            <TextBox Margin="77,320,0,0" Name="pushPole01" Height="168" Width="7" Background="Black" IsTabStop="False"/>
+            -->
+            <!---35-->
+            <!--
+            <TextBox Margin="42,320,0,0" Name="pingPole01" Height="168" Width="7" Background="Black" IsTabStop="False"/>
+            -->
+            <!---tjcWidth*0.7-->
+            <!--<Image Margin="0,320,0,0" Height="140" Width="56" Stretch="Fill" Source="/WGPM;component/R/image/Car2D/TJC.png"/>-->
+
+        </Canvas>
+    </Grid>
+</UserControl>

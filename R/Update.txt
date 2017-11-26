@@ -1,0 +1,114 @@
+﻿20170921
+1.增加“装煤计划”，“计划编辑”的TabItem;
+
+2.开始编辑按钮：
+①常规逻辑：如时段的选择，编辑状态和非编辑状态的按钮颜色变化、控件的可用状态；下一班组的生成；使空间TabItem可用，并且IsSelected=true；
+②给dgEdit的ItemsSource赋值：
+a.GetItemsSouce(Period,Groupp)，如果displayPlan.Count>0,则editingPlan.AddRange(displayPlan);
+b.当editPlan.Count==0 &&CokeRoom.PushPlan.Count>0时,editingPlan.Add(editingPlan.Last());txtPushTime.Focus();txtPushTime.SelectAll();
+③if(editingPlan.Count>0)  dgEdit.SelectedIndex=editingPlan.Count-1;即给txtRoomNum.Text和txtPushTime.Text赋值(xaml中的绑定？)
+④处于计划编辑状态时，dgPlan的ItemsSouce=displayPlan=CokeRoom.PushPlan，取消编辑时displanPlan=GetItemsSouce(Period,Group)
+⑤处于编辑计划时，GroupBox的DataContext绑定为dgEdit;非编辑计划状态绑定为dgPlan
+3.生成按钮：根据Flag=editingPlan.Count==0?true:false的Flag值来选择如何生成计划；
+a.if(Flag) 此时的情形为：CokeRoom.PushPlan.Count==0,需要手动输入炉号和出焦时间，txtRoomNum.Focus(),txtRoomNum.SelectAll();
+b.else  根据editingPlan.Last()来生成后续的计划；dgEditPlan.ItemsSouce=editingPlan;
+
+20170922
+1. 重做CokeRoom.StokingPlan的逻辑：StokingPlan随PushPlan增加或删除editingPlan 而相应变化；
+2.给两辆AB PLC的数据；
+3.装煤车的箭头和对中指示；
+*4.对Excel表格的操作：需要引用：Microsoft Excel  16.0 Object Library
+5.StokingPlan的条目数的增加只发生于两种情况：
+①程序加载时，由PushPlan得到；在CokeRoom类的构造函数中完成
+②生成新的出焦计划PushPlan时得到新的StokingPlan；*btnSave的Click事件发生时，StokingPlan随之变化 ;调用的核心方法为：CokeRoom类中的SaveToPlan(editingPlan)；
+6.StokingPlan的条目数的减少发生的情形：
+①装煤计划完成，在装煤结束信号到达后删除该条计划；
+②手动删除dgPlan中的计划，该计划为PushPlan的一部分(或全部)，相应炉号的装煤计划应随出焦炉号的删除而被删除；
+7.StokingPlan的增加或删除应遵循一个原则：不能StokingPlan=new List<MStokingPlan>()，只能删除对应于计划出焦炉号的装煤计划炉号（原则）；
+8.推和平记录到数据库信息的整理；
+9.通讯状态的整理；
+
+20171016
+1.重做装煤计划更新的逻辑：①在装煤计划表中查找当前装煤炉号；②若不存在当前炉号，则判断当前炉号和索引为0的计划炉号的差值是否为±1并且实际装煤时间(DateTime.Now)和索引为0的计划装煤时间差值小于4个小时，若为true，
+则认为当前对应的码牌有偏移；
+2.装煤计划更新部分：更新config文件，更新Dic BurnTime 对应的装煤时间；
+
+20171018
+1.M：计划出焦炉数；
+N：实际出焦炉数；
+A1：计划结焦时间与规定结焦时间相差±5分钟以上的炉数；
+A2：实际出焦时间与计划出焦时间相差±5分钟以上的炉数；
+K1=(M-A1)/M;
+K2=(N-A2)/M;
+K3=K1*K2;
+
+20171019,20
+1.各种细节的处理！论伪代码的重要性：有思路之后最好先整理为文字，因为写起代码时，代码呈现形式的思路会和逻辑思路搅合在一起，混乱
+2.A.控件模板ControlTemplate：
+①通过更换ControlTemplate改变控件外观，使之具有更优的用户使用体验及外观；
+②借助ControlTemplate，程序员（代码逻辑处理者）与设计师（软件外观、美化）可以并行工作，程序员可以先使用Wpf标准控件进行编程，等设计师的工作完成后，只需把新的ControlTemplate应用到程序中就可以了
+B.数据模板DataTemplate：
+①ContenControl的ContenTemplate属性，相当于给ContentControl的内容穿衣服；
+②ItemsControl的ItemsTemplate属性，相当于给ItemsControl的数据条目穿衣服；
+③GridViewColumn的CellTemplate属性，相当于给GridviewColumn单元格里的数据穿衣服；
+3.接口IValueConverter的使用：对一般直接Binding的扩展，爽
+4.车辆位置的变动Binding到车的炉号：RoomNum；先写测试例子，证明可行性；
+*5.可依赖属性DependencyProperty，可依赖对象DependencyObjectd 在车辆移动中的使用*****
+6.保存20171201421的源代码，对车辆移动的代码进行重新编写
+
+20171020
+1.遇到问题：车的移动是去设置附加属性Canvas.Left值，没有找到合适的办法去直接建立Binding；
+把附加属性Canvas.Left和Canvas.Top转换为控件的Margin属性（Thickness）;
+2.为了解决 1 的问题，考虑先把每种车没有数据进来时的位置 显示在界面；在MainUI中创建车的模型时就实现这一目的：把车的位置显示在两端（炉号001和炉号110的位置）；
+扩展2：如果每种车的数量过多时，把车的初始位置设置在煤塔或端台；
+3.解决问题2后，在考虑接下来的问题；*201710201650*
+
+20171021
+炭化室的信息：{Height=110,Width=7} Margin.Top=200;煤塔/端台：{Height=110,Width=7} Margin.Top=200
+1.TJC的相关信息：UserControl->Grid->Canvas，UserControl{Height=168,Width=56,Margin="28/938,320,0,0"}
+①TjcBody{Height=140,Width=56,Margin="0,0,0,28"};
+②PushPole{Height=168,Width=7,Margin="42,0"};
+③PingPole{Height=140,Width=7,Margin="7,0"};
+④mark{Height=36,Width=44,Margin="6,27"};
+
+2.Ljc的相关信息：{Height=56,Width=56},Margin="(84-56=28)/(84*2+7*110=938),130,0,0"
+①LjcBody{Height=56,Width=56};Top=130
+②Trough(导焦槽){Height=56,Width=7};Top=130,炭化室的Top=200 推导出导焦槽的最大位移为200-130-56=14；
+③Mark{Height=36,Width=36};Top=130+(56-36)/2=140;
+
+3.Mc的相关信息：{Height=91,Width=49} Margin.Top=210
+①McBody{Height=91,Width=49}Margin.Top=210
+②McMark{Height=36,Width=36}
+
+4.Xjc的相关信息：
+电机车{Height=56,Width=49*3=147}
+水熄车{Height=56,Width=49*2=98}
+①XjcBody{Image,Height=56,Width=49},Top=88;
+②XjcMark{TextBox,Height=36,Width=36};
+③WaterCan{TextBox,Height=49,Width=49},Top=92;
+④Shelf(干熄焦焦罐的底座){Image,Height=49,Width=49},Top=92;
+⑤Can(干熄焦的焦罐){Ellipse,Height=42,Width=42}
+
+20171024
+1.遇到一个问题：明明在命名空间有定义的类，在Xaml中引用该命名空间后，实例化该类时，却报错说不存在该名称；
+解决办法：多编译几次；Ctrl+Shift+B
+2.待解决问题：在xaml中引用到了 .cs类，但是并不是所有的public参数都能访问；
+有的时候会引用不到，智能引用显示没有，强制写出参数则报错；
+3.打算把数据库1/2#炉区和3/4#炉区的数据合并，加个Flag以区分；
+
+20171027
+**1.一个控件Control的多个属性有Binding需求时，则在Binding时，Binding.Source需要为同一个，否则会造成部分Binding无效
+*2.Tcp/IP接收数组的长度等于协议发送数据的长度；如果接收数组过长，则下一次的数据会继续紧接着写入；
+3.时间、计划信息的显示也使用Binding技术；
+4.需要抽时间整理Binding技术的使用思路
+
+20171124
+1.使用Dispathcer.BeginInvoke方法 来处理计划保存时耗时的方法，待测试可行性！！ **结论：可行，未发现异常；
+
+20171125
+1.在联锁信息的查询中加入车号 这一列，用于显示车辆的车号；车辆位置的显示应为 “车号+#+炉号”；
+
+
+
+
+

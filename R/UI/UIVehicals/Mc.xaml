@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="WGPM.R.UI.UIVehicals.Mc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WGPM.R.UI.UIVehicals"
+             mc:Ignorable="d" 
+             d:DesignHeight="91" d:DesignWidth="49">
+    <Grid>
+        <Image x:Name="body" Height="91" Stretch="Fill" Width="49" Source="/WGPM;component/R/image/Car2D/ZMC.PNG" />
+        <TextBox x:Name="mark"  Height="40" Width="40" TextWrapping="Wrap" Text="1# 000" FontWeight="Bold" TextAlignment="Center" IsReadOnly="True"  FontFamily="Arial Black" Background="Green" Foreground="Red" />
+    </Grid>
+</UserControl>

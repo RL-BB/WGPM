@@ -1,0 +1,210 @@
+﻿<UserControl x:Class="WGPM.R.UI.QueryRec"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:l="clr-namespace:WGPM.R.UI"
+             xmlns:ct="clr-namespace:WGPM.R.UI.UIConverter"
+             xmlns:z="clr-namespace:WGPM.R.LinqHelper"
+             mc:Ignorable="d"
+             d:DesignHeight="738" d:DesignWidth="1024" >
+    <!--1推焦记录："日期", "炉号", "T炉号", "T物理地址","L炉号", "L物理地址","X炉号", "X物理地址", "实际推焦时间", "预定出焦时间", "实际结焦时间", "Max推焦电流", "时段", "班组", "联锁", "车号:T-L-X" -->
+    <!--2平煤记录："日期",2 "炉号", 3"T炉号",5"T物理地址,4"M炉号"",6 "M物理地址", 7"预定装煤时间", 8"实际装煤时间", 9"装煤结束时间", 10"Avg平煤电流",11 "班组", 12"时段"-->
+    <!--3生产统计：-->
+    <!--4推焦计划："日期", "炉号", "预定出焦时间", "上次装煤时间", "规定结焦时间", "计划结焦时间"-->
+    <!--5登陆信息：-->
+    <!--6联锁信息：(推焦和平煤的综合) 日期，炉号，预定出焦时间，实际推焦时间，计划装煤时间，实际装煤时间，Max推焦电流，Avg平煤电流,时段，班组，T炉号Push，L炉号Push，X炉号Push，Push联锁数据,M炉号，Ping联锁数据-->
+    <!--7电流数据：-->
+    <!--8-->
+    <UserControl.Resources>
+        <ct:PushCurConverter FstLevel="250"  x:Key="PcTC" ></ct:PushCurConverter>
+        <ct:BurnTimeToColorConverter   DefaultColor="{x:Null}" x:Key="BTC" ></ct:BurnTimeToColorConverter>
+    </UserControl.Resources>
+    <Grid x:Name="GridMain" Width="1024" HorizontalAlignment="Center">
+        <Grid.Background>
+            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="313*"/>
+        </Grid.RowDefinitions>
+        <TabControl Name="tab" FontSize="16" Margin="1,0,1,5" Grid.Row="1" SelectedIndex="0" >
+            <TabItem Header="数据查询"   >
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                    </Grid.Background>
+                    <DataGrid x:Name="dgQuery" IsReadOnly="True" FontWeight="Bold"  Margin="6,0,6,5" LoadingRow="LoadingRow" Grid.ColumnSpan="2">
+                        <DataGrid.Background>
+                            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                        </DataGrid.Background>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="统计数据"   >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55*"/>
+                        <RowDefinition Height="529*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                    </Grid.Background>
+                    <DataGrid x:Name="dgSum" IsReadOnly="True" FontWeight="Bold" Margin="1,0" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" >
+                        <DataGrid.Background>
+                            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                        </DataGrid.Background>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉数" IsReadOnly="True" Binding="{Binding Num}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding RoomNum}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间" IsReadOnly="True" Binding="{Binding StrPushTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际推焦时间" IsReadOnly="True" Binding="{Binding StrActualPushTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际装煤时间" IsReadOnly="True" Binding="{Binding StrActualStokingTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="规定结焦时间" IsReadOnly="True" Binding="{Binding StrStandardBurnTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="计划结焦时间" IsReadOnly="True" Binding="{Binding StrBurnTime}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Background" Value="{Binding BurnTime,Converter={StaticResource BTC}}"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际结焦时间" IsReadOnly="True" Binding="{Binding StrActualBurnTime}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Background" Value="{Binding BurnTime,Converter={StaticResource BTC}}"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="推焦电流" IsReadOnly="True" Binding="{Binding PushCur}"  >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Background" Value="{Binding PushCur,Converter={StaticResource PcTC}}"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Name="dgSum1" Grid.Row="0" IsReadOnly="True" FontWeight="Black"  FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <DataGrid.Background>
+                            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                        </DataGrid.Background>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="联锁信息">
+                <Grid Name="grdLock" Margin="0,0,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="52*"/>
+                        <RowDefinition Height="21*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                    </Grid.Background>
+                    <DataGrid Name="dgLockInfo" Grid.Row="0" Grid.RowSpan="1" SelectionChanged="dgLockInfo_Selected" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" LoadingRow="LoadingRow" >
+                        <DataGrid.Background>
+                            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                        </DataGrid.Background>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Yellow"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="日期" IsReadOnly="True" Binding="{Binding Date}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding Room}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="T炉号" IsReadOnly="False" Binding="{Binding TRoom}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="L炉号" IsReadOnly="False" Binding="{Binding LRoom}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="X炉号" IsReadOnly="False" Binding="{Binding XRoom}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="T物理地址" IsReadOnly="False" Binding="{Binding TAddr}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="L物理地址" IsReadOnly="False" Binding="{Binding LAddr}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="X物理地址" IsReadOnly="False" Binding="{Binding XAddr}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间" IsReadOnly="True" Binding="{Binding PushTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际推焦时间" IsReadOnly="True" Binding="{Binding ActualPushTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际装煤时间" IsReadOnly="False" Binding="{Binding ActualStokingTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="时段" IsReadOnly="False" Binding="{Binding Period}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="班组" IsReadOnly="False" Binding="{Binding Group}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <l:TogetherForQuery x:Name="together" Grid.Row="1"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="电流曲线">
+                <Grid >
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dgPlotter" Grid.Row="0" BorderThickness="2,2,2,4" BorderBrush="#FF13BEE4" CanUserAddRows="False" AutoGenerateColumns="False" SelectionChanged="dgPlotter_Selected" LoadingRow="LoadingRow" >
+                        <DataGrid.Background>
+                            <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
+                        </DataGrid.Background>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="日期" IsReadOnly="True" Binding="{Binding Date}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding Room}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定推焦时间" IsReadOnly="True" Binding="{Binding PushTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="Max推焦电流" IsReadOnly="True" Binding="{Binding MaxCur}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="Avg推焦电流" IsReadOnly="True" Binding="{Binding AvgPushCur}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="Avg装煤电流" IsReadOnly="True" Binding="{Binding AvgPingCur}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <l:CurLotterForQuery x:Name="curLotter" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Border Grid.RowSpan="1" BorderBrush="#FF0023FF" BorderThickness="2,2,2,2" >
+            <Grid   >
+
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="28" Margin="10,6,0,0" TextWrapping="Wrap" Text="开始日期：" VerticalAlignment="Top" Width="91" FontSize="18" FontWeight="Bold"/>
+                <DatePicker x:Name="dpStart" HorizontalAlignment="Left" Margin="101,6,0,0" VerticalAlignment="Top" Width="129" FontSize="16" Height="28" SelectedDateChanged="SelectedDateChanged"/>
+                <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="28" Margin="244,6,0,0" TextWrapping="Wrap" Text="结束日期：" VerticalAlignment="Top" Width="91" FontSize="18" FontWeight="Bold"/>
+                <DatePicker x:Name="dpEnd" HorizontalAlignment="Left" Margin="335,6,0,0" VerticalAlignment="Top" Width="134" FontSize="16" Height="28" SelectedDateChanged="SelectedDateChanged"/>
+                <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Height="28" Margin="485,6,0,0" TextWrapping="Wrap" Text="时段：" VerticalAlignment="Top" Width="55" FontSize="18" FontWeight="Bold"/>
+                <ComboBox x:Name="cboPeriod" HorizontalAlignment="Left" Margin="545,6,0,0" VerticalAlignment="Top" Width="103" Height="28" FontSize="16" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem Content="全部时段"  IsSelected="True"/>
+                    <ComboBoxItem Content="白班"/>
+                    <ComboBoxItem Content="夜班"/>
+                </ComboBox>
+                <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Height="28" Margin="665,6,0,0" TextWrapping="Wrap" Text="班组：" VerticalAlignment="Top" Width="55" FontSize="18" FontWeight="Bold"/>
+                <ComboBox Grid.RowSpan="1" x:Name="cboGroup" HorizontalAlignment="Left" Margin="725,6,0,0" VerticalAlignment="Top" Width="103" Height="28" FontSize="16">
+                    <ComboBoxItem Content="全部班组" FontSize="16" IsSelected="True"/>
+                    <ComboBoxItem Content="甲班"/>
+                    <ComboBoxItem Content="乙班"/>
+                    <ComboBoxItem Content="丙班"/>
+                    <ComboBoxItem Content="丁班"/>
+                </ComboBox>
+                <CheckBox x:Name="chkRoom" Content="炉号" HorizontalAlignment="Left" Margin="840,11,0,0" VerticalAlignment="Top" Height="24" FontSize="16" Width="52"/>
+                <TextBox x:Name="txtRoom" HorizontalAlignment="Left" Height="28" Margin="897,6,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="68" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" PreviewMouseUp="txtRoom_PreviewMouseUp"/>
+                <CheckBox Content="联锁" FontSize="16" Foreground="Black" IsThreeState="False" x:Name="chkLock" FontWeight="Bold" IsChecked="True" Checked="chk_Checked" Margin="747,59,220,27" />
+                <CheckBox Content="解锁" Foreground="Black" x:Name="chkUnlock" FontWeight="Bold" FontSize="16" Checked="chk_Checked" Margin="682,59,278,27" />
+                <Button Content="查询" FontSize="18.667" Height="32" x:Name="btnQuery" Width="64" FontWeight="Bold" Click="btnQuery_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="818,49,138,32"/>
+                <RadioButton x:Name="rbtnRec" Tag="6" Content="联锁信息" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="rbtn_Checked" Margin="470,54,462,31" Height="28" Width="88"/>
+                <RadioButton x:Name="rbtnPlan" Tag="4" Content="推焦计划" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked" Margin="198,52,737,30" Height="26" Width="85" BorderBrush="#FF55BB1B"/>
+                <RadioButton x:Name="rbtnPush" Tag="1" IsChecked="True" Content="推焦记录" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked" Margin="10,54,917,31" Height="28" Width="93" BorderBrush="#FF27BB35"/>
+                <RadioButton x:Name="rbtnPing" Tag="2" Content="平煤记录" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked" Margin="108,54,827,31" Height="28" Width="85" Background="{x:Null}" BorderBrush="#FF59BB22"/>
+                <RadioButton x:Name="rbtnSum" Tag="3" Content="生产统计" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked" Margin="380,53,555,27" Height="28" Width="85" BorderBrush="#FF54B21F"/>
+                <RadioButton x:Name="rbtnLogIn" Tag="5" Content="登陆信息" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked" Margin="288,52,645,28" Height="28" Width="87" BorderBrush="#FF5FC525"/>
+                <RadioButton x:Name="rbtnCur" Tag="7" Content="电流数据" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked" Margin="563,54,371,31" Height="28" Width="86"/>
+                <Button Content="打印" FontSize="18.667" Height="32" x:Name="btnPrint" Width="64" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="897,49,59,32" Click="btnPrint_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

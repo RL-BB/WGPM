@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WGPM" EntityNamespace="WGPM.R.LinqHelper" ContextNamespace="WGPM.R.LinqHelper" Class="DbAppDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.1;Initial Catalog=WGPM;Persist Security Info=True;User ID=sa" SettingsObjectName="WGPM.Properties.Settings" SettingsPropertyName="WGPM_CokeArea12" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Activate" Member="Activate">
+    <Type Name="Activate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="启动" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="退出" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IP地址" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PushPlan" Member="PushPlan">
+    <Type Name="PushPlan">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="日期" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="预定出焦时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="实际装煤时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="上次装煤时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="计划结焦时间" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="规定结焦时间" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="时段" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="班组" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="计划写入时间" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PingInfo" Member="PingInfo">
+    <Type Name="PingInfo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="预定装煤炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="预定出焦时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="T实际炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="T平煤炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="M炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="T物理地址" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="M物理地址" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ping联锁信息" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Begin平煤时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="End平煤时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Plan平煤时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="P时段" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="G班组" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Max平煤电流" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Avg平煤电流" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Cur平煤电流" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Pole平煤杆长" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="PlanIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PushInfo" Member="PushInfo">
+    <Type Name="PushInfo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="计划炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="实际炉号" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="时段" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="班组" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="联锁" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="实际推焦时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="预定出焦时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="上次装煤时间" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="计划结焦时间" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="规定结焦时间" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="实际结焦时间" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Max推焦电流" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Avg推焦电流" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="推焦电流" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="推焦杆长" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Push联锁信息" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Push工作车序列" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Push对中序列" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TAddr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LAddr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="XAddr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="T炉号" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="L炉号" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="X炉号" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Push车辆通讯状态" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

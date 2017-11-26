@@ -1,0 +1,46 @@
+﻿<Window x:Class="WGPM.R.UI.VehicalsData.CarsData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WGPM.R.UI.VehicalsData"
+        mc:Ignorable="d"
+        Title="CarsData" Height="700" Width="1024" FontSize="16">
+    <StackPanel >
+        <WrapPanel Name="tjc">
+            <TextBox Name="bb" Text="1111"  HorizontalAlignment="Center" />
+            <StackPanel Name="tjcName" Margin="2,0">
+                <TextBlock Text="车型"  HorizontalAlignment="Center"/>
+                <TextBox Name="t1" Text="1#推焦车"  HorizontalAlignment="Center" />
+                <TextBox Name="t2" Text="1#推焦车"  HorizontalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Name="tRoomNum" Margin="2,0">
+                <TextBox  Text="炉号"  HorizontalAlignment="Center" />
+                <TextBox Name="t1RoomNum" Text="110"  HorizontalAlignment="Center" />
+                <TextBox Name="t2RoomNum" Text="109"  HorizontalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Name="tAddr" Margin="2,0">
+                <TextBox Text="物理地址"  HorizontalAlignment="Center" />
+                <TextBox Name="t1Addr" Text="11050216"  HorizontalAlignment="Center" />
+                <TextBox Name="t2Addr" Text="11050216"  HorizontalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Name="tLightStatus" Margin="2,0">
+                <TextBox  Text="灯状态"/>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel Name="ljc" Margin="0,2">
+            <local:Node x:Name="lName" Margin="2,0"></local:Node>
+            <local:Node x:Name="lRoomNum" Margin="2,0"></local:Node>
+            <local:Node x:Name="lAddr" Margin="2,0"></local:Node>
+            <local:Node x:Name="lLight" Margin="2,0"></local:Node>
+            <local:Node x:Name="lDecodeCount" Margin="2,0"></local:Node>
+            <local:Node x:Name="lPLCCount" Margin="2,0"></local:Node>
+            <local:Node x:Name="lTouchCount" Margin="2,0"></local:Node>
+            <local:Node x:Name="lAllowPush" Margin="2,0"></local:Node>
+            <local:Node x:Name="lDoorOpen" Margin="2,0"></local:Node>
+            <local:Node x:Name="lTroughLock" Margin="2,0"></local:Node>
+            <local:Node x:Name="lPickDoor" Margin="2,0"></local:Node>
+            <local:Node x:Name="lBan" Margin="2,0"></local:Node>
+        </WrapPanel>
+    </StackPanel>
+</Window>

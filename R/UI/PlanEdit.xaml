@@ -1,0 +1,244 @@
+﻿<UserControl x:Class="WGPM.R.UI.PlanEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ct="clr-namespace:WGPM.R.UI.UIConverter"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <UserControl.Resources>
+        <ct:TimeToStringConverter x:Key="BTTI"></ct:TimeToStringConverter>
+        <ct:PushTimeConverter x:Key="PTC"></ct:PushTimeConverter>
+    </UserControl.Resources>
+    <Grid x:Name="GridMain" Width="1024" HorizontalAlignment="Center">
+        <Canvas x:Name="CanvasMain" Margin="10,8,10,12">
+            <!--CanUserAddRows的值决定DataGrid的最后一空白行有无-->
+            <TabControl Height="723" BorderBrush="#FF58DC0D">
+                <TabItem x:Name="tabPush" Tag="0" Background="LightCyan" FontSize="20" IsSelected="True"  BorderBrush="#FF1FD30D" Margin="2,0,-1,0" BorderThickness="2"  Foreground="Black">
+                    <TabItem.Header>
+                        <Label Content="推焦计划" MouseLeftButtonUp="Label_MouseLeftButtonUp" Background="{Binding ElementName=tabPush,Path=Background}"/>
+                    </TabItem.Header>
+                    <DataGrid x:Name="dgPlan" GotMouseCapture="dgPlan_GotMouseCapture" IsReadOnly="True" Canvas.Top="0" Width="720" Canvas.Left="0"  FontWeight="Bold" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" LoadingRow="DataGrid_LoadingRow">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Yellow"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="时段" IsReadOnly="True" Binding="{Binding StrPeriod}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="班组" IsReadOnly="True" Binding="{Binding StrGroup}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号"  Binding="{Binding RoomNum,StringFormat='000'}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="上次装煤时间"  Binding="{Binding StokingTime,StringFormat='yyyy-MM-dd HH:mm'}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="规定结焦时间" Binding="{Binding StandardBurnTime,Converter={StaticResource BTTI} }"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="计划结焦时间"  Binding="{Binding BurnTime ,Converter={StaticResource BTTI}}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间"  Binding="{Binding PushTime,Mode=OneWay,StringFormat='yyyy-MM-dd HH:mm'}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </TabItem>
+                <TabItem x:Name="tabStoking" Tag="1" Background="LightCyan" FontSize="20"  Margin="4,0,-4,0" BorderBrush="#FF1818DA" BorderThickness="2">
+                    <TabItem.Header>
+                        <Label Content="装煤计划" MouseLeftButtonUp="Label_MouseLeftButtonUp" Background="{Binding ElementName=tabStoking,Path=Background}"/>
+                    </TabItem.Header>
+                    <DataGrid Width="720" FontSize="16" IsReadOnly="True" FontWeight="Bold" Name="dgStoking" CanUserAddRows="False" AutoGenerateColumns="False" LoadingRow="DataGrid_LoadingRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="时段"   Binding="{Binding StrPeriod}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="班组"   Binding="{Binding StrGroup}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号"   Binding="{Binding RoomNum,StringFormat='000'}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="计划装煤时间"   Binding="{Binding StokingTime,StringFormat='yyyy-MM-dd HH:mm'}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem x:Name="tabEdit" Tag="2" Background="LightCyan" FontSize="20" IsEnabled="False"  Margin="8,0,-12,0" BorderBrush="#FFF10E23" BorderThickness="2">
+                    <TabItem.Header>
+                        <Label Content="计划编辑" MouseLeftButtonUp="Label_MouseLeftButtonUp" Background="{Binding ElementName=tabEdit,Path=Background}"/>
+                    </TabItem.Header>
+                    <DataGrid Width="720" FontSize="16" IsReadOnly="True" FontWeight="Bold" Name="dgEdit" CanUserAddRows="False" AutoGenerateColumns="False" LoadingRow="DataGrid_LoadingRow">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Yellow"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="时段"   Binding="{Binding StrPeriod}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="班组"   Binding="{Binding StrGroup}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号"   Binding="{Binding RoomNum,StringFormat='000'}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="上次装煤时间"   Binding="{Binding StokingTime,StringFormat='yyyy-MM-dd HH:mm'}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="规定结焦时间"   Binding="{Binding StandardBurnTime,Converter={StaticResource BTTI}}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="计划结焦时间"   Binding="{Binding BurnTime,Converter={StaticResource BTTI}}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间"   Binding="{Binding PushTime,StringFormat='yyyy-MM-dd HH:mm'}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+            <GroupBox x:Name="grpSchedule" BorderBrush="Lime" BorderThickness="2" Header="班组时段Info" Height="193" Canvas.Left="737" Canvas.Top="10" Width="251" FontSize="16" FontWeight="Bold" FontFamily="Monotype Corsiva">
+                <WrapPanel>
+                    <TextBlock TextWrapping="Wrap" Text="日期：" TextAlignment="Center" FontWeight="Bold" FontSize="16"
+                       Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <DatePicker x:Name="dpDate" FontSize="16" SelectedDateFormat="Short" 
+                        FontWeight="Bold" Foreground="Black" Margin="8" Width="130" />
+                    <TextBlock FontSize="16" FontWeight="Bold" Text="时段："
+                       TextAlignment="Center" TextWrapping="Wrap" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox x:Name="cboPeriod" Height="auto"  Width="130" FontSize="16"
+                      FontWeight="Bold" SelectionChanged="ComboBox_SelectionChanged" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+                        <ComboBoxItem Content="全部时段" HorizontalAlignment="Left" VerticalAlignment="Center" IsSelected="True"/>
+                        <ComboBoxItem Content="白班" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBoxItem Content="夜班" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </ComboBox>
+                    <TextBlock TextWrapping="Wrap" Text="班组：" TextAlignment="Center" FontWeight="Bold" FontSize="16"
+                       Margin="8" />
+                    <ComboBox x:Name="cboGroup" FontSize="16" Width="130" Height="auto" ToolTip="编辑计划时，请选择当前班的班组！勿选择下一班的班组!"
+                      FontWeight="Bold" SelectionChanged="ComboBox_SelectionChanged" Margin="8" >
+                        <ComboBoxItem Content="全部班组" HorizontalAlignment="Left" VerticalAlignment="Center" IsSelected="True"/>
+                        <ComboBoxItem Content="甲班" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBoxItem Content="乙班" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBoxItem Content="丙班" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBoxItem Content="丁班" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </ComboBox>
+                    <TextBlock TextWrapping="Wrap" Text="炉区：" TextAlignment="Center" FontWeight="Bold" FontSize="16"
+                       Margin="8" />
+                    <ComboBox x:Name="cboArea" Width="130" Height="auto"
+                      FontSize="16" FontWeight="Bold" SelectionChanged="ComboBox_SelectionChanged" Margin="8" IsEnabled="False" >
+                        <ComboBoxItem Content="1-2#炉区" HorizontalAlignment="Left" VerticalAlignment="Center" IsSelected="True"/>
+                        <ComboBoxItem Content="3-4#炉区" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </ComboBox>
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox x:Name="grpRoomInfo"  BorderBrush="Brown" Header="时间编辑Info" BorderThickness="2" Canvas.Left="737" Canvas.Top="208" Height="252" Width="250" FontSize="16" FontFamily="Monotype Corsiva" FontWeight="Bold">
+                <WrapPanel>
+                    <TextBlock Margin="10" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Width="auto"
+                       TextAlignment="Center" ><Run Language="zh-cn" Text="预定出焦炉号：" /></TextBlock>
+                    <TextBox x:Name="txtRoom"  TextWrapping="Wrap" Text="{Binding Path=RoomNum,StringFormat='000',Mode=OneWay}"
+                     FontSize="16" FontWeight="Bold" TextAlignment="Center" PreviewMouseUp="Text_PreviewMouseUp" KeyUp="TextBox_KeyUp"
+                     KeyDown="Text_KeyDown"  Margin="10" Width="70"  />
+                    <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Width="auto"
+                       TextAlignment="Center" Margin="10"><Run Language="zh-cn" Text="预定出焦时间：" /></TextBlock>
+                    <TextBox x:Name="txtPushTime" TextWrapping="NoWrap" Text="{Binding PushTime,Converter={StaticResource  PTC}}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Tag="1" Width="70"
+                     TextChanged="txtPushTime_TextChanged" PreviewMouseUp="Text_PreviewMouseUp" KeyDown="Text_KeyDown" Margin="10" />
+                    <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Width="auto"
+                       TextAlignment="Center" Margin="10"><Run Language="zh-cn" Text="计划结焦时间：" /></TextBlock>
+                    <TextBox x:Name="txtBurnTime" TextWrapping="NoWrap" Text="{Binding Path= BurnTime,Converter={StaticResource BTTI}}"
+                     FontSize="16" FontWeight="Bold" TextAlignment="Center" Tag="2" Width="70" TextChanged="Time_TextChanged" PreviewMouseUp="Text_PreviewMouseUp"
+                     KeyDown="Text_KeyDown" Margin="10" />
+                    <CheckBox x:Name="chkBurnTime" Height="15" Width="15" Click="ChkBurnTime_Click" Visibility="Visible" />
+                    <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Width="auto"
+                       TextAlignment="Center" Margin="10"><Run Language="zh-cn" Text="规定结焦时间：" /></TextBlock>
+                    <TextBox x:Name="txtStandardBurnTime" TextWrapping="Wrap" Text="00:00"
+                     FontSize="16" FontWeight="Bold"  TextAlignment="Center" Tag="3"
+                     IsEnabled="False" TextChanged="Time_TextChanged" KeyDown="Text_KeyDown" Margin="10" Width="70" />
+                    <CheckBox x:Name="chkStandardBurnTime" Height="15"  Width="15"
+                      Click="CheckBox_PlanBurnTime_Click" IsChecked="True" />
+                    <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Width="auto"
+                       TextAlignment="Center" Margin="10"><Run Language="zh-cn" Text="出焦周转时间：" /></TextBlock>
+                    <TextBox x:Name="txtBreak" TextWrapping="NoWrap" Text="9"
+                     FontSize="16" FontWeight="Bold" TextAlignment="Center" Width="70" TextChanged="Time_TextChanged" PreviewMouseUp="Text_PreviewMouseUp"
+                     KeyDown="Text_KeyDown" Margin="10" />
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox x:Name="groupBox2" BorderThickness="2" Header="操作Info"  BorderBrush="Aqua" Height="63" Canvas.Left="738" Canvas.Top="465" Width="250" FontSize="16" FontFamily="Monotype Corsiva" FontWeight="Bold">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <Button x:Name="btnEdit" Content="开始编辑" Width="65" Margin="6" FontSize="15" Height="25" Click="btnEdit_Click" HorizontalContentAlignment="Center"/>
+                        <Button x:Name="btnGenerate" Content="生成" Width="40" Margin="6,0,6,5.667" FontSize="15" Click="btnGenerate_Click" Height="25" VerticalAlignment="Bottom"/>
+                        <Button Name="btnDel" Content="删除" Width="40" Margin="6" FontSize="15" Click="btnDel_Click"/>
+                        <Button Name="btnSave" Content="保存" Width="40" Margin="6,6,6,0" FontSize="15" Click="btnSave_Click" IsEnabled="False" Height="25" VerticalAlignment="Top"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <TabControl x:Name="tabControl" BorderBrush="Pink" Height="188" BorderThickness="1" Canvas.Left="738" Canvas.Top="535" Width="249">
+                <TabItem Header="检修时间" FontSize="16" BorderBrush="Pink" BorderThickness="1" FontFamily="Monotype Corsiva" Height="24" VerticalAlignment="Top">
+                    <WrapPanel Orientation="Horizontal" Background="#FFE5E5E5" Margin="0.5">
+                        <Label  Content="检修时间(min)：" FontSize="18" Width="auto" Height="auto" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox Background="Red" Name="txtUpdateTime"  Width="40"  Margin="10,2" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="30"  PreviewMouseUp="Text_PreviewMouseUp"/>
+                        <Button Content="插入检修" FontSize="20" Tag="0" Margin="5" Name="btnUpdate" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="UpdatePushTime_Click"  ToolTip="当前所选行'炉号'和上一行'炉号'之间的出焦间隔时间" BorderBrush="Blue"/>
+                        <Button Content="增加" FontSize="20"  Tag="1" Margin="5" Width="50" Click="UpdatePushTime_Click" ToolTip="当前所选行'炉号'的预定出焦时间增加时间" BorderBrush="Green"/>
+                        <Button Content="减少" FontSize="20" Tag="2" Margin="5" Width="50"  Click="UpdatePushTime_Click" ToolTip="当前所选行'炉号'的预定出焦时间减少时间" BorderBrush="Green" />
+                    </WrapPanel>
+                </TabItem>
+                <TabItem Header="计划打印" BorderBrush="LimeGreen" FontSize="16" FontFamily="Monotype Corsiva">
+                    <Grid Background="#FFE5E5E5" Margin="0.5">
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Content="时段选择：" Width="auto" Height="auto" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Name="cboPrintPeriod"  Width="90" Height="auto" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <ComboBoxItem Content="白班" IsSelected="True"/>
+                                <ComboBoxItem Content="夜班" />
+                            </ComboBox>
+                            <Label Content="炉区选择：" Width="auto" Height="auto" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Name="cboPrintArea" Width="90" Height="auto" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <ComboBoxItem Content="1#炉区"  IsSelected="True"/>
+                                <ComboBoxItem Content="2#炉区"/>
+                            </ComboBox>
+                            <RadioButton Margin="2,5" x:Name="rbtnDirect" Width="85" Content="直接打印" Height="18" BorderBrush="#FF0F0F0F" BorderThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <RadioButton Margin="2" x:Name="rbtnPreview" Width="86" Content="预览打印" Height="18" BorderBrush="#FF0F0F0F" BorderThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True" Checked="Checked"/>
+                            <Button  x:Name="btnPrint" Width="50" BorderBrush="Chocolate" Content="打印" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,2" HorizontalContentAlignment="Center" Click="btnPrint_Click"/>
+
+                        </WrapPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="乱笺" Width="80" FontSize="16" FontFamily="Monotype Corsiva">
+                    <!--<Grid Background="#FFE5E5E5" Margin="0.5" Height="116">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="炉号：" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                        <TextBox Name="txtInsertRoom" Text="000" Grid.Row="0" Grid.Column="2"  Width="auto"  Height="auto" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseUp="Text_PreviewMouseUp" KeyUp="TextBox_KeyUp" KeyDown="Text_KeyDown"/>
+                        <Label Content="预定出焦时间：" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtInsertPushTime" Grid.Column="2" Grid.Row="1" Text="00:00" VerticalAlignment="Center"   KeyDown="Text_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,4" TextChanged="txtPushTime_TextChanged" PreviewMouseUp="Text_PreviewMouseUp"  />
+                        <Button Name="btnInsert" Grid.Row="2" Grid.RowSpan="2" Grid.Column="2"  MinWidth="60" BorderBrush="Chocolate" Content="增加" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="btnInsert_Click" HorizontalContentAlignment="Center" />
+                    </Grid>-->
+                    <StackPanel>
+                        <Grid Background="#FFE5E5E5" Margin="0,0.5" Height="158" HorizontalAlignment="Right" Width="243">
+                            <StackPanel >
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="炉号：" Width="auto" Height="auto" Margin="34,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="txtInsertRoom" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" PreviewMouseUp="Text_PreviewMouseUp" KeyUp="TextBox_KeyUp"  KeyDown="Text_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="出焦时间：" Margin="3,5" Width="auto" Height="auto" VerticalAlignment="Center" />
+                                    <TextBox x:Name="txtInsertPushTime" Margin="30,5" Width="50" VerticalAlignment="Center"  TextChanged="txtPushTime_TextChanged" PreviewMouseUp="Text_PreviewMouseUp" KeyDown="Text_KeyDown" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                </StackPanel>
+                                <Button x:Name="btnInsert" Width="50" BorderBrush="Chocolate" Content="增加" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="128,5,65,5" Click="btnInsert_Click" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Canvas>
+    </Grid>
+</UserControl>

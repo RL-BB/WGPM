@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="WGPM.R.UI.Title"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="30" d:DesignWidth="1024">
+
+    <Grid x:Name="LayoutRoot">
+
+        <TextBox Name="TxtCase" HorizontalAlignment="Left" TextWrapping="Wrap" Text="杭州钱江称重技术有限公司" Width="380" Height="30"
+                 Margin="0,0,0,0" FontSize="21.333" FontFamily="YouYuan" TextAlignment="Center" FontWeight="Bold"
+                 Foreground="Yellow" VerticalAlignment="Top" IsTabStop="False" Cursor="Arrow" BorderBrush="Cyan"
+                 IsReadOnly="False" BorderThickness="0.2" >
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9999F9" Offset="0.004" />
+                    <GradientStop Color="#FF000050" Offset="1" />
+                    <GradientStop Color="Blue" Offset="0.3" />
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox Name="txtTime" Margin="380,0,0,0" TextWrapping="Wrap" Text="2013/09/11 00:00:00" Height="30"
+                 FontFamily="YouYuan" FontWeight="Bold" FontSize="21.333" TextAlignment="Center"
+                 VerticalAlignment="Top" IsTabStop="False" Foreground="Cyan" HorizontalAlignment="Left" Width="254"
+                 Cursor="Arrow" BorderBrush="Cyan" BorderThickness="0.2" IsReadOnly="True">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9999F9" Offset="0" />
+                    <GradientStop Color="#FF000050" Offset="1" />
+                    <GradientStop Color="Blue" Offset="0.3" />
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox Name="TxtCompany" Margin="634,0,0,0" TextWrapping="Wrap" Text="四车联锁系统" FontSize="21.333"
+                 FontFamily="STXinwei" TextAlignment="Center" Height="30" Width="390" FontWeight="Bold"
+                 Foreground="Orange" VerticalAlignment="Top" HorizontalAlignment="Left" IsTabStop="False"
+                 Cursor="Arrow" BorderBrush="Cyan" BorderThickness="0.2" IsReadOnly="True">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9999F9" Offset="0" />
+                    <GradientStop Color="#FF000050" Offset="1" />
+                    <GradientStop Color="Blue" Offset="0.3" />
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <Image Height="28" HorizontalAlignment="Left" Name="Image1" Stretch="Fill" VerticalAlignment="Top" Width="28"
+               Source="/WGPM;component/R/image/Logo/QJCZ.jpg" Margin="995,1,0,0" />
+    </Grid>
+</UserControl>
