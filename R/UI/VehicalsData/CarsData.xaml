@@ -7,40 +7,67 @@
         mc:Ignorable="d"
         Title="CarsData" Height="700" Width="1024" FontSize="16">
     <StackPanel >
-        <WrapPanel Name="tjc">
-            <TextBox Name="bb" Text="1111"  HorizontalAlignment="Center" />
-            <StackPanel Name="tjcName" Margin="2,0">
-                <TextBlock Text="车型"  HorizontalAlignment="Center"/>
-                <TextBox Name="t1" Text="1#推焦车"  HorizontalAlignment="Center" />
-                <TextBox Name="t2" Text="1#推焦车"  HorizontalAlignment="Center" />
-            </StackPanel>
-            <StackPanel Name="tRoomNum" Margin="2,0">
-                <TextBox  Text="炉号"  HorizontalAlignment="Center" />
-                <TextBox Name="t1RoomNum" Text="110"  HorizontalAlignment="Center" />
-                <TextBox Name="t2RoomNum" Text="109"  HorizontalAlignment="Center" />
-            </StackPanel>
-            <StackPanel Name="tAddr" Margin="2,0">
-                <TextBox Text="物理地址"  HorizontalAlignment="Center" />
-                <TextBox Name="t1Addr" Text="11050216"  HorizontalAlignment="Center" />
-                <TextBox Name="t2Addr" Text="11050216"  HorizontalAlignment="Center" />
-            </StackPanel>
-            <StackPanel Name="tLightStatus" Margin="2,0">
-                <TextBox  Text="灯状态"/>
-            </StackPanel>
-        </WrapPanel>
-        <WrapPanel Name="ljc" Margin="0,2">
-            <local:Node x:Name="lName" Margin="2,0"></local:Node>
-            <local:Node x:Name="lRoomNum" Margin="2,0"></local:Node>
-            <local:Node x:Name="lAddr" Margin="2,0"></local:Node>
-            <local:Node x:Name="lLight" Margin="2,0"></local:Node>
-            <local:Node x:Name="lDecodeCount" Margin="2,0"></local:Node>
-            <local:Node x:Name="lPLCCount" Margin="2,0"></local:Node>
-            <local:Node x:Name="lTouchCount" Margin="2,0"></local:Node>
-            <local:Node x:Name="lAllowPush" Margin="2,0"></local:Node>
-            <local:Node x:Name="lDoorOpen" Margin="2,0"></local:Node>
-            <local:Node x:Name="lTroughLock" Margin="2,0"></local:Node>
-            <local:Node x:Name="lPickDoor" Margin="2,0"></local:Node>
-            <local:Node x:Name="lBan" Margin="2,0"></local:Node>
-        </WrapPanel>
+        <GroupBox Header="推焦车">
+            <WrapPanel  Margin="0,2">
+                <local:CommonTitle x:Name="tjc" Margin="2,0"/>
+                <local:Node x:Name="tPushCur" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPingCur" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPushPole" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPingPole" Margin="2,0"></local:Node>
+                <local:Node x:Name="tAskPush" Margin="2,0"></local:Node>
+                <local:Node x:Name="tDoorOpen" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPushLock" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPickDoorLock" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPushBegin" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPushEnd" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPingBegin" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPingEnd" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPushForward" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPause" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPushEndFlag" Margin="2,0"></local:Node>
+                <local:Node x:Name="tPMDoorOpen" Margin="2,0"></local:Node>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Header="拦焦车">
+            <WrapPanel Margin="0,2">
+                <local:CommonTitle x:Name="ljc"/>
+                <local:Node x:Name="lAllowPush" Margin="2,0"></local:Node>
+                <local:Node x:Name="lDoorOpen" Margin="2,0"></local:Node>
+                <local:Node x:Name="lTroughLock" Margin="2,0"></local:Node>
+                <local:Node x:Name="lPickDoor" Margin="2,0"></local:Node>
+                <local:Node x:Name="lBan" Margin="2,0"></local:Node>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Header="熄焦车">
+            <WrapPanel  Margin="0,2">
+                <local:CommonTitle x:Name="xjc"/>
+                <local:Node x:Name="xAllowPush" Margin="2,0"></local:Node>
+                <local:Node x:Name="xCanReady" Margin="2,0"></local:Node>
+                <local:Node x:Name="xCanNum" Margin="2,0"/>
+                <local:Node x:Name="xDry" Margin="2,0"/>
+                <local:Node x:Name="xBan" Margin="2,0"/>
+                <local:Node x:Name="xFstCan" Margin="2,0"/>
+                <local:Node x:Name="xSecCan" Margin="2,0"/>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Header="装煤车">
+            <WrapPanel  Margin="0,2">
+                <local:CommonTitle x:Name="mc"/>
+                <local:Node x:Name="mSpiral1" Margin="2,0"></local:Node>
+                <local:Node x:Name="mSpiral2" Margin="2,0"></local:Node>
+                <local:Node x:Name="mSpiral3" Margin="2,0"></local:Node>
+                <local:Node x:Name="mSpiral4" Margin="2,0"></local:Node>
+                <local:Node x:Name="mStokingLock" Margin="2,0"></local:Node>
+                <local:Node x:Name="mAskPing" Margin="2,0"></local:Node>
+                <local:Node x:Name="mSleeveReady" Margin="2,0"></local:Node>
+                <local:Node x:Name="mLidOpen" Margin="2,0"></local:Node>
+                <local:Node x:Name="mGateSegmentOpen" Margin="2,0"></local:Node>
+                <local:Node x:Name="mExhaustDuctReady" Margin="2,0"></local:Node>
+                <local:Node x:Name="mStokingBegin" Margin="2,0"></local:Node>
+                <local:Node x:Name="mStokingEnd" Margin="2,0"></local:Node>
+                <local:Node x:Name="mGetLidTogether" Margin="2,0"></local:Node>
+                <local:Node x:Name="mVFDRuning" Margin="2,0"></local:Node>
+            </WrapPanel>
+        </GroupBox>
     </StackPanel>
 </Window>

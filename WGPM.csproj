@@ -215,6 +215,9 @@
     <Compile Include="R\UI\VehicalsData\CarsData.xaml.cs">
       <DependentUpon>CarsData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="R\UI\VehicalsData\CommonTitle.xaml.cs">
+      <DependentUpon>CommonTitle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="R\UI\VehicalsData\DetailsData.xaml.cs">
       <DependentUpon>DetailsData.xaml</DependentUpon>
     </Compile>
@@ -371,6 +374,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="R\UI\VehicalsData\CarsData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="R\UI\VehicalsData\CommonTitle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

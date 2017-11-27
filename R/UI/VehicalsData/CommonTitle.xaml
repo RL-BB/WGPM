@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="WGPM.R.UI.VehicalsData.CommonTitle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WGPM.R.UI.VehicalsData"
+             mc:Ignorable="d" 
+             >
+    <WrapPanel Name="ljc" >
+        <local:Node x:Name="CarNum" Margin="2,0"></local:Node>
+        <local:Node x:Name="RoomNum" Margin="2,0"></local:Node>
+        <local:Node x:Name="Addr" Margin="2,0"></local:Node>
+        <local:Node x:Name="Light" Margin="2,0"></local:Node>
+        <local:Node x:Name="DecodeCount" Margin="2,0"></local:Node>
+        <local:Node x:Name="PLCCount" Margin="2,0"></local:Node>
+        <local:Node x:Name="TouchCount" Margin="2,0"></local:Node>
+        <local:Node x:Name="TogetherInfo" Margin="2,0"></local:Node>
+    </WrapPanel>
+</UserControl>

@@ -36,10 +36,10 @@ namespace WGPM.R.Vehicles
             List<ushort> ssArr = new List<ushort>();
             //①找到工作煤车
             Vehicle car = m1.JobCar ? m1 : m2;
-            ssArr.Add(((McDataRead)car.DataRead).SpirilSpeed1);
-            ssArr.Add(((McDataRead)car.DataRead).SpirilSpeed1);
-            ssArr.Add(((McDataRead)car.DataRead).SpirilSpeed1);
-            ssArr.Add(((McDataRead)car.DataRead).SpirilSpeed1);
+            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
             return ssArr;
         }
         /// <summary>
@@ -98,24 +98,24 @@ namespace WGPM.R.Vehicles
         {
             DecodeDataReadValue = DecodeDataRead;
         }
-        private ushort spirilSpeed1;
+        private ushort spiralSpeed1;
 
-        public ushort SpirilSpeed1 { get { return spirilSpeed1; } }
-        private ushort spirilSpeed2;
+        public ushort SpiralSpeed1 { get { return spiralSpeed1; } }
+        private ushort spiralSpeed2;
 
-        public ushort SpirilSpeed2 { get { return spirilSpeed2; } }
-        private ushort spirilSpeed3;
+        public ushort SpiralSpeed2 { get { return spiralSpeed2; } }
+        private ushort spiralSpeed3;
 
-        public ushort SpirilSpeed3 { get { return spirilSpeed3; } }
-        private ushort spirilSpeed4;
+        public ushort SpiralSpeed3 { get { return spiralSpeed3; } }
+        private ushort spiralSpeed4;
 
-        public ushort SpirilSpeed4 { get { return spirilSpeed4; } }
+        public ushort SpirilSpeed4 { get { return spiralSpeed4; } }
         public void DecodeUncommonDataReadValue(int index)
         {
-            spirilSpeed1 = ToDecodeProtocolData[7];
-            spirilSpeed2 = ToDecodeProtocolData[8];
-            spirilSpeed3 = ToDecodeProtocolData[9];
-            spirilSpeed4 = ToDecodeProtocolData[10];
+            spiralSpeed1 = ToDecodeProtocolData[7];
+            spiralSpeed2 = ToDecodeProtocolData[8];
+            spiralSpeed3 = ToDecodeProtocolData[9];
+            spiralSpeed4 = ToDecodeProtocolData[10];
         }
 
     }
