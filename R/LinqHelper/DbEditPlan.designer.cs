@@ -23,7 +23,7 @@ namespace WGPM.R.LinqHelper
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WGPM")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WGPM34")]
 	public partial class DbAppDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -46,7 +46,7 @@ namespace WGPM.R.LinqHelper
     #endregion
 		
 		public DbAppDataContext() : 
-				base(global::WGPM.Properties.Settings.Default.WGPM_CokeArea12, mappingSource)
+				base(global::WGPM.Properties.Settings.Default.WGPM34ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1278,6 +1278,22 @@ namespace WGPM.R.LinqHelper
 		
 		private System.Nullable<System.DateTime> _EndTime;
 		
+		private System.Nullable<int> _T1Addr;
+		
+		private System.Nullable<int> _T2Addr;
+		
+		private System.Nullable<int> _L1Addr;
+		
+		private System.Nullable<int> _L2Addr;
+		
+		private System.Nullable<int> _X1Addr;
+		
+		private System.Nullable<int> _X2Addr;
+		
+		private System.Nullable<int> _M1Addr;
+		
+		private System.Nullable<int> _M2Addr;
+		
     #region 可扩展性方法定义
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1342,6 +1358,22 @@ namespace WGPM.R.LinqHelper
     partial void OnBeginTimeChanged();
     partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnEndTimeChanged();
+    partial void OnT1AddrChanging(System.Nullable<int> value);
+    partial void OnT1AddrChanged();
+    partial void OnT2AddrChanging(System.Nullable<int> value);
+    partial void OnT2AddrChanged();
+    partial void OnL1AddrChanging(System.Nullable<int> value);
+    partial void OnL1AddrChanged();
+    partial void OnL2AddrChanging(System.Nullable<int> value);
+    partial void OnL2AddrChanged();
+    partial void OnX1AddrChanging(System.Nullable<int> value);
+    partial void OnX1AddrChanged();
+    partial void OnX2AddrChanging(System.Nullable<int> value);
+    partial void OnX2AddrChanged();
+    partial void OnM1AddrChanging(System.Nullable<int> value);
+    partial void OnM1AddrChanged();
+    partial void OnM2AddrChanging(System.Nullable<int> value);
+    partial void OnM2AddrChanged();
     #endregion
 		
 		public PushInfo()
@@ -1975,6 +2007,174 @@ namespace WGPM.R.LinqHelper
 					this._EndTime = value;
 					this.SendPropertyChanged("EndTime");
 					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_T1Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=31)]
+		public System.Nullable<int> T1Addr
+		{
+			get
+			{
+				return this._T1Addr;
+			}
+			set
+			{
+				if ((this._T1Addr != value))
+				{
+					this.OnT1AddrChanging(value);
+					this.SendPropertyChanging();
+					this._T1Addr = value;
+					this.SendPropertyChanged("T1Addr");
+					this.OnT1AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_T2Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=32)]
+		public System.Nullable<int> T2Addr
+		{
+			get
+			{
+				return this._T2Addr;
+			}
+			set
+			{
+				if ((this._T2Addr != value))
+				{
+					this.OnT2AddrChanging(value);
+					this.SendPropertyChanging();
+					this._T2Addr = value;
+					this.SendPropertyChanged("T2Addr");
+					this.OnT2AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_L1Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=33)]
+		public System.Nullable<int> L1Addr
+		{
+			get
+			{
+				return this._L1Addr;
+			}
+			set
+			{
+				if ((this._L1Addr != value))
+				{
+					this.OnL1AddrChanging(value);
+					this.SendPropertyChanging();
+					this._L1Addr = value;
+					this.SendPropertyChanged("L1Addr");
+					this.OnL1AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_L2Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=34)]
+		public System.Nullable<int> L2Addr
+		{
+			get
+			{
+				return this._L2Addr;
+			}
+			set
+			{
+				if ((this._L2Addr != value))
+				{
+					this.OnL2AddrChanging(value);
+					this.SendPropertyChanging();
+					this._L2Addr = value;
+					this.SendPropertyChanged("L2Addr");
+					this.OnL2AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_X1Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=35)]
+		public System.Nullable<int> X1Addr
+		{
+			get
+			{
+				return this._X1Addr;
+			}
+			set
+			{
+				if ((this._X1Addr != value))
+				{
+					this.OnX1AddrChanging(value);
+					this.SendPropertyChanging();
+					this._X1Addr = value;
+					this.SendPropertyChanged("X1Addr");
+					this.OnX1AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_X2Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=36)]
+		public System.Nullable<int> X2Addr
+		{
+			get
+			{
+				return this._X2Addr;
+			}
+			set
+			{
+				if ((this._X2Addr != value))
+				{
+					this.OnX2AddrChanging(value);
+					this.SendPropertyChanging();
+					this._X2Addr = value;
+					this.SendPropertyChanged("X2Addr");
+					this.OnX2AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_M1Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=37)]
+		public System.Nullable<int> M1Addr
+		{
+			get
+			{
+				return this._M1Addr;
+			}
+			set
+			{
+				if ((this._M1Addr != value))
+				{
+					this.OnM1AddrChanging(value);
+					this.SendPropertyChanging();
+					this._M1Addr = value;
+					this.SendPropertyChanged("M1Addr");
+					this.OnM1AddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_M2Addr", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=38)]
+		public System.Nullable<int> M2Addr
+		{
+			get
+			{
+				return this._M2Addr;
+			}
+			set
+			{
+				if ((this._M2Addr != value))
+				{
+					this.OnM2AddrChanging(value);
+					this.SendPropertyChanging();
+					this._M2Addr = value;
+					this.SendPropertyChanged("M2Addr");
+					this.OnM2AddrChanged();
 				}
 			}
 		}

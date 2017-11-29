@@ -657,13 +657,26 @@ class TjcDataRead : DataRead
     /// <summary>
     /// 推焦电流：起始位置23，length=2，6
     /// </summary>
-    public ushort PushCur { get { return pushCur; } }
-    private ushort pushCur;
+    public int PushCur
+    {
+        get { return (int)GetValue(PushCurProperty); }
+        set { SetValue(PushCurProperty, value); }
+    }
+    // Using a DependencyProperty as the backing store for PushCur.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushCurProperty =
+        DependencyProperty.Register("PushCur", typeof(int), typeof(TjcDataRead), new PropertyMetadata(0));
     /// <summary>
     /// 平煤电流，Ping==平煤：起始位置25，length=2，7
     /// </summary>
-    public ushort PingCur { get { return pingCur; } }
-    private ushort pingCur;
+    public int PingCur
+    {
+        get { return (int)GetValue(PingCurProperty); }
+        set { SetValue(PingCurProperty, value); }
+    }
+    // Using a DependencyProperty as the backing store for PingCur.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PingCurProperty =
+        DependencyProperty.Register("PingCur", typeof(int), typeof(TjcDataRead), new PropertyMetadata(0));
+
     /// <summary>
     /// 推焦杆（Pole）长度：起始位置27，length=2，8
     /// </summary>
@@ -695,8 +708,8 @@ class TjcDataRead : DataRead
     /// </summary>
     public void DecodeUncommonDataReadValue(int index)
     {
-        pushCur = ToDecodeProtocolData[7];
-        pingCur = ToDecodeProtocolData[8];
+        PushCur = ToDecodeProtocolData[7];
+        PingCur = ToDecodeProtocolData[8];
         PushPoleLength = ToDecodeProtocolData[9];
         PingPoleLength = ToDecodeProtocolData[10];
     }
@@ -707,48 +720,118 @@ class TjcTogetherInfo : TogetherInfo
     /// <summary>
     /// 推焦请求
     /// </summary>
-    public bool PushRequest { get { return pushRequest; } }
-    private bool pushRequest;
+    public bool PushRequest
+    {
+        get { return (bool)GetValue(PushRequestProperty); }
+        set { SetValue(PushRequestProperty, value); }
+    }
+    // Using a DependencyProperty as the backing store for PushREquest.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushRequestProperty =
+        DependencyProperty.Register("PushRequest", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 炉门已摘
     /// </summary>
-    public bool TRoomDoorOpen { get { return roomDoorOpen; } }
-    private bool roomDoorOpen;
+    public bool DoorOpen
+    {
+        get { return (bool)GetValue(DoorOpenProperty); }
+        set { SetValue(DoorOpenProperty, value); }
+    }
+    // Using a DependencyProperty as the backing store for DoorOpen.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty DoorOpenProperty =
+        DependencyProperty.Register("DoorOpen", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
+
     /// <summary>
     /// 推焦联锁
     /// </summary>
-    public bool PushTogether { get { return pushTogether; } }
-    private bool pushTogether;
+    public bool PushTogether
+    {
+        get { return (bool)GetValue(PushTogetherProperty); }
+        set { SetValue(PushTogetherProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PushTogether.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushTogetherProperty =
+        DependencyProperty.Register("PushTogether", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 摘门联锁
     /// </summary>
-    public bool PickDoorTogether { get { return pickDoorTogether; } }
-    private bool pickDoorTogether;
+    public bool PickDoorTogether
+    {
+        get { return (bool)GetValue(PickDoorTogetherProperty); }
+        set { SetValue(PickDoorTogetherProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PickDoorTogether.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PickDoorTogetherProperty =
+        DependencyProperty.Register("PickDoorTogether", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 推焦开始
     /// </summary>
-    public bool PushBegin { get { return pushBegin; } }
-    private bool pushBegin;
+    public bool PushBegin
+    {
+        get { return (bool)GetValue(PushBeginProperty); }
+        set { SetValue(PushBeginProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PushBegin.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushBeginProperty =
+        DependencyProperty.Register("PushBegin", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 推焦结束
     /// </summary>
-    public bool PushEnd { get { return pushEnd; } }
-    private bool pushEnd;
+    public bool PushEnd
+    {
+        get { return (bool)GetValue(PushEndProperty); }
+        set { SetValue(PushEndProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PushEnd.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushEndProperty =
+        DependencyProperty.Register("PushEnd", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 平煤开始
     /// </summary>
-    public bool PingBegin { get { return pingBegin; } }
-    private bool pingBegin;
+    public bool PingBegin
+    {
+        get { return (bool)GetValue(PingBeginProperty); }
+        set { SetValue(PingBeginProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PingBegin.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PingBeginProperty =
+        DependencyProperty.Register("PingBegin", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 平煤结束
     /// </summary>
-    public bool PingEnd { get { return pingEnd; } }
-    private bool pingEnd;
+    public bool PingEnd
+    {
+        get { return (bool)GetValue(PingEndProperty); }
+        set { SetValue(PingEndProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PingEnd.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PingEndProperty =
+        DependencyProperty.Register("PingEnd", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 推焦杆前进(无用)
     /// </summary>
-    public bool PushPoleForward { get { return pushPoleForward; } }
-    private bool pushPoleForward;
+    public bool PushPoleForward
+    {
+        get { return (bool)GetValue(PushPoleForwardProperty); }
+        set { SetValue(PushPoleForwardProperty, value); }
+    }
+    // Using a DependencyProperty as the backing store for PushPoleForward.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushPoleForwardProperty =
+        DependencyProperty.Register("PushPoleForward", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     /// <summary>
     /// 推焦杆 炉前暂停
     /// </summary>
@@ -764,27 +847,43 @@ class TjcTogetherInfo : TogetherInfo
     /// <summary>
     /// 推焦完成标志(无用)
     /// </summary>
-    public bool PushEndFlag { get { return pushEndFlag; } }
-    private bool pushEndFlag;
-    public bool TMDoorOpen { get { return tMDoorOpen; } }
-    private bool tMDoorOpen;
+    public bool PushEndFlag
+    {
+        get { return (bool)GetValue(PushEndFlagProperty); }
+        set { SetValue(PushEndFlagProperty, value); }
+    }
+    // Using a DependencyProperty as the backing store for PushEndFlag.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PushEndFlagProperty =
+        DependencyProperty.Register("PushEndFlag", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
+
+    public bool PMDoorOpen
+    {
+        get { return (bool)GetValue(PMDoorOpenProperty); }
+        set { SetValue(PMDoorOpenProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for PMDoorOpen.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty PMDoorOpenProperty =
+        DependencyProperty.Register("PMDoorOpen", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+
     public void DecodeTogetherInfoValue()
     {
         byte index = 0;
         if (ToDecodeTogetherInfo.Count > 0)
         {
-            pushRequest = ToDecodeTogetherInfo[index++];
-            roomDoorOpen = ToDecodeTogetherInfo[index++];
-            pushTogether = ToDecodeTogetherInfo[index++];
-            pickDoorTogether = ToDecodeTogetherInfo[index++];
-            pushBegin = ToDecodeTogetherInfo[index++];
-            pushEnd = ToDecodeTogetherInfo[index++];
-            pingBegin = ToDecodeTogetherInfo[index++];
-            pingEnd = ToDecodeTogetherInfo[index++];
-            pushPoleForward = ToDecodeTogetherInfo[index++];
+            PushRequest = ToDecodeTogetherInfo[index++];
+            DoorOpen = ToDecodeTogetherInfo[index++];
+            PushTogether = ToDecodeTogetherInfo[index++];
+            PickDoorTogether = ToDecodeTogetherInfo[index++];
+            PushBegin = ToDecodeTogetherInfo[index++];
+            PushEnd = ToDecodeTogetherInfo[index++];
+            PingBegin = ToDecodeTogetherInfo[index++];
+            PingEnd = ToDecodeTogetherInfo[index++];
+            PushPoleForward = ToDecodeTogetherInfo[index++];
             PushPolePause = ToDecodeTogetherInfo[index++];
-            pushEndFlag = ToDecodeTogetherInfo[index++];
-            tMDoorOpen = ToDecodeTogetherInfo[index];
+            PushEndFlag = ToDecodeTogetherInfo[index++];
+            PMDoorOpen = ToDecodeTogetherInfo[index];
         }
     }
 }

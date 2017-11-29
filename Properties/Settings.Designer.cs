@@ -44,5 +44,15 @@ namespace WGPM.Properties {
                 return ((string)(this["WGPM_CokeArea12"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.1;Initial Catalog=WGPM34;User ID=sa;Password=1984.qjcz")]
+        public string WGPM34ConnectionString {
+            get {
+                return ((string)(this["WGPM34ConnectionString"]));
+            }
+        }
     }
 }

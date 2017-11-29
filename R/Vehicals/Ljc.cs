@@ -66,13 +66,29 @@ namespace WGPM.R.Vehicles
         /// <summary>
         /// 人工允推
         /// </summary>
-        public bool LAllowPush { get { return allowPush; } }
-        private bool allowPush;
+        public bool AllowPush
+        {
+            get { return (bool)GetValue(AllowPushProperty); }
+            set { SetValue(AllowPushProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AllowPush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AllowPushProperty =
+            DependencyProperty.Register("AllowPush", typeof(bool), typeof(LjcTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 炉门已摘
         /// </summary>
-        public bool LRoomDoorOpen { get { return roomDoorOpen; } }
-        private bool roomDoorOpen;
+        public bool DoorOpen
+        {
+            get { return (bool)GetValue(DoorOpenProperty); }
+            set { SetValue(DoorOpenProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DoorOpen.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DoorOpenProperty =
+            DependencyProperty.Register("DoorOpen", typeof(bool), typeof(LjcTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 焦槽锁闭
         /// </summary>
@@ -81,20 +97,34 @@ namespace WGPM.R.Vehicles
             get { return (bool)GetValue(TroughLockedProperty); }
             set { SetValue(TroughLockedProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for TroughLocked.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TroughLockedProperty =
             DependencyProperty.Register("TroughLocked", typeof(bool), typeof(LjcTogetherInfo), new PropertyMetadata(false));
         /// <summary>
         /// 摘门联锁
         /// </summary>
-        public bool PickDoorTogether { get { return pickDoorTogether; } }
-        private bool pickDoorTogether;
+        public bool PickDoorTogether
+        {
+            get { return (bool)GetValue(PickDoorTogetherProperty); }
+            set { SetValue(PickDoorTogetherProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PickDoorTogether.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PickDoorTogetherProperty =
+            DependencyProperty.Register("PickDoorTogether", typeof(bool), typeof(LjcTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 禁止推焦
         /// </summary>
-        public bool UnallowPush { get { return allowPush; } }
-        private bool unallowPush;
+        public bool Ban
+        {
+            get { return (bool)GetValue(BanProperty); }
+            set { SetValue(BanProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Ban.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BanProperty =
+            DependencyProperty.Register("Ban", typeof(bool), typeof(LjcTogetherInfo), new PropertyMetadata(false));
         /// <summary>
         /// 给List<bool> propertyValue赋值后调用此方法；
         /// </summary>
@@ -103,11 +133,11 @@ namespace WGPM.R.Vehicles
             byte listIndex = 0;
             if (ToDecodeTogetherInfo.Count > 0)
             {
-                allowPush = ToDecodeTogetherInfo[listIndex++];
-                roomDoorOpen = ToDecodeTogetherInfo[listIndex++];
+                AllowPush = ToDecodeTogetherInfo[listIndex++];
+                DoorOpen = ToDecodeTogetherInfo[listIndex++];
                 TroughLocked = ToDecodeTogetherInfo[listIndex++];
-                pickDoorTogether = ToDecodeTogetherInfo[listIndex++];
-                unallowPush = ToDecodeTogetherInfo[listIndex++];
+                PickDoorTogether = ToDecodeTogetherInfo[listIndex++];
+                Ban = ToDecodeTogetherInfo[listIndex++];
             }
         }
     }

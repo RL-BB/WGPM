@@ -44,8 +44,6 @@ namespace WGPM.R.OPCCommunication
         // Using a DependencyProperty as the backing store for PhysicalAddr.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PhysicalAddrProperty =
             DependencyProperty.Register("PhysicalAddr", typeof(int), typeof(DataRead), new PropertyMetadata(0));
-
-
         /// <summary>
         /// 码牌006，中心地址0060216，非协议DataRead数据
         /// MainPhysicalAddr=006
@@ -65,31 +63,50 @@ namespace WGPM.R.OPCCommunication
         /// <summary>
         /// 读码器灯状态：起始位置15，length=2，2
         /// </summary>
-        public int LightStatus { get { return lightStatus; } }
-        private int lightStatus;
+        public string LightStatus
+        {
+            get { return (string)GetValue(LightStatusProperty); }
+            set { SetValue(LightStatusProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LightStatus.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LightStatusProperty =
+            DependencyProperty.Register("LightStatus", typeof(string), typeof(DataRead), new PropertyMetadata("000000"));
+
+
         /// <summary>
         /// 解码器计数：起始位置17，length=2，3
         /// </summary>
-        public int DecodeCount { get { return decodeCount; } }
-        private int decodeCount;
-        private int decodeCount1;
-        public bool Decode { get; set; }
+        public int DecodeCount
+        {
+            get { return (int)GetValue(DecodeCountProperty); }
+            set { SetValue(DecodeCountProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for DecodeCount.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DecodeCountProperty =
+            DependencyProperty.Register("DecodeCount", typeof(int), typeof(DataRead), new PropertyMetadata(0));
         /// <summary>
         /// PLC计数：起始位置19，length=2，4
         /// </summary>
-        public int PLCCount { get { return plcCount; } }
-        private int plcCount;
-        private int plcCount1;
-        public bool PLC { get; set; }
-        private DateTime plcTime;
+        public int PLCCount
+        {
+            get { return (int)GetValue(PLCCountProperty); }
+            set { SetValue(PLCCountProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for PLCCount.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PLCCountProperty =
+            DependencyProperty.Register("PLCCount", typeof(int), typeof(DataRead), new PropertyMetadata(0));
         /// <summary>
         /// 触摸屏计数：起始位置21，length=2，5
         /// </summary> 
-        public int TouchCount { get { return touchCount; } }
-        private int touchCount;
-        private int touchCount1;
-        public bool Touch { get; set; }
-        private DateTime touchTime;
+        public int TouchCount
+        {
+            get { return (int)GetValue(TouchCountProperty); }
+            set { SetValue(TouchCountProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for TouchCount.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TouchCountProperty =
+            DependencyProperty.Register("TouchCount", typeof(int), typeof(DataRead), new PropertyMetadata(0));
         public DecodeDataReadDelegate DecodeOtherDataRead { get; set; }
         public DecodeDataReadDelegate DecodeDataReadValue { get; set; }
         /// <summary>
@@ -100,19 +117,19 @@ namespace WGPM.R.OPCCommunication
         {//①联锁信息;②物理地址;③读码器灯状态;④解码器计数;⑤PLC计数;⑥触摸屏计数;除物理地址4个字节外，其他为2个字节
             TogetherInfo.TogetherInfoValue = ToDecodeProtocolData[0];
             PhysicalAddr = DecodePhysicalAddr();//物理地址四个字节
-            //lightStatus = ToDecodeProtocolData[2];
-            //decodeCount = ToDecodeProtocolData[3];
-            //plcCount = ToDecodeProtocolData[4];
-            //touchCount = ToDecodeProtocolData[5];
+            LightStatus = LightStatusToString(ToDecodeProtocolData[3]);
+            DecodeCount = ToDecodeProtocolData[4];
+            PLCCount = ToDecodeProtocolData[5];
+            TouchCount = ToDecodeProtocolData[6];
         }
         public void DecodeXjcDataRead(int index)
         {
             TogetherInfo.TogetherInfoValue = ToDecodeProtocolData[0];
-            PhysicalAddr = index==4? SocketHelper.Addr1: SocketHelper.Addr2;//物理地址，20170924：TCP/IP -Helper类 接收物理地址传递至此处
-            lightStatus = 0;
-            decodeCount = 0;
-            plcCount = ToDecodeProtocolData[1];
-            touchCount = ToDecodeProtocolData[2];
+            PhysicalAddr = index == 4 ? SocketHelper.Addr1 : SocketHelper.Addr2;//物理地址，20170924：TCP/IP -Helper类 接收物理地址传递至此处
+            LightStatus = "000000";
+            DecodeCount = 0;
+            PLCCount = ToDecodeProtocolData[1];
+            TouchCount = ToDecodeProtocolData[2];
         }
         public int DecodePhysicalAddr()
         {
@@ -124,47 +141,18 @@ namespace WGPM.R.OPCCommunication
             int PA = BitConverter.ToInt32(list.ToArray(), 0);
             return PA;
         }
-        private bool IsTouchComm()
+        private string LightStatusToString(int light)
         {
-            bool comm = true;
-            if (touchCount != touchCount1)
-            {
-                touchCount1 = touchCount;
+            string status = null;
+            for (int i = 0; i < 6; i++)
+            {//数字6的意义：读码器的灯有六个
+                bool flag = Convert.ToBoolean(light & (ushort)Math.Pow(2, i));
+                status += flag ? "1" : "0";
             }
-            else
-            {
-                comm = false;
-            }
-            return comm;
-        }
-        private bool IsPLCcomm()
-        {
-            bool comm = true;
-            if (plcCount != plcCount1)
-            {
-                plcCount1 = plcCount;
-            }
-            else
-            {
-                comm = false;
-            }
-            return comm;
-        }
-        private bool IsDecodeComm()
-        {
-            bool comm = true;
-            if (decodeCount != decodeCount1)
-            {
-                decodeCount1 = decodeCount;
-            }
-            else
-            {
-                comm = false;
-            }
-            return comm;
+            return status;
         }
     }
-    class TogetherInfo:DependencyObject
+    class TogetherInfo : DependencyObject
     {
         /// <summary>
         /// 联锁信息有效位数(Bit的有效数量）
@@ -174,7 +162,17 @@ namespace WGPM.R.OPCCommunication
         {
             toDecodeTogetherInfo = new List<bool>(togetherInfoCount);
         }
-        public ushort TogetherInfoValue { get; set; }
+        public int TogetherInfoValue
+        {
+            get { return (int)GetValue(TogetherInfoValueProperty); }
+            set { SetValue(TogetherInfoValueProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TogetherInfoValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TogetherInfoValueProperty =
+            DependencyProperty.Register("TogetherInfoValue", typeof(int), typeof(TogetherInfo), new PropertyMetadata(0));
+
+
         //用List<bool>的实例Porperties作为字段来对其他属性进行赋值
         public List<bool> ToDecodeTogetherInfo { get { return toDecodeTogetherInfo; } }
         public List<bool> toDecodeTogetherInfo;
@@ -191,7 +189,7 @@ namespace WGPM.R.OPCCommunication
             for (int i = 0; i < toDecodeTogetherInfo.Capacity; i++)
             {
                 //toDecodeTogetherInfo[i] = Convert.ToBoolean(TogetherInfoValue & (ushort)Math.Pow(2, i));
-                toDecodeTogetherInfo.Add(Convert.ToBoolean(TogetherInfoValue & (ushort)Math.Pow(2, i)));
+                toDecodeTogetherInfo.Add(Convert.ToBoolean(TogetherInfoValue & (int)Math.Pow(2, i)));
             }
         }
     }

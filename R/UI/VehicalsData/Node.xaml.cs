@@ -23,16 +23,6 @@ namespace WGPM.R.UI.VehicalsData
         public Node()
         {
             InitializeComponent();
-            Loaded += Node_Loaded;
-        }
-        public string NameModel { get; set; }
-        public string Car1Model { get; set; }
-        public string Car2Model { get; set; }
-        private void Node_Loaded(object sender, RoutedEventArgs e)
-        {
-            nameModel.Name = NameModel;
-            car1Model.Name = Car1Model;
-            car2Model.Name = Car2Model;
         }
     }
 }

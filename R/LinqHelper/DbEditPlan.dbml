@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WGPM" EntityNamespace="WGPM.R.LinqHelper" ContextNamespace="WGPM.R.LinqHelper" Class="DbAppDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.1;Initial Catalog=WGPM;Persist Security Info=True;User ID=sa" SettingsObjectName="WGPM.Properties.Settings" SettingsPropertyName="WGPM_CokeArea12" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WGPM34" EntityNamespace="WGPM.R.LinqHelper" ContextNamespace="WGPM.R.LinqHelper" Class="DbAppDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.1;Initial Catalog=WGPM34;User ID=sa" SettingsObjectName="WGPM.Properties.Settings" SettingsPropertyName="WGPM34ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Activate" Member="Activate">
     <Type Name="Activate">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -82,6 +82,14 @@
       <Column Name="PlanCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="BeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="T1Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="T2Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="L1Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="L2Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="X1Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="X2Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="M1Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="M2Addr" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

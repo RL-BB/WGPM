@@ -408,11 +408,9 @@ C:\Users\Administrator\Desktop\WGPM1\bin\Debug\WGPM.exe.config
 C:\Users\Administrator\Desktop\WGPM1\obj\Debug\WGPM.csproj.ResolveComReference.cache
 C:\Users\Administrator\Desktop\WGPM1\obj\Debug\WGPM.exe
 C:\Users\Administrator\Desktop\WGPM1\obj\Debug\WGPM.pdb
-C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\DetailsData.g.cs
-C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\VehicalsData.g.cs
-C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\DetailsData.baml
-C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\VehicalsData.baml
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\CarsData.g.cs
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\Node.g.cs
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\CarsData.baml
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\Node.baml
+C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\CommonTitle.g.cs
+C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\VehicalsData\CommonTitle.baml

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using WGPM.R.OPCCommunication;
 using WGPM.R.Parms;
 using WGPM.R.RoomInfo;
@@ -36,10 +37,10 @@ namespace WGPM.R.Vehicles
             List<ushort> ssArr = new List<ushort>();
             //①找到工作煤车
             Vehicle car = m1.JobCar ? m1 : m2;
-            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
-            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
-            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
-            ssArr.Add(((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add((ushort)((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add((ushort)((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add((ushort)((McDataRead)car.DataRead).SpiralSpeed1);
+            ssArr.Add((ushort)((McDataRead)car.DataRead).SpiralSpeed1);
             return ssArr;
         }
         /// <summary>
@@ -98,86 +99,196 @@ namespace WGPM.R.Vehicles
         {
             DecodeDataReadValue = DecodeDataRead;
         }
-        private ushort spiralSpeed1;
 
-        public ushort SpiralSpeed1 { get { return spiralSpeed1; } }
-        private ushort spiralSpeed2;
 
-        public ushort SpiralSpeed2 { get { return spiralSpeed2; } }
-        private ushort spiralSpeed3;
+        public int SpiralSpeed1
+        {
+            get { return (int)GetValue(SpiralSpeed1Property); }
+            set { SetValue(SpiralSpeed1Property, value); }
+        }
 
-        public ushort SpiralSpeed3 { get { return spiralSpeed3; } }
-        private ushort spiralSpeed4;
+        // Using a DependencyProperty as the backing store for SpiralSpeed1.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SpiralSpeed1Property =
+            DependencyProperty.Register("SpiralSpeed1", typeof(int), typeof(McDataRead), new PropertyMetadata(0));
+        public int SpiralSpeed2
+        {
+            get { return (int)GetValue(SpiralSpeed2Property); }
+            set { SetValue(SpiralSpeed2Property, value); }
+        }
 
-        public ushort SpirilSpeed4 { get { return spiralSpeed4; } }
+        // Using a DependencyProperty as the backing store for SpiralSpeed2.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SpiralSpeed2Property =
+            DependencyProperty.Register("SpiralSpeed2", typeof(int), typeof(McDataRead), new PropertyMetadata(0));
+        public int SpiralSpeed3
+        {
+            get { return (int)GetValue(SpiralSpeed3Property); }
+            set { SetValue(SpiralSpeed3Property, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SpiralSpeed3.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SpiralSpeed3Property =
+            DependencyProperty.Register("SpiralSpeed3", typeof(int), typeof(McDataRead), new PropertyMetadata(0));
+
+
+        public int SpiralSpeed4
+        {
+            get { return (int)GetValue(SpiralSpeed4Property); }
+            set { SetValue(SpiralSpeed4Property, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SpiralSpeed4.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SpiralSpeed4Property =
+            DependencyProperty.Register("SpiralSpeed4", typeof(int), typeof(McDataRead), new PropertyMetadata(0));
+
         public void DecodeUncommonDataReadValue(int index)
         {
-            spiralSpeed1 = ToDecodeProtocolData[7];
-            spiralSpeed2 = ToDecodeProtocolData[8];
-            spiralSpeed3 = ToDecodeProtocolData[9];
-            spiralSpeed4 = ToDecodeProtocolData[10];
+            SpiralSpeed1 = ToDecodeProtocolData[7];
+            SpiralSpeed2 = ToDecodeProtocolData[8];
+            SpiralSpeed3 = ToDecodeProtocolData[9];
+            SpiralSpeed4 = ToDecodeProtocolData[10];
         }
 
     }
     class McTogetherInfo : TogetherInfo
     {
         public McTogetherInfo(int mcTogetherInfoCount) : base(mcTogetherInfoCount) { }
-        private bool stokingTogether;
         /// <summary>
         /// 装煤联锁
         /// </summary>
-        public bool StokingTogether { get { return stokingTogether; } }
-        private bool pingRequest;
-        public bool PingRequest { get { return pingRequest; } }
-        private bool sleeveReady;
+        public bool StokingTogether
+        {
+            get { return (bool)GetValue(StokingTogetherProperty); }
+            set { SetValue(StokingTogetherProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for StokingTogether.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StokingTogetherProperty =
+            DependencyProperty.Register("StokingTogether", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+        public bool PingRequest
+        {
+            get { return (bool)GetValue(PingRequestProperty); }
+            set { SetValue(PingRequestProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PingRequest.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PingRequestProperty =
+            DependencyProperty.Register("PingRequest", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 导套到位
         /// </summary>
-        public bool SleeveReady { get { return sleeveReady; } }
-        private bool lidOpen;
+        public bool SleeveReady
+        {
+            get { return (bool)GetValue(SleeveReadyProperty); }
+            set { SetValue(SleeveReadyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SleeveReady.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SleeveReadyProperty =
+            DependencyProperty.Register("SleeveReady", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 炉盖打开
         /// </summary>
-        public bool LidOpen { get { return lidOpen; } }
-        private bool gateSegmentOpen;
+        public bool LidOpen
+        {
+            get { return (bool)GetValue(LidOpenProperty); }
+            set { SetValue(LidOpenProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LidOpen.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LidOpenProperty =
+            DependencyProperty.Register("LidOpen", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 闸板开
         /// </summary>
-        public bool GateSegentOpen { get { return gateSegmentOpen; } }
-        private bool exhaustDuctReady;
+        public bool GateSegmentOpen
+        {
+            get { return (bool)GetValue(GateSegmentOpenProperty); }
+            set { SetValue(GateSegmentOpenProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for GateSegentOpen.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GateSegmentOpenProperty =
+            DependencyProperty.Register("GateSegentOpen", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
         /// <summary>
         /// 除尘就绪
         /// </summary>
-        public bool ExhaustDuctReady { get { return exhaustDuctReady; } }
-        private bool stokingBegin;
-        public bool StokingBegin { get { return stokingBegin; } }
-        private bool stokingEnd;
-        public bool StokingEnd { get { return stokingEnd; } }
-        private bool getLidTogether;
+        public bool ExhaustDuctReady
+        {
+            get { return (bool)GetValue(ExhaustDuctReadyProperty); }
+            set { SetValue(ExhaustDuctReadyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ExhaustDuctReady.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ExhaustDuctReadyProperty =
+            DependencyProperty.Register("ExhaustDuctReady", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
+
+        public bool StokingBegin
+        {
+            get { return (bool)GetValue(StokingBeginProperty); }
+            set { SetValue(StokingBeginProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for StokingBegin.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StokingBeginProperty =
+            DependencyProperty.Register("StokingBegin", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
+
+        public bool StokingEnd
+        {
+            get { return (bool)GetValue(StokingEndProperty); }
+            set { SetValue(StokingEndProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for StokingEnd.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StokingEndProperty =
+            DependencyProperty.Register("StokingEnd", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
+
         /// <summary>
         /// 取盖联锁
         /// </summary>
-        public bool GetLidTogether { get { return getLidTogether; } }
-        private bool vfdRunning;
+        public bool GetLidTogether
+        {
+            get { return (bool)GetValue(GetLidTogetherProperty); }
+            set { SetValue(GetLidTogetherProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for GetLidTogether.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GetLidTogetherProperty =
+            DependencyProperty.Register("GetLidTogether", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 给煤变频器运行
         /// </summary>
-        private bool VFDRuning { get { return vfdRunning; } }
+        public bool VFDRunning
+        {
+            get { return (bool)GetValue(VFDRunningProperty); }
+            set { SetValue(VFDRunningProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for VFDRuning.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty VFDRunningProperty =
+            DependencyProperty.Register("VFDRuning", typeof(bool), typeof(McTogetherInfo), new PropertyMetadata(false));
+
         public void DecodeTogetherInfoValue()
         {
             byte index = 0;
             if (ToDecodeTogetherInfo.Count > 0)
             {
-                stokingTogether = ToDecodeTogetherInfo[index++];//装煤联锁
-                pingRequest = ToDecodeTogetherInfo[index++];//请求平煤
-                sleeveReady = ToDecodeTogetherInfo[index++];//内导套到位
-                lidOpen = ToDecodeTogetherInfo[index++];//炉盖打开
-                gateSegmentOpen = ToDecodeTogetherInfo[index++];//闸板开
-                exhaustDuctReady = ToDecodeTogetherInfo[index++];//除尘就绪
-                stokingBegin = ToDecodeTogetherInfo[index++];//装煤开始
-                stokingEnd = ToDecodeTogetherInfo[index++];//装煤结束
-                getLidTogether = ToDecodeTogetherInfo[index++];//取盖联锁
-                vfdRunning = ToDecodeTogetherInfo[index++];//给煤变频器运行
+                StokingTogether = ToDecodeTogetherInfo[index++];//装煤联锁
+                PingRequest = ToDecodeTogetherInfo[index++];//请求平煤
+                SleeveReady = ToDecodeTogetherInfo[index++];//内导套到位
+                LidOpen = ToDecodeTogetherInfo[index++];//炉盖打开
+                GateSegmentOpen = ToDecodeTogetherInfo[index++];//闸板开
+                ExhaustDuctReady = ToDecodeTogetherInfo[index++];//除尘就绪
+                StokingBegin = ToDecodeTogetherInfo[index++];//装煤开始
+                StokingEnd = ToDecodeTogetherInfo[index++];//装煤结束
+                GetLidTogether = ToDecodeTogetherInfo[index++];//取盖联锁
+                VFDRunning = ToDecodeTogetherInfo[index++];//给煤变频器运行
             }
         }
     }

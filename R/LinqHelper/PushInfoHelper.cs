@@ -39,7 +39,7 @@ namespace WGPM.R.LinqHelper
             //记录查询：
             //0日期,1计划炉号,2实际炉号,3联锁,***T-L-X车号,4推物理地址,5拦物理地址,6熄物理地址,7煤物理地址,8实际推,9预定推,10实际装,11实际结焦,12Max推焦电流,13Avg推焦电流,14Avg平煤电流,15时段,16班组
             DataTable table = new DataTable("Rec");
-            SetCloumnsName(table, true);
+            SetCloumnsName(table);
             using (db = new DbAppDataContext(Setting.ConnectionStr))
             {
                 if (!db.DatabaseExists()) return null;
@@ -57,17 +57,12 @@ namespace WGPM.R.LinqHelper
                     r[index++] = p.T炉号 != null ? p.T炉号.Value.ToString("000") : "0";
                     r[index++] = p.L炉号 != null ? p.L炉号.Value.ToString("000") : "0";
                     r[index++] = p.X炉号 != null ? p.X炉号.Value.ToString("000") : "0";
-                    r[index++] = p.TAddr != null ? p.TAddr.Value.ToString() : "0";
-                    r[index++] = p.LAddr != null ? p.LAddr.Value.ToString() : "0";
-                    r[index++] = p.XAddr != null ? p.XAddr.Value.ToString() : "0";
+                    r[index++] = ByteToLockStatus(p.联锁.Value);//3联锁
+                    r[index++] = p.Push工作车序列 != null ? p.Push工作车序列.Value.ToString("0-0-0") : "0-0-0";
+                    r[index++] = p.Max推焦电流 != null ? p.Max推焦电流.Value.ToString("000") : "0";//Max推焦电流
                     r[index++] = p.实际推焦时间 != null ? p.实际推焦时间.Value.ToString("G") : " ";//8实际推焦时间
                     r[index++] = p.预定出焦时间 != null ? p.预定出焦时间.Value.ToString("g") : " ";//9预定出焦时间
                     r[index++] = p.实际推焦时间 != null ? IntToTimeFormat(((int)(p.实际推焦时间.Value - p.上次装煤时间.Value).TotalMinutes)) : "19:00";//实际结焦时间
-                    r[index++] = p.Max推焦电流 != null ? p.Max推焦电流.Value.ToString("000") : "0";//Max推焦电流
-                    r[index++] = ByteToPeriod(p.时段.Value);//时段：白班，夜班
-                    r[index++] = ByteToGroup(p.班组.Value);//班组：甲，乙，丙，丁
-                    r[index++] = ByteToLockStatus(p.联锁.Value);//3联锁
-                    r[index++] = p.Push工作车序列 != null ? p.Push工作车序列.Value.ToString("0-0-0") : "0-0-0";
                     r[index++] = p.PlanIndex != null ? p.PlanIndex.Value : -1;
                     r[index++] = p.PlanCount != null ? p.PlanCount.Value : 0;
                     table.Rows.Add(r);
@@ -89,30 +84,13 @@ namespace WGPM.R.LinqHelper
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="flag">true表示要返回推焦记录的列名，false返回联锁数据的列名</param>
-        private void SetCloumnsName(DataTable dt, bool flag)
+        private void SetCloumnsName(DataTable dt)
         {
-            string[] columnsName1 = { "日期", "炉号", "T炉号", "L炉号", "X炉号", "T物理地址", "L物理地址", "X物理地址", "实际推焦时间", "预定出焦时间", "实际结焦时间", "Max电流", "时段", "班组", "联锁", "车号:T-L-X", "PlanIndex", "PlanCount" };
-            string[] columnsName2 = { "日期", "炉号", "预定出焦时间", "实际出焦时间", "计划装煤时间", "实际装煤时间", "Max推焦电流", "Avg平煤电流", "T炉号Push", "L炉号Push", "X炉号Push", "Push联锁数据", " M炉号", "Ping联锁数据" };
-            string[] columnsName = flag ? columnsName1 : columnsName2;
+            string[] columnsName = { "日期", "炉号", "T炉号", "L炉号", "X炉号", "联锁", "车号:T-L-X", "Max电流", "实际推焦时间", "预定出焦时间", "实际结焦时间", "PlanIndex", "PlanCount" };
             //Type[] types = { typeof(string), typeof(byte), typeof(byte), typeof(byte), typeof(int), typeof(int), typeof(int), typeof(int), typeof(DateTime), typeof(DateTime), typeof(DateTime), typeof(byte), typeof(byte), typeof(byte) };
             for (int i = 0; i < columnsName.Length; i++)
             {
-                if (!flag)
-                {
-                    if (i == (columnsName.Length - 1 - 2))
-                    {//Push联锁数据
-                        dt.Columns.Add(columnsName1[i], typeof(int));
-                        continue;
-                    }
-                    if (i == (columnsName.Length - 1))
-                    {//Ping联锁数据
-                        dt.Columns.Add(columnsName1[i], typeof(int));
-                        continue;
-                    }
-                }
-                //dt.Columns.Add(columnsName[i], types[i]);
-                dt.Columns.Add(columnsName1[i], typeof(string));
-
+                dt.Columns.Add(columnsName[i], typeof(string));
             }
         }
         private string ByteToPeriod(byte period)
@@ -173,6 +151,7 @@ namespace WGPM.R.LinqHelper
             pInfo.PlanIndex = pHelper.PlanIndex;
             pInfo.PlanCount = pHelper.PlanCount;
             pInfo.BeginTime = pHelper.BeginTime;
+            RecAddr(pInfo, pHelper);
             db.PushInfo.InsertOnSubmit(pInfo);
         }
         private void EndRec(PushInfo pInfo)
@@ -573,7 +552,17 @@ namespace WGPM.R.LinqHelper
             return (time / 60).ToString("00") + ":" + (time % 60).ToString("00");
         }
         #endregion
-
+        private void RecAddr(PushInfo pInfo, PsInfo pHelper)
+        {
+            pInfo.T1Addr = pHelper.T1Addr;
+            pInfo.T2Addr = pHelper.T2Addr;
+            pInfo.L1Addr = pHelper.L1Addr;
+            pInfo.L2Addr = pHelper.L2Addr;
+            pInfo.X1Addr = pHelper.X1Addr;
+            pInfo.X2Addr = pHelper.X2Addr;
+            pInfo.M1Addr = pHelper.M1Addr;
+            pInfo.M2Addr = pHelper.M2Addr;
+        }
     }
     /// <summary>
     /// Ps->Push,PsInfo->PushInfo
@@ -639,6 +628,7 @@ namespace WGPM.R.LinqHelper
             PlanIndex = index;
             PlanCount = CokeRoom.PushPlan.Count;
             BeginTime = DateTime.Now;
+            RecAddr();
         }
         public byte PlanRoom { get; set; }
         public byte ActualRoom { get; set; }
@@ -669,6 +659,14 @@ namespace WGPM.R.LinqHelper
         public int PlanCount { get; set; }
         public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int T1Addr { get; set; }
+        public int T2Addr { get; set; }
+        public int L1Addr { get; set; }
+        public int L2Addr { get; set; }
+        public int X1Addr { get; set; }
+        public int X2Addr { get; set; }
+        public int M1Addr { get; set; }
+        public int M2Addr { get; set; }
         private int ArrowsToInt(ushort T, ushort L, ushort X)
         {
             int result = 0;
@@ -687,6 +685,17 @@ namespace WGPM.R.LinqHelper
                 result += a;
             }
             return result;
+        }
+        private void RecAddr()
+        {
+            T1Addr = Communication.CarsInfo[0].DataRead.PhysicalAddr;
+            T2Addr = Communication.CarsInfo[1].DataRead.PhysicalAddr;
+            L1Addr = Communication.CarsInfo[2].DataRead.PhysicalAddr;
+            L2Addr = Communication.CarsInfo[3].DataRead.PhysicalAddr;
+            X1Addr = Communication.CarsInfo[4].DataRead.PhysicalAddr;
+            X2Addr = Communication.CarsInfo[5].DataRead.PhysicalAddr;
+            M1Addr = Communication.CarsInfo[6].DataRead.PhysicalAddr;
+            M2Addr = Communication.CarsInfo[7].DataRead.PhysicalAddr;
         }
     }
     class LockInfoHelper

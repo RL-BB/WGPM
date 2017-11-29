@@ -19,6 +19,7 @@ using System.Threading;
 using WGPM.R.OPCCommunication;
 using System.Globalization;
 using WGPM.R.UI.UIConverter;
+using WGPM.R.UI.VehicalsData;
 
 namespace WGPM.R.UI
 {
@@ -150,7 +151,8 @@ namespace WGPM.R.UI
 
         private void ImageComputer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            CarsData c = new CarsData();
+            c.Show();
         }
         private void AssignCarDeviceIpArr()
         {

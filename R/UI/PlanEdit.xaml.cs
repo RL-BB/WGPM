@@ -1067,20 +1067,18 @@ namespace WGPM.R.UI
             AssignDataGridItemsSource(cboPeriod.SelectedIndex, cboGroup.SelectedIndex);
             editingTPlan.Clear();
         }
-        /// <summary>
-        /// 计划编辑菜单下的三个TabItem切换
-        /// TabControl 不支持TabItem的Click事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Label_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void tabItemMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            HighlightSelectedTabItem();
-            if (tabPush != null && tabPush.IsSelected)
+            #region 使用样式(Style)来设置 单击事件(鼠标左键按下/松开) 20171128 勿删
+            //使用以下策略 可获得 使用当前样式的TabItem
+            Border item = sender as Border;
+            int tag = Convert.ToInt32(((TabItem)item.TemplatedParent).Tag);
+            #endregion
+
+            if (tabPush != null && tag == 0)
             {
                 if (!isEditing)
                 {
-                    //AssignDataGridItemsSource(cboPeriod.SelectedIndex, cboGroup.SelectedIndex);
                     Dispatcher.BeginInvoke(new Action<int, int>(AssignDataGridItemsSource), cboPeriod.SelectedIndex, cboGroup.SelectedIndex);
                 }
                 else
@@ -1088,17 +1086,11 @@ namespace WGPM.R.UI
                     AssignDataGridItemsSource(0, 0);
                 }
             }
-            if (tabStoking != null && tabStoking.IsSelected)
+            if (tabStoking != null && tag == 1)
             {
                 dgStoking.ItemsSource = null;
                 dgStoking.ItemsSource = CokeRoom.StokingPlan;
             }
-        }
-        private void HighlightSelectedTabItem()
-        {
-            tabPush.Background = tabPush.IsSelected ? Brushes.LightGreen : Brushes.LightCyan;
-            tabStoking.Background = tabStoking.IsSelected ? Brushes.LightGreen : Brushes.LightCyan;
-            tabEdit.Background = tabEdit.IsSelected ? Brushes.LightGreen : Brushes.LightCyan;
         }
     }
 }

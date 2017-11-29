@@ -247,14 +247,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WGPM.exe" size="2410496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WGPM.exe" size="2424320">
       <assemblyIdentity name="WGPM" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7nt56FgIkarmFbEuU/n8pZMJtO8GFaDBTYdOJ60siHc=</dsig:DigestValue>
+        <dsig:DigestValue>RrhA20PX3zDes2OwrtFuV+ajQGMgK75cG7AArOmm3LI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -267,13 +267,13 @@
       <dsig:DigestValue>VpaHrEJp7q5Gdd+t+oQH2N52bU/hOYLvWcF82bmD2mU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WGPM.exe.config" size="5275">
+  <file name="WGPM.exe.config" size="5483">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ULZcfoumpu4XRvrYRUr9SlB1+EjHMluDiD7tkJXI3tg=</dsig:DigestValue>
+      <dsig:DigestValue>m26B47WZLr1+IqK8L2i9vecbD0hmxk/WlhTxerNVpLQ=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              >
     <StackPanel>
-        <TextBox Name="node" Text="Node" IsReadOnly="True"/>
-        <TextBox Name="car1" Text="Value" IsReadOnly="True" />
-        <TextBox Name="car2"  Text="Value" IsReadOnly="True"/>
+        <TextBox Name="node" Text="Node" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Yellow" BorderThickness="2" BorderBrush="Green" Foreground="Blue"/>
+        <TextBox Name="car1" Text="Value" IsReadOnly="True"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Yellow" BorderThickness="2" BorderBrush="Green" Foreground="Black"/>
+        <TextBox Name="car2"  Text="Value" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Yellow" BorderThickness="2" BorderBrush="Green" Foreground="Black"/>
     </StackPanel>
 </UserControl>

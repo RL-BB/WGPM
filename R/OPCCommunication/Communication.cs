@@ -214,7 +214,7 @@ namespace WGPM.R.OPCCommunication
                     CarsInfo[index].CarNum = Convert.ToUInt16(index % 2 + 1);// 车号还是
                     if (index == 0 || index == 1 || index == 6 || index == 7)
                     {//解析推焦车和装煤车特有的数据
-                        CarsInfo[index].DataRead.DecodeOtherDataRead(0);
+                        CarsInfo[index].DataRead.DecodeOtherDataRead(index);
                     }
                 }
             }
@@ -335,7 +335,7 @@ namespace WGPM.R.OPCCommunication
         {
             List<ushort> dw = new List<ushort>();
             dw.Add(DataWrite.SoftwareCount);//上位机计数[1]
-            ushort pingCur = ((TjcDataRead)(CarsInfo[index].JobCar ? MJobCarLst[0] : MNonJobCarLst[0]).DataRead).PingCur;
+            ushort pingCur = (ushort)((TjcDataRead)(CarsInfo[index].JobCar ? MJobCarLst[0] : MNonJobCarLst[0]).DataRead).PingCur;
             pingCur = pingCur > 255 ? (byte)255 : pingCur;
             dw.Add(pingCur);//（工作推焦车）焦杆长度[2],20170920 把焦杆长度替换为平煤电流
             dw.Add(DataWrite.SysTime);//系统时间（时，分）[3]
@@ -536,20 +536,20 @@ namespace WGPM.R.OPCCommunication
             Vehicle T = job ? TJobCarLst[0] : NonJobCarLst[0];
             tInfo.PushTogether = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushTogether;//推焦联锁
             tInfo.TJobCarReady = T.IsReady;//推到位
-            tInfo.TRoomDoorOpen = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).TRoomDoorOpen;//炉门已摘
+            tInfo.TRoomDoorOpen = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).DoorOpen;//炉门已摘
             tInfo.PushBegin = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushBegin;
             tInfo.PushEnd = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushEnd;
             //拦焦车：拦到位，拦炉门已摘，焦槽锁闭，人工允推
             Vehicle L = job ? TJobCarLst[1] : NonJobCarLst[1];
             tInfo.LJobCarReady = L.IsReady;
-            tInfo.LRoomDoorOpen = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).LRoomDoorOpen;
+            tInfo.LRoomDoorOpen = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).DoorOpen;
             tInfo.TroughLocked = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).TroughLocked;
-            tInfo.LAllowPush = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).LAllowPush;
+            tInfo.LAllowPush = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).AllowPush;
             //熄焦车：熄到位，焦罐旋转/车门关闭，人工允推，水熄/干熄，焦罐号，1#罐有无，2#罐有无
             Vehicle X = job ? TJobCarLst[2] : NonJobCarLst[2];
             tInfo.XJobCarReady = X.IsReady;
             tInfo.CanReady = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).CanReady;
-            tInfo.XAllowPush = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).XAllowPush;
+            tInfo.XAllowPush = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).AllowPush;
             tInfo.Dry = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).Dry;
             bool carNum = X.CarNum == 1 ? false : true;
             if (tInfo.CarNum != carNum)
@@ -570,7 +570,7 @@ namespace WGPM.R.OPCCommunication
             Vehicle m = job ? MJobCarLst[1] : MNonJobCarLst[1];//装煤车
             info.Pinging = ((TjcTogetherInfo)t.DataRead.TogetherInfo).PingBegin;//1正在平煤
             info.TReady = ((Tjc)t).MReady;//2推焦车就位
-            info.TMDoorOpen = ((TjcTogetherInfo)t.DataRead.TogetherInfo).TMDoorOpen;//3小炉门
+            info.TMDoorOpen = ((TjcTogetherInfo)t.DataRead.TogetherInfo).PMDoorOpen;//3小炉门
             info.LReady = false;//4拦焦车就位
             info.PingRequest = false;//5请求平煤
             info.MReady = m.IsReady;//6煤车就位
@@ -594,8 +594,8 @@ namespace WGPM.R.OPCCommunication
                 {
                     if (CarsInfo[i].RoomNum > 0 && CarsInfo[i].RoomNum <= 110)
                     {
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].TDoorOpen = ((TjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).TRoomDoorOpen;
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].TMDoorOpen = ((TjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).TMDoorOpen;//小炉门
+                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].TDoorOpen = ((TjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).DoorOpen;
+                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].TMDoorOpen = ((TjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).PMDoorOpen;//小炉门
                         continue;
                     }
                 }
@@ -603,7 +603,7 @@ namespace WGPM.R.OPCCommunication
                 {
                     if (CarsInfo[i].RoomNum > 0 && CarsInfo[i].RoomNum <= 110)
                     {
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].LDoorOpen = ((LjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).LRoomDoorOpen;
+                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].LDoorOpen = ((LjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).DoorOpen;
                         continue;
                     }
                 }

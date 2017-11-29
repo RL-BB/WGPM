@@ -115,18 +115,34 @@ namespace WGPM.R.Vehicles
         /// <summary>
         /// 人工允推
         /// </summary>
-        public bool XAllowPush { get { return allowPush; } }
-        private bool allowPush;
+        public bool AllowPush
+        {
+            get { return (bool)GetValue(AllowPushProperty); }
+            set { SetValue(AllowPushProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AllowPush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AllowPushProperty =
+            DependencyProperty.Register("AllowPush", typeof(bool), typeof(XjcTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 焦罐准备完毕：车门关闭或焦罐旋转
         /// </summary>
-        public bool CanReady { get { return canReady; } }
-        private bool canReady;
+
+
+        public bool CanReady
+        {
+            get { return (bool)GetValue(CanReadyProperty); }
+            set { SetValue(CanReadyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CanReady.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CanReadyProperty =
+            DependencyProperty.Register("CanReady", typeof(bool), typeof(XjcTogetherInfo), new PropertyMetadata(false));
+
         /// <summary>
         /// 罐号：靠近车头的干熄焦焦罐为1#罐（false),另一罐为2#罐（true）
         /// </summary>
-
-
         public bool CanNum
         {
             get { return (bool)GetValue(CanNumProperty); }
@@ -135,8 +151,6 @@ namespace WGPM.R.Vehicles
         // Using a DependencyProperty as the backing store for CanNum.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CanNumProperty =
             DependencyProperty.Register("CanNum", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
-
-
         /// <summary>
         /// 干熄：0，水熄：1
         /// </summary>
@@ -151,8 +165,16 @@ namespace WGPM.R.Vehicles
         /// <summary>
         /// 禁止推焦
         /// </summary>
-        public bool UnallowPush { get { return unallowPush; } }
-        public bool unallowPush;
+        public bool Ban
+        {
+            get { return (bool)GetValue(BanProperty); }
+            set { SetValue(BanProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Ban.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BanProperty =
+            DependencyProperty.Register("Ban", typeof(bool), typeof(XjcTogetherInfo), new PropertyMetadata(false));
+
 
         /// <summary>
         /// 1#罐有无
@@ -184,11 +206,11 @@ namespace WGPM.R.Vehicles
             byte lstIndex = 0;
             if (ToDecodeTogetherInfo.Count > 0)
             {
-                allowPush = ToDecodeTogetherInfo[lstIndex++];
-                canReady = ToDecodeTogetherInfo[lstIndex++];
+                AllowPush = ToDecodeTogetherInfo[lstIndex++];
+                CanReady = ToDecodeTogetherInfo[lstIndex++];
                 CanNum = ToDecodeTogetherInfo[lstIndex++];
                 Dry = ToDecodeTogetherInfo[lstIndex++];
-                unallowPush = ToDecodeTogetherInfo[lstIndex];
+                Ban = ToDecodeTogetherInfo[lstIndex];
             }
         }
     }
