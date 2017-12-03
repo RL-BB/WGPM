@@ -182,17 +182,17 @@ namespace WGPM.R.UI
         private void TjcBinding()
         {
             //炉号
-            RoomNumBinding((Vehicles.Tjc)Communication.CarsInfo[0], tjc1);
-            RoomNumBinding((Vehicles.Tjc)Communication.CarsInfo[1], tjc2);
+            RoomNumBinding((Vehicles.Tjc)Communication.CarsLst[0], tjc1);
+            RoomNumBinding((Vehicles.Tjc)Communication.CarsLst[1], tjc2);
             //车辆的(左右)移动
             //35 推焦杆向左偏离1#炭化室一个单位距离(7)；938：推焦杆向右偏离110#炭化室一个单位距离(7)
-            MoveBinding((Vehicles.Tjc)Communication.CarsInfo[0], tjc1, 35, 320, new XjcMoveHelper(false, 0));
-            MoveBinding((Vehicles.Tjc)Communication.CarsInfo[1], tjc2, 896, 320, new XjcMoveHelper(false, 0));
+            MoveBinding((Vehicles.Tjc)Communication.CarsLst[0], tjc1, 35, 320);
+            MoveBinding((Vehicles.Tjc)Communication.CarsLst[1], tjc2, 896, 320);
             //推杆、平杆上下方向移动
-            PoleMoveBinding(Communication.CarsInfo[0], true, tjc1);
-            PoleMoveBinding(Communication.CarsInfo[0], false, tjc1);
-            PoleMoveBinding(Communication.CarsInfo[1], true, tjc2);
-            PoleMoveBinding(Communication.CarsInfo[1], false, tjc2);
+            PoleMoveBinding(Communication.CarsLst[0], true, tjc1);
+            PoleMoveBinding(Communication.CarsLst[0], false, tjc1);
+            PoleMoveBinding(Communication.CarsLst[1], true, tjc2);
+            PoleMoveBinding(Communication.CarsLst[1], false, tjc2);
         }
         private void PoleMoveBinding(Vehicle T, bool isPushPole, UIVehicals.Tjc tjc)
         {
@@ -213,15 +213,15 @@ namespace WGPM.R.UI
         private void LjcBinding()
         {
             //炉号
-            RoomNumBinding((Vehicles.Ljc)Communication.CarsInfo[2], ljc1);
+            RoomNumBinding((Vehicles.Ljc)Communication.CarsLst[2], ljc1);
             //车辆的移动
-            MoveBinding((Vehicles.Ljc)Communication.CarsInfo[2], ljc1, 52.5, 130, new XjcMoveHelper(false, 0));
+            MoveBinding((Vehicles.Ljc)Communication.CarsLst[2], ljc1, 52.5, 130);
             //焦槽位移
-            TroughMoveBinding(Communication.CarsInfo[2], ljc1);
+            TroughMoveBinding(Communication.CarsLst[2], ljc1);
 
-            RoomNumBinding((Vehicles.Ljc)Communication.CarsInfo[3], ljc2);
-            MoveBinding((Vehicles.Ljc)Communication.CarsInfo[3], ljc2, 913.5, 130, new XjcMoveHelper(false, 0));
-            TroughMoveBinding(Communication.CarsInfo[3], ljc2);
+            RoomNumBinding((Vehicles.Ljc)Communication.CarsLst[3], ljc2);
+            MoveBinding((Vehicles.Ljc)Communication.CarsLst[3], ljc2, 913.5, 130);
+            TroughMoveBinding(Communication.CarsLst[3], ljc2);
         }
         private void TroughMoveBinding(Vehicle L, UIVehicals.Ljc ljc)
         {
@@ -238,11 +238,11 @@ namespace WGPM.R.UI
         private void McBinding()
         {
             //炉号
-            RoomNumBinding((Vehicles.Mc)Communication.CarsInfo[6], mc1);
-            RoomNumBinding((Vehicles.Mc)Communication.CarsInfo[7], mc2);
+            RoomNumBinding((Vehicles.Mc)Communication.CarsLst[6], mc1);
+            RoomNumBinding((Vehicles.Mc)Communication.CarsLst[7], mc2);
             //车辆移动
-            MoveBinding(Communication.CarsInfo[6], mc1, 56, 210, new XjcMoveHelper(false, 0));
-            MoveBinding(Communication.CarsInfo[7], mc2, 917, 210, new XjcMoveHelper(false, 0));
+            MoveBinding(Communication.CarsLst[6], mc1, 56, 210);
+            MoveBinding(Communication.CarsLst[7], mc2, 917, 210);
         }
         #endregion
         #region XjcBinding
@@ -251,12 +251,12 @@ namespace WGPM.R.UI
             //熄焦车实例化，根据设置界面设置的参数 来生成熄焦车
             GetXjc();
             //显示炉号Binding
-            RoomNumBinding(Communication.CarsInfo[4], xjc1);
-            RoomNumBinding(Communication.CarsInfo[5], xjc2);
+            RoomNumBinding(Communication.CarsLst[4], xjc1);
+            RoomNumBinding(Communication.CarsLst[5], xjc2);
 
             //车辆移动
-            MoveBinding(Communication.CarsInfo[4], xjc1, Setting.AreaFlag ? 7 : 56, 88, new XjcMoveHelper(true, Setting.AreaFlag ? 49 : -98));
-            MoveBinding(Communication.CarsInfo[5], xjc2, 868, 88, new XjcMoveHelper(true, Setting.AreaFlag ? 98 : -49));
+            XjcMoveBinding(Communication.CarsLst[4], xjc1, Setting.AreaFlag ? 7 : 56, 88);
+            XjcMoveBinding(Communication.CarsLst[5], xjc2, 868, 88);
             //if (Setting.areaFlag)
             //{//1、2#炉区
             //    MoveBinding(Communication.CarsInfo[4], xjc1, 7, 88, new XjcMoveHelper(true, 49));
@@ -343,21 +343,27 @@ namespace WGPM.R.UI
             }
             return txt;
         }
-        private void MoveBinding(Vehicle V, UserControl control, double marginLeft, double defaultTop, XjcMoveHelper helper)
+        private void MoveBinding(Vehicle car, UserControl control, double marginLeft, double defaultTop)
         {
             Binding myBinding = new Binding();
-            myBinding.Source = V;
+            myBinding.Source = car;
             myBinding.Path = new PropertyPath("RoomNum");
             MoveConverter move = new MoveConverter();
-            move.CarNum = V.CarNum;
+            move.CarNum = car.CarNum;
             move.DefalutLeft = marginLeft;
             move.DefaultTop = defaultTop;
-            if (helper.IsXjc)
-            {
-                move.Dry = ((XjcTogetherInfo)V.DataRead.TogetherInfo).Dry;
-                move.CanNum = ((XjcTogetherInfo)V.DataRead.TogetherInfo).CanNum;
-                move.Deviation = helper.Deviation;
-            }
+            myBinding.Converter = move;
+            control.SetBinding(MarginProperty, myBinding);
+        }
+        private void XjcMoveBinding(Vehicle car, UserControl control, double marginLeft, double defaultTop)
+        {
+            Binding myBinding = new Binding();
+            myBinding.Source = car;
+            myBinding.Path = new PropertyPath("MoveHelper");
+            XjcMoveConverter move = new XjcMoveConverter();
+            move.CarNum = car.CarNum;
+            move.DefalutLeft = marginLeft;
+            move.DefaultTop = defaultTop;
             myBinding.Converter = move;
             control.SetBinding(MarginProperty, myBinding);
         }

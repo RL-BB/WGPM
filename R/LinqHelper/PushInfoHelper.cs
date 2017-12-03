@@ -230,20 +230,11 @@ namespace WGPM.R.LinqHelper
                                rec.XAddr,
                                rec.Push对中序列,
                                rec.Push联锁信息,
+                               rec.Push工作车序列,
+                               rec.联锁
                            };
                 if (recs == null || recs.Count() <= 0) return null;
-                var recs1 = from rec1 in db.PingInfo
-                            where rec1.预定出焦时间 >= start && rec1.预定出焦时间 < end && (room > 0 ? (rec1.预定装煤炉号 == room) : 1 == 1)
-                            select new
-                            {
-                                rec1.预定出焦时间,
-                                rec1.Plan平煤时间,
-                                rec1.Begin平煤时间,
-                                rec1.Avg平煤电流,
-                                rec1.M炉号,
-                                rec1.Ping联锁信息
 
-                            };
                 List<LockInfoHelper> locks = new List<LockInfoHelper>();
                 foreach (var r in recs)
                 {
@@ -251,10 +242,11 @@ namespace WGPM.R.LinqHelper
                     //11T炉号Push，12L炉号Push，13X炉号Push，14对中信号，15Push联锁数据,16M炉号，17Ping联锁数据-->
                     //DataRow row = dt.NewRow();
                     LockInfoHelper helper = new LockInfoHelper();
+                    DateTime invalidTime = Convert.ToDateTime("2012-04-03 13:14");
                     helper.Date = r.预定出焦时间.Value.ToString("d");//1日期
                     helper.Room = r.计划炉号 != null ? r.计划炉号.Value.ToString("000") : "000";//2炉号
-                    helper.PushTime = r.预定出焦时间 != null ? r.预定出焦时间.Value.ToString() : "0";//3预定出焦时间
-                    helper.ActualPushTime = r.实际推焦时间 != null ? r.实际推焦时间.Value.ToString() : null;//4实际推焦时间
+                    helper.PushTime = r.预定出焦时间 != null ? r.预定出焦时间.Value : invalidTime;//3预定出焦时间
+                    helper.ActualPushTime = r.实际推焦时间 != null ? r.实际推焦时间.Value : invalidTime;//4实际推焦时间
                     helper.MaxCur = r.Max推焦电流 != null ? r.Max推焦电流.Value.ToString("000") : "0";//7Max推焦电流
                     helper.Period = r.时段 != null ? ByteToPeriod(r.时段.Value) : null;//9时段
                     helper.Group = r.班组 != null ? ByteToGroup(r.班组.Value) : null;//10班组
@@ -264,50 +256,17 @@ namespace WGPM.R.LinqHelper
                     helper.TAddr = r.TAddr != null ? r.TAddr.Value.ToString() : "0";
                     helper.LAddr = r.LAddr != null ? r.LAddr.Value.ToString() : "0";
                     helper.XAddr = r.XAddr != null ? r.XAddr.Value.ToString() : "0";
-                    helper.Ready = r.Push对中序列 != null ? r.Push对中序列.Value.ToString() : "0";//14对中信号
+                    helper.Ready = r.Push对中序列 != null ? r.Push对中序列.Value : 0;//14对中信号
                     helper.PushInfo = r.Push联锁信息 != null ? r.Push联锁信息.Value : 0;//15Push联锁数据
+                    helper.PushTogether = r.联锁 != null ? (r.联锁.Value == 1 ? true : false) : false;
+                    helper.CarsNum = r.Push工作车序列 != null ? r.Push工作车序列.Value : (short)0;
+                    helper.GetAllCarArrows();
+                    helper.GetUIRoom();
+                    helper.GetTogetherInfo();
                     locks.Add(helper);
-                    //dt.Rows.Add(GetRow(row, helper));
-                }
-                if (recs1.Count() > 0)
-                {
-                    foreach (var r in recs1)
-                    {
-                        int index = locks.FindIndex(x => x.PushTime == r.预定出焦时间.Value.ToString());
-                        if (index > 0)
-                        {
-                            locks[index].StokingTime = r.Plan平煤时间 != null ? r.Plan平煤时间.Value.ToString() : null;//5计划装煤时间
-                            locks[index].ActualStokingTime = r.Begin平煤时间 != null ? r.Begin平煤时间.Value.ToString() : null;//6实际装煤时间
-                            locks[index].AvgCur = r.Avg平煤电流 != null ? r.Avg平煤电流.Value.ToString() : "0";//8Avg平煤电流
-                            locks[index].MRoom = r.M炉号 != null ? r.M炉号.Value.ToString("000") : "0";//16M炉号
-                            locks[index].PingInfo = r.Ping联锁信息 != null ? r.Ping联锁信息.Value : 0;//17Ping联锁数据
-                        }
-                    }
                 }
                 return locks;
             }
-        }
-        private DataRow GetRow(DataRow row, LockInfoHelper helper)
-        {
-            int index = 0;
-            row[index++] = helper.Date;//1日期
-            row[index++] = helper.Room;//2炉号
-            row[index++] = helper.PushTime;//3预定出焦时间
-            row[index++] = helper.ActualPushTime;//4实际推焦时间
-            row[index++] = helper.StokingTime;//5计划装煤时间
-            row[index++] = helper.ActualStokingTime;//6实际装煤时间
-            row[index++] = helper.MaxCur;//7Max推焦电流
-            row[index++] = helper.AvgCur;//8Avg平煤电流
-            row[index++] = helper.Period;//9时段
-            row[index++] = helper.Group;//10班组
-            row[index++] = helper.TRoom;//11T炉号Push
-            row[index++] = helper.LRoom;//12L炉号Push
-            row[index++] = helper.XRoom;//13X炉号Push14
-            row[index++] = helper.Ready;//14对中信号
-            row[index++] = helper.PushInfo;//15Push联锁数据
-            row[index++] = helper.MRoom;//16M炉号
-            row[index++] = helper.PingInfo;//17Ping联锁数据
-            return row;
         }
         public List<CurHelper> QueryCurInfo(DateTime start, DateTime end, byte room)
         {
@@ -688,14 +647,14 @@ namespace WGPM.R.LinqHelper
         }
         private void RecAddr()
         {
-            T1Addr = Communication.CarsInfo[0].DataRead.PhysicalAddr;
-            T2Addr = Communication.CarsInfo[1].DataRead.PhysicalAddr;
-            L1Addr = Communication.CarsInfo[2].DataRead.PhysicalAddr;
-            L2Addr = Communication.CarsInfo[3].DataRead.PhysicalAddr;
-            X1Addr = Communication.CarsInfo[4].DataRead.PhysicalAddr;
-            X2Addr = Communication.CarsInfo[5].DataRead.PhysicalAddr;
-            M1Addr = Communication.CarsInfo[6].DataRead.PhysicalAddr;
-            M2Addr = Communication.CarsInfo[7].DataRead.PhysicalAddr;
+            T1Addr = Communication.CarsLst[0].DataRead.PhysicalAddr;
+            T2Addr = Communication.CarsLst[1].DataRead.PhysicalAddr;
+            L1Addr = Communication.CarsLst[2].DataRead.PhysicalAddr;
+            L2Addr = Communication.CarsLst[3].DataRead.PhysicalAddr;
+            X1Addr = Communication.CarsLst[4].DataRead.PhysicalAddr;
+            X2Addr = Communication.CarsLst[5].DataRead.PhysicalAddr;
+            M1Addr = Communication.CarsLst[6].DataRead.PhysicalAddr;
+            M2Addr = Communication.CarsLst[7].DataRead.PhysicalAddr;
         }
     }
     class LockInfoHelper
@@ -711,29 +670,95 @@ namespace WGPM.R.LinqHelper
         /// 炉号
         /// </summary>
         public string Room { get; set; }
-        public string PushTime { get; set; }
-        public string ActualPushTime { get; set; }
-        public string StokingTime { get; set; }
-        public string ActualStokingTime { get; set; }
+        public DateTime PushTime { get; set; }
+        public DateTime ActualPushTime { get; set; }
+        public DateTime StokingTime { get; set; }
+        public DateTime ActualStokingTime { get; set; }
         public string MaxCur { get; set; }
         public string AvgCur { get; set; }
-        public String Period { get; set; }
-        public String Group { get; set; }
-        public String TRoom { get; set; }
-        public String TAddr { get; set; }
-        public String LAddr { get; set; }
-        public String XAddr { get; set; }
+        public string Period { get; set; }
+        public string Group { get; set; }
+        public string TRoom { get; set; }
+        public short CarsNum { get; set; }
+        public string TUIRoom { get; set; }
+        public string LUIRoom { get; set; }
+        public string XUIRoom { get; set; }
+        public string TAddr { get; set; }
+        public string LAddr { get; set; }
+        public string XAddr { get; set; }
         public string LRoom { get; set; }
         public string XRoom { get; set; }
+        #region 箭头 对中
+        public int TArrow { get; set; }
+        public int LArrow { get; set; }
+        public int XArrow { get; set; }
+        public bool TReady { get; set; }
+        public bool LReady { get; set; }
+        public bool XReady { get; set; }
+        #endregion
         //<!--6联锁信息：1日期，2炉号，3预定出焦时间，4实际推焦时间，5计划装煤时间，6实际装煤时间，7Max推焦电流，8Avg平煤电流,9时段，10班组，
         //11T炉号Push，12L炉号Push，13X炉号Push，14对中信号，15Push联锁数据,16M炉号，17Ping联锁数据-->
         /// <summary>
         /// 对中信号
         /// </summary>
-        public string Ready { get; set; }
+        public int Ready { get; set; }
         public int PushInfo { get; set; }
-        public string MRoom { get; set; }
-        public int PingInfo { get; set; }
+        public bool PushTogether { get; set; }
+        #region 联锁信息点
+        public bool TDoorOpen { get; set; }
+        public bool TroughLock { get; set; }
+        public bool CanReady { get; set; }
+        public bool FstAllow { get; set; }
+        public bool TimeAllow { get; set; }
+        public bool LAllow { get; set; }
+        public bool XAllow { get; set; }
+        public bool SecAllow { get; set; }
+        #endregion
+        private int GetCarArrows(int startIndex, int arrows)
+        {
+            int a = 0;
+            List<bool> lst = new List<bool>();
+            for (int i = 0; i < 4; i++)
+            {
+                lst.Add(Convert.ToBoolean(arrows & (int)Math.Pow(2, startIndex + i)));
+            }
+            for (int i = 0; i < lst.Count; i++)
+            {
+                a += lst[i] ? (int)Math.Pow(2, i) : 0;
+            }
+            return a;
+        }
+        public void GetAllCarArrows()
+        {
+            TArrow = GetCarArrows(0, Ready);
+            TReady = TArrow == 0 ? true : false;
+            LArrow = GetCarArrows(4, Ready);
+            LReady = LArrow == 0 ? true : false;
+            XArrow = GetCarArrows(8, Ready);
+            XReady = XArrow == 0 ? true : false;
+        }
+        /// <summary>
+        /// 得到用于绑定到TogetherIForQuery.xaml的属性
+        /// </summary>
+        public void GetUIRoom()
+        {
+            TUIRoom = CarsNum / 100 + "#" + TRoom;
+            LUIRoom = (CarsNum % 100) / 10 + "#" + LRoom;
+            XUIRoom = (CarsNum % 10) + "#" + XRoom;
+            TimeAllow = (int)(ActualPushTime - PushTime).TotalMinutes >= -5 ? true : false;
+        }
+        public void GetTogetherInfo()
+        {
+            TDoorOpen = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 3));
+            TroughLock = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 8));
+            CanReady = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 11));
+            FstAllow = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 17));
+            LAllow = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 9));
+            XAllow = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 12));
+            SecAllow = Convert.ToBoolean(PushInfo & (int)Math.Pow(2, 18));
+        }
+        //public string MRoom { get; set; }
+        //public int PingInfo { get; set; }
     }
     class CurHelper
     {

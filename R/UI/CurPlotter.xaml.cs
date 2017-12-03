@@ -51,7 +51,7 @@ namespace WGPM.R.UI
         LineGraph pingCurGraph;
         private void CurPlotter_Loaded(object sender, RoutedEventArgs e)
         {
-            T = (Tjc)Communication.CarsInfo[TCarIndex];
+            T = (Tjc)Communication.CarsLst[TCarIndex];
 
             pushPoleGraph = plotter.AddLineGraph(pushPoleDS, Colors.Green, 2, "推焦杆长");
             pushCurGraph = plotter.AddLineGraph(pushCurDS, Colors.Red, 2, "推焦电流");

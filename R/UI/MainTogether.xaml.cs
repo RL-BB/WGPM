@@ -225,8 +225,8 @@ namespace WGPM.R.UI
         }
         private void XjcAddrBinding()
         {
-            XjcAddr(xjc1Addr, (Xjc)Communication.CarsInfo[4]);
-            XjcAddr(xjc2Addr, (Xjc)Communication.CarsInfo[5]);
+            XjcAddr(xjc1Addr, (Xjc)Communication.CarsLst[4]);
+            XjcAddr(xjc2Addr, (Xjc)Communication.CarsLst[5]);
         }
         private void XjcAddr(TextBox txt,Xjc xjc)
         {

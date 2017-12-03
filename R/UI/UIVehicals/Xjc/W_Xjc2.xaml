@@ -16,6 +16,6 @@
                 </RadialGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <local:CokeCan Margin="98,0,-49,0"/>
+        <local:CokeCan Margin="98,0,-49,0" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

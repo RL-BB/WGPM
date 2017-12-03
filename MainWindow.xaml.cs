@@ -86,7 +86,7 @@ namespace WGPM
                 //bool yes = false;
                 for (int i = 0; i < 2; i++)
                 {
-                    if (((TjcDataRead)Communication.CarsInfo[i].DataRead).PushPoleLength == 0 && ((TjcDataRead)Communication.CarsInfo[i].DataRead).PingPoleLength == 0)
+                    if (((TjcDataRead)Communication.CarsLst[i].DataRead).PushPoleLength == 0 && ((TjcDataRead)Communication.CarsLst[i].DataRead).PingPoleLength == 0)
                     {
                         ActivateInfo act = new ActivateInfo(DateTime.Now, false);
                         act.RecToDB();

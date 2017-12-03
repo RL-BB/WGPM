@@ -48,6 +48,7 @@ namespace WGPM.R.UI.VehicalsData
             Binding myBinding = new Binding(path);
             myBinding.Source = car.DataRead.TogetherInfo;
             BoolToIntConverter converter = new BoolToIntConverter();
+            myBinding.Mode = BindingMode.OneWay;
             myBinding.Converter = converter;
             txt.SetBinding(TextBox.TextProperty, myBinding);
         }
@@ -115,8 +116,8 @@ namespace WGPM.R.UI.VehicalsData
         #endregion
         private void TBinding()
         {
-            Tjc t1 = (Tjc)Communication.CarsInfo[0];
-            Tjc t2 = (Tjc)Communication.CarsInfo[1];
+            Tjc t1 = (Tjc)Communication.CarsLst[0];
+            Tjc t2 = (Tjc)Communication.CarsLst[1];
             UnitBinding(tjc, t1, t2);
             DataReadCellBinding(tPushCur, "PushCur", t1, t2);
             DataReadCellBinding(tPingCur, "PingCur", t1, t2);
@@ -137,8 +138,8 @@ namespace WGPM.R.UI.VehicalsData
         }
         private void LBinding()
         {
-            Ljc l1 = (Ljc)Communication.CarsInfo[2];
-            Ljc l2 = (Ljc)Communication.CarsInfo[3];
+            Ljc l1 = (Ljc)Communication.CarsLst[2];
+            Ljc l2 = (Ljc)Communication.CarsLst[3];
             UnitBinding(ljc, l1, l2);
             BoolCellBinding(lAllowPush, "AllowPush", l1, l2);
             BoolCellBinding(lDoorOpen, "DoorOpen", l1, l2);
@@ -148,8 +149,8 @@ namespace WGPM.R.UI.VehicalsData
         }
         private void XBinding()
         {
-            Xjc x1 = (Xjc)Communication.CarsInfo[4];
-            Xjc x2 = (Xjc)Communication.CarsInfo[5];
+            Xjc x1 = (Xjc)Communication.CarsLst[4];
+            Xjc x2 = (Xjc)Communication.CarsLst[5];
             UnitBinding(xjc, x1, x2);
             BoolCellBinding(xAllowPush, "AllowPush", x1, x2);
             BoolCellBinding(xCanReady, "CanReady", x1, x2);
@@ -162,8 +163,8 @@ namespace WGPM.R.UI.VehicalsData
         }
         private void MBinding()
         {
-            Vehicle m1 = Communication.CarsInfo[6];
-            Vehicle m2 = Communication.CarsInfo[7];
+            Vehicle m1 = Communication.CarsLst[6];
+            Vehicle m2 = Communication.CarsLst[7];
             UnitBinding(mc, m1, m2);
             DataReadCellBinding(mSpiral1, "SprialSpeed1", m1, m2);
             DataReadCellBinding(mSpiral2, "SprialSpeed2", m1, m2);

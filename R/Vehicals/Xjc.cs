@@ -22,6 +22,7 @@ namespace WGPM.R.Vehicles
             DataRead = new XjcDataRead();
             DataRead.TogetherInfo = new XjcTogetherInfo(TogetherInfoCount);
             DataRead.TogetherInfo.DecodeTogetherInfo = ((XjcTogetherInfo)DataRead.TogetherInfo).DecodeTogetherInfoValue;
+            MoveHelper = new XjcMoveHelper(carNum);
         }
         public Dictionary<int, int> RoomNumDic
         {
@@ -55,6 +56,7 @@ namespace WGPM.R.Vehicles
                 RoomNum = addrDic[DataRead.MainPhysicalAddr].RoomNum;
             }
         }
+        public XjcMoveHelper MoveHelper { get; set; }
         public ushort GetXArrows()
         {
             if (CokeRoom.PushPlan.Count != 0)
@@ -76,8 +78,9 @@ namespace WGPM.R.Vehicles
                     Arrows = 0;
                 }
                 else if ((middle - actual < -StaticParms.XArrow) && (middle - actual >= -StaticParms.XFstArrow))
-                {//右单箭头:0100
-                    Arrows = 4;
+                {//右单箭头:0100；20171201 对中范围扩大
+                    //Arrows = 4;
+                    Arrows = 0;
                 }
                 else if (middle - actual < -StaticParms.XFstArrow)
                 {//右俩箭头:1100
@@ -98,6 +101,12 @@ namespace WGPM.R.Vehicles
             }
             Vehicle car = car1.JobCar ? car1 : car2;
             return car;
+        }
+        public void GetMoveHelper()
+        {
+            MoveHelper.RoomNum = RoomNum;
+            MoveHelper.Dry = ((XjcTogetherInfo)DataRead.TogetherInfo).Dry;
+            MoveHelper.CanNum = ((XjcTogetherInfo)DataRead.TogetherInfo).CanNum;
         }
     }
     class XjcDataRead : DataRead
@@ -150,7 +159,7 @@ namespace WGPM.R.Vehicles
         }
         // Using a DependencyProperty as the backing store for CanNum.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CanNumProperty =
-            DependencyProperty.Register("CanNum", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+            DependencyProperty.Register("CanNum", typeof(bool), typeof(XjcTogetherInfo), new PropertyMetadata(false));
         /// <summary>
         /// 干熄：0，水熄：1
         /// </summary>
@@ -186,7 +195,7 @@ namespace WGPM.R.Vehicles
         }
         // Using a DependencyProperty as the backing store for FstCan.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FstCanProperty =
-            DependencyProperty.Register("FstCan", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(true));
+            DependencyProperty.Register("FstCan", typeof(bool), typeof(XjcTogetherInfo), new PropertyMetadata(true));
         /// <summary>
         /// 2#罐有无
         /// </summary>
@@ -197,7 +206,7 @@ namespace WGPM.R.Vehicles
         }
         // Using a DependencyProperty as the backing store for SecCan.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SecCanProperty =
-            DependencyProperty.Register("SecCan", typeof(bool), typeof(TjcTogetherInfo), new PropertyMetadata(false));
+            DependencyProperty.Register("SecCan", typeof(bool), typeof(XjcTogetherInfo), new PropertyMetadata(false));
         /// <summary>
         /// 给List<bool> propertyValue赋值后调用此方法；
         /// </summary>
@@ -210,8 +219,51 @@ namespace WGPM.R.Vehicles
                 CanReady = ToDecodeTogetherInfo[lstIndex++];
                 CanNum = ToDecodeTogetherInfo[lstIndex++];
                 Dry = ToDecodeTogetherInfo[lstIndex++];
-                Ban = ToDecodeTogetherInfo[lstIndex];
+                Ban = ToDecodeTogetherInfo[lstIndex++];
+                FstCan = ToDecodeTogetherInfo[lstIndex];
+                SecCan = ToDecodeTogetherInfo[lstIndex];
             }
         }
+    }
+    /// <summary>
+    /// 熄焦车在界面的移动：需要关注是否为干熄及焦罐号、炉号；
+    /// </summary>
+    class XjcMoveHelper : DependencyObject
+    {
+        public XjcMoveHelper() { }
+        public XjcMoveHelper(int carNum)
+        {
+            Deviation = carNum == 1 ? (Setting.AreaFlag ? 49 : -98) : (Setting.AreaFlag ? 98 : -49);
+        }
+        public int RoomNum
+        {
+            get { return (int)GetValue(RoomNumProperty); }
+            set { SetValue(RoomNumProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for RoomNum.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RoomNumProperty =
+            DependencyProperty.Register("RoomNum", typeof(int), typeof(XjcMoveHelper), new PropertyMetadata(0));
+
+        public bool Dry
+        {
+            get { return (bool)GetValue(DryProperty); }
+            set { SetValue(DryProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for Dry.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DryProperty =
+            DependencyProperty.Register("Dry", typeof(bool), typeof(XjcMoveHelper), new PropertyMetadata(false));
+        public bool CanNum
+        {
+            get { return (bool)GetValue(CanNumProperty); }
+            set { SetValue(CanNumProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for CanNum.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CanNumProperty =
+            DependencyProperty.Register("CanNum", typeof(bool), typeof(XjcMoveHelper), new PropertyMetadata(false));
+        /// <summary>
+        /// 电机车两个焦罐的偏差
+        /// 其中靠近车头的干焦罐 为1#焦罐 fstCan
+        /// </summary>
+        public double Deviation { get; set; }
     }
 }

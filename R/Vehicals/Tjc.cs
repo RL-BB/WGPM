@@ -299,26 +299,27 @@ namespace WGPM.R.Vehicles
             }
             if (!pushingFlag && ((TjcTogetherInfo)DataRead.TogetherInfo).PushBegin)
             {//false才进,第一次得到PushBegin为true时，后续不进
-             //推焦开始后，开始记录联锁信息
+                pushingFlag = true;
+                //推焦开始后，开始记录联锁信息
                 Dispatcher.BeginInvoke(new Action(PushDataPart1), null);
                 int i = PushPlanIndex >= 0 ? PushPlanIndex : 0;
                 int r = CokeRoom.PushPlan.Count > 0 ? CokeRoom.PushPlan[i].RoomNum : 1;
                 //计划炉号的推焦时间更新：
                 CokeRoom.BurnStatus[r].ActualPushTime = Convert.ToDateTime(PushTime);
                 //RecToPushInfoDB(PushPlanIndex, PushTime, JobCar);
-                pushingFlag = true;
                 return;
             }
             bool pushEnd = ((TjcTogetherInfo)DataRead.TogetherInfo).PushEnd;//推焦结束信号到达；
             bool pushPole = ((TjcDataRead)DataRead).PushPoleLength <= 1500;//且推焦杆长度低于1000时才更新计划
             if (!pushEndFlag && pushEnd && pushPole)
             {//条件一、二和PushEnd为true时，才考虑条件三
-                Dispatcher.BeginInvoke(new Action(PushDataPart2), null);
-                DealPushPlan = JobCar ? new DealPushPlanDelegate(JobCarDealPushPlan) : new DealPushPlanDelegate(NonJobCarDealPushPlan);
-                Dispatcher.BeginInvoke(new Action(DealPushPlan), null);
                 pushBeginFlag = false;
                 pushingFlag = false;
                 pushEndFlag = true;
+                Dispatcher.BeginInvoke(new Action(PushDataPart2), null);
+                DealPushPlan = JobCar ? new DealPushPlanDelegate(JobCarDealPushPlan) : new DealPushPlanDelegate(NonJobCarDealPushPlan);
+                Dispatcher.BeginInvoke(new Action(DealPushPlan), null);
+                
             }
         }
         /// <summary>
@@ -371,7 +372,7 @@ namespace WGPM.R.Vehicles
             if (((TjcTogetherInfo)DataRead.TogetherInfo).PingEnd && pingBegin)
             {//当平煤结束到达后，才会进入一次，因为进入过一次后不会再进第二次（在一次装煤过程中）
                 pingBegin = false;
-                int mNum = Math.Abs(Communication.CarsInfo[6].RoomNum - PingRoomNum) < Math.Abs(Communication.CarsInfo[7].RoomNum - PingRoomNum) ? 1 : 2;
+                int mNum = Math.Abs(Communication.CarsLst[6].RoomNum - PingRoomNum) < Math.Abs(Communication.CarsLst[7].RoomNum - PingRoomNum) ? 1 : 2;
                 int carLst = CarNum * 10 + mNum;
                 Dispatcher.BeginInvoke(new Action(PingDataPart2), null);
             }

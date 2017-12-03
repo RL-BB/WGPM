@@ -5,7 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
-             d:DesignHeight="165" d:DesignWidth="1000">
+             xmlns:c="clr-namespace:WGPM.R.UI.UIConverter"
+             d:DesignHeight="110" d:DesignWidth="1000" >
+    <UserControl.Resources>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" x:Key="ReadyDefaultColor">
+            <GradientStop Color="#FF323232" Offset="1" />
+            <GradientStop Color="#FFA3A3A3" />
+            <GradientStop Color="#FF161616" Offset="0.3" />
+        </LinearGradientBrush>
+        <c:BoolToColorConverter DefaultColor="#FF323232" TrueToColor="Red" x:Key="b2c"/>
+        <c:ArrowsColorConverter x:Key="arrow"/>
+        <c:ArrowsColorConverter x:Key="fstArrow"  Index="0" DefaultColor="#FF323232"/>
+        <c:ArrowsColorConverter x:Key="secArrow"  Index="1" DefaultColor="#FF323232"/>
+        <c:ArrowsColorConverter x:Key="trdArrow"  Index="2" DefaultColor="#FF323232"/>
+        <c:ArrowsColorConverter x:Key="fourArrow"  Index="3" DefaultColor="#FF323232" />
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -14,41 +28,29 @@
                 <GradientStop Color="Cyan" Offset="0.5" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Canvas x:Name="CanvasMain" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border BorderBrush="Wheat" BorderThickness="2" Height="165" Width="995" />
-            <TextBox x:Name="txtSysTime" TextWrapping="Wrap" Text="00:00" FontWeight="Bold"
+        <Canvas x:Name="CanvasMain" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Border BorderBrush="Wheat" BorderThickness="2" Height="120" Width="995" />
+            <TextBox x:Name="txtSysTime" TextWrapping="Wrap" Text="{Binding ActualPushTime,StringFormat='HH:mm'}" FontWeight="Bold"
                      VerticalScrollBarVisibility="Disabled" FontSize="29.333" FontFamily="STXinwei" IsTabStop="False"
-                     TextAlignment="Center" IsHitTestVisible="False" Canvas.Left="147" Canvas.Top="3"
+                     TextAlignment="Center" IsHitTestVisible="False" Canvas.Left="147" Canvas.Top="12"
                      Background="{x:Null}" Foreground="Red" BorderBrush="{x:Null}" />
             <TextBlock x:Name="TextBlockRoomPlanPush" HorizontalAlignment="Left" Text="预定出焦炉号：" FontSize="21.333"
-                       Canvas.Left="17" Canvas.Top="42" FontFamily="STLiti" Foreground="SaddleBrown"
+                       Canvas.Left="17" Canvas.Top="49" FontFamily="STLiti" Foreground="SaddleBrown"
                        FontWeight="Bold" />
-            <TextBox x:Name="txtPushPlanRoomNum" TextWrapping="Wrap" Text="000" FontWeight="Bold"
+            <TextBox x:Name="txtPushPlanRoomNum" TextWrapping="Wrap" Text="{Binding Room,StringFormat='000'}" FontWeight="Bold"
                      VerticalScrollBarVisibility="Disabled" FontSize="29.333" FontFamily="STXinwei" IsTabStop="False"
                      TextAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" IsHitTestVisible="False"
-                     Canvas.Left="166" Canvas.Top="36" Foreground="Red" />
+                     Canvas.Left="166" Canvas.Top="43" Foreground="Red" />
             <TextBlock x:Name="TextBlockTimePlanPush" TextWrapping="Wrap" Text="预定出焦时间：" FontSize="21.333"
-                       Canvas.Left="17" Canvas.Top="68" FontFamily="STLiti" Foreground="SaddleBrown"
+                       Canvas.Left="17" Canvas.Top="75" FontFamily="STLiti" Foreground="SaddleBrown"
                        FontWeight="Bold" />
-            <TextBox x:Name="txtPushPlanTime" TextWrapping="Wrap" Text="00:00"
+            <TextBox x:Name="txtPushPlanTime" TextWrapping="Wrap" Text="{Binding PushTime,StringFormat='HH:mm'}"
                      VerticalScrollBarVisibility="Disabled" Foreground="Red" FontSize="29.333" FontFamily="STXinwei"
                      IsTabStop="False" TextAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"
-                     IsHitTestVisible="False" Canvas.Left="153" Canvas.Top="62" FontWeight="Bold" />
-            <TextBlock x:Name="TextBlockRoomPlanCoal" Text="预计装煤炉号：" FontSize="21.333" Canvas.Left="17"
-                       Canvas.Top="100" FontFamily="STLiti" Foreground="SaddleBrown" FontWeight="Bold" />
-            <TextBox x:Name="txtStokingPlanRoomNum" TextWrapping="Wrap" Text="000" VerticalAlignment="Top"
-                     FontWeight="Bold" VerticalScrollBarVisibility="Disabled" Foreground="Red" FontSize="29.333"
-                     FontFamily="STXinwei" IsTabStop="False" TextAlignment="Center" BorderBrush="{x:Null}"
-                     Background="{x:Null}" IsHitTestVisible="False" Canvas.Left="166" Canvas.Top="94" />
-            <TextBlock x:Name="TextBlockTimePlanCoal" Text="预计装煤时间：" FontSize="21.333" Canvas.Left="17"
-                       Canvas.Top="126" FontFamily="STLiti" Foreground="SaddleBrown" FontWeight="Bold" />
-            <TextBox x:Name="txtStokingPlanTime" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top"
-                     FontWeight="Bold" VerticalScrollBarVisibility="Disabled" Foreground="Red" FontSize="29.333"
-                     FontFamily="STXinwei" IsTabStop="False" TextAlignment="Center" BorderBrush="{x:Null}"
-                     Background="{x:Null}" IsHitTestVisible="False" Canvas.Left="153" Canvas.Top="120" />
-            <TextBlock x:Name="TextBlockTimeSystem" Text="系统时间：" FontSize="21.333" Canvas.Left="39" Canvas.Top="10"
+                     IsHitTestVisible="False" Canvas.Left="153" Canvas.Top="69" FontWeight="Bold" />
+            <TextBlock x:Name="TextBlockTimeSystem" Text="系统时间：" FontSize="21.333" Canvas.Left="39" Canvas.Top="19"
                        FontFamily="STLiti" Foreground="SaddleBrown" FontWeight="Bold" />
-            <Ellipse Width="3" Fill="Black" Height="156" Canvas.Left="12" Canvas.Top="1">
+            <Ellipse Width="3" Fill="Black" Height="104" Canvas.Left="12" Canvas.Top="1">
                 <Ellipse.Stroke>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="White" Offset="1" />
@@ -81,19 +83,11 @@
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="TextBoxZmcMark" TextWrapping="Wrap" Text="装煤车" TextAlignment="Center"
-                     Background="#FF323232" BorderBrush="Blue" FontFamily="STFangsong" Foreground="White" Width="70"
-                     IsHitTestVisible="False" IsTabStop="False" FontSize="18.667" VerticalAlignment="Top" Canvas.Left="294"
-                     Canvas.Top="95" Height="25" FontWeight="Bold">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" />
-                </TextBox.Effect>
-            </TextBox>
             <TextBox x:Name="TextBoxDycMark" TextWrapping="Wrap" Text="导烟车" TextAlignment="Center"
                      Background="#FF323232" BorderBrush="White" FontWeight="Bold" FontFamily="Arial" Foreground="White"
                      Width="70" IsHitTestVisible="False" IsTabStop="False" FontSize="14.667" VerticalAlignment="Top"
                      Canvas.Left="318" Canvas.Top="123" Visibility="Collapsed" />
-            <Ellipse Width="3" Fill="Black" Height="156" Canvas.Left="241" Canvas.Top="1">
+            <Ellipse Width="3" Fill="Black" Height="104" Canvas.Left="241" Canvas.Top="1">
                 <Ellipse.Stroke>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="White" Offset="1" />
@@ -109,29 +103,22 @@
                 </Rectangle.Effect>
             </Rectangle>
 
-            <ed:BlockArrow x:Name="tArrow01" Fill="Lime" Height="15" Orientation="Right"
+            <ed:BlockArrow x:Name="tArrow01" Fill="{Binding ElementName=tArrow011,Path=Fill}" Height="15" Orientation="Right"
                            UseLayoutRounding="False" Width="9.5" Canvas.Left="433.25" Canvas.Top="13" Stroke="White" />
-            <ed:BlockArrow x:Name="tArrow011" Fill="Lime" Height="15" Orientation="Right"
+            <ed:BlockArrow x:Name="tArrow011" Fill="{Binding TArrow,Converter={StaticResource fstArrow}}" Height="15" Orientation="Right"
                            UseLayoutRounding="False" Width="4" Canvas.Left="445" Canvas.Top="13" Stroke="White" />
-            <ed:BlockArrow x:Name="tArrow02" Fill="Lime" Height="15" Orientation="Right"
+            <ed:BlockArrow x:Name="tArrow02" Fill="{Binding TArrow,Converter={StaticResource secArrow}}" Height="15" Orientation="Right"
                            UseLayoutRounding="False" Width="9.5" Canvas.Left="457.25" Canvas.Top="13" Stroke="White" />
-            <Ellipse x:Name="tReady" Height="21" Width="22" Canvas.Left="470" Canvas.Top="10"
+            <Ellipse x:Name="tReady" Height="21" Width="22" Canvas.Left="470" Canvas.Top="10" Fill="{Binding TReady,Converter={StaticResource b2c}}"
                      Stroke="White">
-                <Ellipse.Fill>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF323232" Offset="1" />
-                        <GradientStop Color="#FFA3A3A3" />
-                        <GradientStop Color="#FF161616" Offset="0.3" />
-                    </LinearGradientBrush>
-                </Ellipse.Fill>
             </Ellipse>
-            <ed:BlockArrow x:Name="tArrow03" Fill="Lime" Height="15" Orientation="left"
+            <ed:BlockArrow x:Name="tArrow03" Fill="{Binding TArrow,Converter={StaticResource trdArrow}}" Height="15" Orientation="left"
                            UseLayoutRounding="False" Width="9.5" RenderTransformOrigin="0.5,0.5" Canvas.Left="496.25"
                            Canvas.Top="13" Stroke="White" />
-            <ed:BlockArrow x:Name="tArrow04" Fill="Lime" Height="15" Orientation="left"
+            <ed:BlockArrow x:Name="tArrow04" Fill="{Binding TArrow,Converter={StaticResource fourArrow}}" Height="15" Orientation="left"
                            UseLayoutRounding="False" Width="4" RenderTransformOrigin="0.5,0.5" Canvas.Left="513"
                            Canvas.Top="13" Stroke="White" />
-            <ed:BlockArrow x:Name="tArrow041" Fill="Lime" Height="15" Orientation="left"
+            <ed:BlockArrow x:Name="tArrow041" Fill="{Binding ElementName=tArrow04,Path=Fill}" Height="15" Orientation="left"
                            UseLayoutRounding="False" Width="9.5" RenderTransformOrigin="0.5,0.5" Canvas.Left="519.25"
                            Canvas.Top="13" Stroke="White" />
             <Rectangle x:Name="RectangleLjcDirection" Height="25" Width="104" Canvas.Left="429" Canvas.Top="37"
@@ -140,77 +127,48 @@
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <ed:BlockArrow x:Name="lArrow01" Fill="Lime" Height="15" Orientation="Right"
+            <ed:BlockArrow x:Name="lArrow01" Fill="{Binding ElementName=lArrow011,Path=Fill}" Height="15" Orientation="Right"
                            UseLayoutRounding="False" Width="9.5" Canvas.Left="433.25" Canvas.Top="42" Stroke="White" />
-            <ed:BlockArrow x:Name="lArrow011" Fill="Lime" Height="15" Orientation="Right"
+            <ed:BlockArrow x:Name="lArrow011" Fill="{Binding LArrow,Converter={StaticResource fstArrow}}" Height="15" Orientation="Right"
                            UseLayoutRounding="False" Width="4" Canvas.Left="445" Canvas.Top="42" Stroke="White" />
-            <ed:BlockArrow x:Name="lArrow02" Fill="Lime" Height="15" Orientation="Right"
+            <ed:BlockArrow x:Name="lArrow02" Fill="{Binding LArrow,Converter={StaticResource secArrow}}" Height="15" Orientation="Right"
                            UseLayoutRounding="False" Width="9.5" Canvas.Left="457.25" Canvas.Top="42" Stroke="White" />
-            <Ellipse x:Name="lReady" Height="21" Width="22" Canvas.Left="470" Canvas.Top="39"
+            <Ellipse x:Name="lReady" Height="21" Width="22" Canvas.Left="470" Canvas.Top="39" Fill="{Binding LReady,Converter={StaticResource b2c}}"
                      Stroke="White">
-                <Ellipse.Fill>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF00BE00" Offset="1" />
-                        <GradientStop Color="White" />
-                        <GradientStop Color="#FF009600" Offset="0.3" />
-                    </LinearGradientBrush>
-                </Ellipse.Fill>
+
             </Ellipse>
-            <ed:BlockArrow x:Name="lArrow03" Fill="Lime" Height="15" Orientation="Left"
+            <ed:BlockArrow x:Name="lArrow03" Fill="{Binding LArrow,Converter={StaticResource trdArrow}}" Height="15" Orientation="Left"
                            UseLayoutRounding="False" Width="9.5" RenderTransformOrigin="0.5,0.5" Canvas.Left="496.25"
                            Canvas.Top="42" Stroke="White" />
-            <ed:BlockArrow x:Name="lArrow04" Fill="Lime" Height="15" Orientation="Left"
+            <ed:BlockArrow x:Name="lArrow04" Fill="{Binding LArrow,Converter={StaticResource fourArrow}}" Height="15" Orientation="Left"
                            UseLayoutRounding="False" Width="4" RenderTransformOrigin="0.5,0.5" Canvas.Left="513"
                            Canvas.Top="42" Stroke="White" />
-            <ed:BlockArrow x:Name="lArrow041" Fill="Lime" Height="15" Orientation="Left"
+            <ed:BlockArrow x:Name="lArrow041" Fill="{Binding ElementName=lArrow04,Path=Fill}" Height="15" Orientation="Left"
                            UseLayoutRounding="False" Width="9.5" RenderTransformOrigin="0.5,0.5" Canvas.Left="519.25"
                            Canvas.Top="42" Stroke="White" />
             <Rectangle x:Name="RectangleXjcDirection" Stroke="Blue" Width="104" Height="25" Canvas.Left="429"
-                       Canvas.Top="66" Fill="Black">
+                       Canvas.Top="67" Fill="Black">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <ed:BlockArrow x:Name="xArrow01" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
+            <ed:BlockArrow x:Name="xArrow01" Fill="{Binding ElementName=xArrow011,Path=Fill}" Orientation="Right" UseLayoutRounding="False"
                            Width="9.5" Height="15" Canvas.Left="433.25" Canvas.Top="71" Stroke="White" />
-            <ed:BlockArrow x:Name="xArrow011" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
+            <ed:BlockArrow x:Name="xArrow011" Fill="{Binding XArrow,Converter={StaticResource fstArrow}}" Orientation="Right" UseLayoutRounding="False"
                            Width="4" Height="15" Canvas.Left="445" Canvas.Top="71" Stroke="White" />
-            <ed:BlockArrow x:Name="xArrow02" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
+            <ed:BlockArrow x:Name="xArrow02" Fill="{Binding XArrow,Converter={StaticResource secArrow}}" Orientation="Right" UseLayoutRounding="False"
                            Width="9.5" Height="15" Canvas.Left="457.25" Canvas.Top="71" Stroke="White" />
-            <Ellipse x:Name="xReady" Width="22" Height="21" Canvas.Left="470" Canvas.Top="68" Fill="Lime"
+            <Ellipse x:Name="xReady" Width="22" Height="21" Canvas.Left="470" Canvas.Top="68" Fill="{Binding XReady,Converter={StaticResource b2c}}"
                      Stroke="White" />
-            <ed:BlockArrow x:Name="xArrow03" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
+            <ed:BlockArrow x:Name="xArrow03" Fill="{Binding XArrow,Converter={StaticResource trdArrow}}" Orientation="Left" UseLayoutRounding="False"
                            Width="9.5" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="496.25" Canvas.Top="71"
                            Stroke="White" />
-            <ed:BlockArrow x:Name="xArrow04" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
+            <ed:BlockArrow x:Name="xArrow04" Fill="{Binding XArrow,Converter={StaticResource fourArrow}}" Orientation="Left" UseLayoutRounding="False"
                            Width="4" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="513" Canvas.Top="71"
                            Stroke="White" />
-            <ed:BlockArrow x:Name="xArrow041" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
+            <ed:BlockArrow x:Name="xArrow041" Fill="{Binding ElementName=xArrow04,Path=Fill}" Orientation="Left" UseLayoutRounding="False"
                            Width="9.5" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="519.25"
                            Canvas.Top="71" Stroke="White" />
-            <Rectangle x:Name="RectangleZmcDirection" Stroke="Blue" Width="104" Height="25" Canvas.Left="429"
-                       Canvas.Top="95" Fill="Black">
-                <Rectangle.Effect>
-                    <DropShadowEffect Direction="272" />
-                </Rectangle.Effect>
-            </Rectangle>
-            <ed:BlockArrow x:Name="mArrow01" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
-                           Width="9.5" Height="15" Canvas.Left="433.25" Canvas.Top="100" Stroke="White" />
-            <ed:BlockArrow x:Name="mArrow011" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
-                           Width="4" Height="15" Canvas.Left="445" Canvas.Top="100" Stroke="White" />
-            <ed:BlockArrow x:Name="mArrow02" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
-                           Width="9.5" Height="15" Canvas.Left="457.25" Canvas.Top="100" Stroke="White" />
-            <Ellipse x:Name="mReady" Fill="Lime" Width="22" Height="21" Canvas.Left="470" Canvas.Top="97"
-                     Stroke="White" />
-            <ed:BlockArrow x:Name="mArrow03" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
-                           Width="9.5" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="496.25" Canvas.Top="100"
-                           Stroke="White" />
-            <ed:BlockArrow x:Name="mArrow04" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
-                           Width="4" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="513" Canvas.Top="100"
-                           Stroke="White" />
-            <ed:BlockArrow x:Name="mArrow041" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
-                           Width="9.5" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="519.25"
-                           Canvas.Top="100" Stroke="White" />
             <Rectangle x:Name="RectangleDycDirection" Fill="Black" Stroke="White" Width="104" Height="25"
                        Canvas.Left="453" Canvas.Top="123" Visibility="Collapsed" />
             <ed:BlockArrow x:Name="BlockArrowDyc5Direction" Fill="Lime" Orientation="Right" UseLayoutRounding="False"
@@ -233,45 +191,25 @@
             <ed:BlockArrow x:Name="BlockArrowDyc6Direction" Fill="Lime" Orientation="Left" UseLayoutRounding="False"
                            Width="9.5" Stroke="White" RenderTransformOrigin="0.5,0.5" Height="15" Canvas.Left="543.412"
                            Canvas.Top="128" Visibility="Collapsed" />
-            <TextBox x:Name="txtTjcDoorOpen" TextWrapping="Wrap" Text="炉门已摘" TextAlignment="Center"
+            <TextBox x:Name="txtTjcDoorOpen" TextWrapping="Wrap" Text="炉门已摘" TextAlignment="Center" Background="{Binding TDoorOpen,Converter={StaticResource b2c}}"
                      FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
                      Height="25" BorderBrush="Blue" Width="95" Canvas.Left="563" Canvas.Top="8" FontWeight="Bold">
-                <TextBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF323232" Offset="1" />
-                        <GradientStop Color="#FFA3A3A3" />
-                        <GradientStop Color="#FF161616" Offset="0.3" />
-                    </LinearGradientBrush>
-                </TextBox.Background>
+
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtLjcTroughLocked" TextWrapping="Wrap" Text="焦槽锁闭" TextAlignment="Center"
+            <TextBox x:Name="txtLjcTroughLocked" TextWrapping="Wrap" Text="焦槽锁闭" TextAlignment="Center" Background="{Binding TroughLock,Converter={StaticResource b2c}}"
                      FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
                      Height="25" BorderBrush="Blue" Width="95" Canvas.Left="563" Canvas.Top="37" FontWeight="Bold">
-                <TextBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF007800" Offset="1" />
-                        <GradientStop Color="White" />
-                        <GradientStop Color="DarkGreen" Offset="0.3" />
-                    </LinearGradientBrush>
-                </TextBox.Background>
+
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
             <TextBox x:Name="txtCanReady" TextWrapping="Wrap" Text="车门关闭" TextAlignment="Center"
                      FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     BorderBrush="Blue" Background="Lime" Width="95" Height="25" Canvas.Left="563" Canvas.Top="66"
-                     FontWeight="Bold">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" />
-                </TextBox.Effect>
-            </TextBox>
-            <TextBox x:Name="txtMcSleeve" TextWrapping="Wrap" Text="导套到位" TextAlignment="Center"
-                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     BorderBrush="Blue" Height="25" Width="95" Canvas.Left="563" Canvas.Top="95" Background="#FF323232"
+                     BorderBrush="Blue" Background="{Binding CanReady,Converter={StaticResource b2c}}" Width="95" Height="25" Canvas.Left="563" Canvas.Top="66"
                      FontWeight="Bold">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
@@ -281,128 +219,108 @@
                      FontFamily="Times New Roman" Foreground="White" IsHitTestVisible="False" IsTabStop="False"
                      FontSize="16" BorderBrush="Blue" Background="#FF323232" Height="25" Width="95" Canvas.Left="587"
                      Canvas.Top="123" Visibility="Collapsed" />
-            <TextBox x:Name="txtFstAllow" TextWrapping="Wrap" Text="一级允推" TextAlignment="Center"
-                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="32"
-                     Background="Lime" BorderBrush="Blue" Width="76" AllowDrop="True" Height="76" Canvas.Left="688"
+            <TextBox x:Name="txtFstAllow" TextWrapping="Wrap" Text="一级允推" TextAlignment="Center" Background="{Binding FstAllow,Converter={StaticResource b2c}}"
+                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="29.333"
+                      BorderBrush="Blue" Width="76" AllowDrop="True" Height="76" Canvas.Left="688"
                      Canvas.Top="11" FontWeight="Bold">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtAllowStoking" TextWrapping="Wrap" Text="允许装煤" TextAlignment="Center"
-                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="24"
-                     BorderBrush="Blue" Width="60" Background="#FF323232" Height="60" Canvas.Left="918" Canvas.Top="93"
-                     FontWeight="Bold">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" />
-                </TextBox.Effect>
-            </TextBox>
-            <TextBox x:Name="txtTimeAllow" TextWrapping="Wrap" Text="允许时间" TextAlignment="Center"
+            <TextBox x:Name="txtTimeAllow" TextWrapping="Wrap" Text="允许时间" TextAlignment="Center" Background="{Binding TimeAllow,Converter={StaticResource b2c}}"
                      FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     Background="Lime" Height="25" BorderBrush="Blue" Width="95" Canvas.Left="794" Canvas.Top="8"
+                     Height="25" BorderBrush="Blue" Width="95" Canvas.Left="794" Canvas.Top="8"
                      FontWeight="Bold">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtLjcAllowPush" TextWrapping="Wrap" Text="人工允推" TextAlignment="Center"
+            <TextBox x:Name="txtLjcAllowPush" TextWrapping="Wrap" Text="人工允推" TextAlignment="Center" Background="{Binding LAllow,Converter={StaticResource b2c}}"
                      FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     Height="25" BorderBrush="Blue" Background="Lime" Width="95" Canvas.Left="794" Canvas.Top="37"
+                     Height="25" BorderBrush="Blue" Width="95" Canvas.Left="794" Canvas.Top="37"
                      FontWeight="Bold">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtXjcAllowPush" TextWrapping="Wrap" Text="人工允推" TextAlignment="Center"
+            <TextBox x:Name="txtXjcAllowPush" TextWrapping="Wrap" Text="人工允推" TextAlignment="Center" Background="{Binding XAllow,Converter={StaticResource b2c}}"
                      FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     BorderBrush="Blue" Background="Lime" Width="95" Height="25" Canvas.Left="794" Canvas.Top="66"
+                     BorderBrush="Blue"  Width="95" Height="25" Canvas.Left="794" Canvas.Top="66"
                      FontWeight="Bold">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtSecAllow" TextWrapping="Wrap" Text="二级允推" TextAlignment="Center"
-                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="32"
-                     Background="Lime" BorderBrush="Blue" Width="76" AllowDrop="True" Height="76" Canvas.Left="919"
+            <TextBox x:Name="txtSecAllow" TextWrapping="Wrap" Text="二级允推" TextAlignment="Center" Background="{Binding SecAllow,Converter={StaticResource b2c}}"
+                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="29.333"
+                      BorderBrush="Blue" Width="76" AllowDrop="True" Height="76" Canvas.Left="919"
                      Canvas.Top="12" FontWeight="Bold">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <Rectangle x:Name="rectLinkTjcDoorOpen" Fill="Lime" Height="5" Stroke="White" Canvas.Left="533"
+            <Rectangle x:Name="rectLinkTjcDoorOpen" Fill="{Binding ElementName=txtTjcDoorOpen,Path=Background}" Height="5" Stroke="White" Canvas.Left="533"
                        Canvas.Top="18" Width="30">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectLinkLjcTrough" Fill="Lime" Height="5" Stroke="White" Canvas.Left="533"
+            <Rectangle x:Name="rectLinkLjcTrough" Fill="{Binding ElementName=txtLjcTroughLocked,Path=Background}" Height="5" Stroke="White" Canvas.Left="533"
                        Canvas.Top="47" Width="30">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectLinkXjcCan" Fill="Lime" Stroke="White" Height="5" Canvas.Left="533"
+            <Rectangle x:Name="rectLinkXjcCan" Fill="{Binding ElementName=txtCanReady,Path=Background}" Stroke="White" Height="5" Canvas.Left="533"
                        Canvas.Top="76" Width="30">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectLinkMcSleeve" Fill="Lime" Stroke="White" Height="5" Canvas.Left="533"
-                       Canvas.Top="105" Width="30">
-                <Rectangle.Effect>
-                    <DropShadowEffect Direction="272" />
-                </Rectangle.Effect>
-            </Rectangle>
-            <Rectangle x:Name="rectTLinkFstAllow" Fill="Lime" Height="5" Stroke="White" Width="30" Canvas.Left="658"
+            <Rectangle x:Name="rectTLinkFstAllow" Fill="{Binding ElementName=txtTjcDoorOpen,Path=Background}" Height="5" Stroke="White" Width="30" Canvas.Left="658"
                        Canvas.Top="18">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectLLinkFstAllow" Fill="Lime" Height="5" Stroke="White" Width="30" Canvas.Left="658"
+            <Rectangle x:Name="rectLLinkFstAllow" Fill="{Binding ElementName=txtLjcTroughLocked,Path=Background}" Height="5" Stroke="White" Width="30" Canvas.Left="658"
                        Canvas.Top="47">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectXLinkFstAllow" Fill="Lime" Stroke="White" Width="30" Height="5" Canvas.Left="658"
+            <Rectangle x:Name="rectXLinkFstAllow" Fill="{Binding ElementName=txtCanReady,Path=Background}" Stroke="White" Width="30" Height="5" Canvas.Left="658"
                        Canvas.Top="76">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectMLinkAllowPing" Fill="Lime" Stroke="White" Height="5" Width="260"
-                       Canvas.Left="658" Canvas.Top="99">
-                <Rectangle.Effect>
-                    <DropShadowEffect Direction="272" />
-                </Rectangle.Effect>
-            </Rectangle>
-            <Rectangle x:Name="rectTimeAllowLink" Fill="Lime" Height="5" Stroke="White" Width="30"
+            <Rectangle x:Name="rectTimeAllowLink" Fill="{Binding ElementName=txtTimeAllow,Path=Background}" Height="5" Stroke="White" Width="30"
                        Canvas.Left="889" Canvas.Top="18">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectFstAllowLink" Fill="Lime" Height="5" Stroke="White" Width="30"
+            <Rectangle x:Name="rectFstAllowLink" Fill="{Binding ElementName=txtFstAllow,Path=Background}" Height="5" Stroke="White" Width="30"
                        Canvas.Left="764" Canvas.Top="47">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectXLinkSecAllow" Fill="Lime" Stroke="White" Width="30" Height="5" Canvas.Left="889"
+            <Rectangle x:Name="rectXLinkSecAllow" Fill="{Binding ElementName=txtXjcAllowPush,Path=Background}" Stroke="White" Width="30" Height="5" Canvas.Left="889"
                        Canvas.Top="76">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle x:Name="rectLLinkSecAllow" Fill="Lime" Height="5" Stroke="White" Width="30" Canvas.Left="889"
+            <Rectangle x:Name="rectLLinkSecAllow" Fill="{Binding ElementName=txtLjcAllowPush,Path=Background}" Height="5" Stroke="White" Width="30" Canvas.Left="889"
                        Canvas.Top="47">
                 <Rectangle.Effect>
                     <DropShadowEffect Direction="272" />
                 </Rectangle.Effect>
             </Rectangle>
-            <TextBox x:Name="txtPushTogethor" TextWrapping="Wrap" Text="推焦联锁" Width="35" Height="112" FontFamily="YouYuan"
-                     FontSize="23" Background="#FF323232" BorderBrush="Blue" Foreground="White" TextAlignment="Center"
+            <TextBox x:Name="txtPushTogethor" TextWrapping="Wrap" Text="推焦联锁" Width="35" Height="91" FontFamily="YouYuan"
+                     FontSize="18.667" Background="{Binding PushTogether,Converter={StaticResource b2c}}" BorderBrush="Blue" Foreground="White" TextAlignment="Center"
                      Canvas.Left="252" Canvas.Top="8" FontWeight="Bold" IsTabStop="False" IsHitTestVisible="False">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" />
@@ -414,77 +332,29 @@
                     <DropShadowEffect Direction="272" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtTJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="0#0000"
+            <TextBox x:Name="txtTJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="{Binding TUIRoom}"
                      Canvas.Top="8" Width="55" TextAlignment="Center" BorderBrush="White" Background="{x:Null}"
                      FontFamily="YouYuan" IsHitTestVisible="False" FontSize="13.333">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" ShadowDepth="3" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtLJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="0#0000"
+            <TextBox x:Name="txtLJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="{Binding LUIRoom}"
                      Canvas.Top="37" Width="55" TextAlignment="Center" BorderBrush="White" Background="{x:Null}"
                      FontFamily="YouYuan" FontSize="13.333" IsHitTestVisible="False">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" ShadowDepth="3" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtXJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="0#0000"
+            <TextBox x:Name="txtXJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="{Binding XUIRoom}"
                      Canvas.Top="66" Width="55" TextAlignment="Center" BorderBrush="White" Background="{x:Null}"
                      FontFamily="YouYuan" FontSize="13.333" IsHitTestVisible="False">
                 <TextBox.Effect>
                     <DropShadowEffect Direction="272" ShadowDepth="3" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="txtMJobCar" Height="25" Canvas.Left="369" TextWrapping="Wrap" Text="0#0000"
-                     Canvas.Top="95" Width="55" TextAlignment="Center" BorderBrush="White" Background="{x:Null}"
-                     FontFamily="YouYuan" FontSize="13.333" IsHitTestVisible="False">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" ShadowDepth="3" Opacity="0.995" />
-                </TextBox.Effect>
-            </TextBox>
             <TextBox x:Name="TextBoxRoomNumD" Height="25" Canvas.Left="395" TextWrapping="Wrap" Text="00000"
                      Canvas.Top="123" Width="50" TextAlignment="Center" IsTabStop="False" Visibility="Collapsed" />
-            <TextBox x:Name="txtTDoorClosed" TextWrapping="Wrap" Text="推炉门关" TextAlignment="Center"
-                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     BorderBrush="Blue" Background="#FF323232" Height="25" Width="95" Canvas.Left="678"
-                     Canvas.Top="106" FontWeight="Bold">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" />
-                </TextBox.Effect>
-            </TextBox>
-            <TextBox x:Name="txtLDoorClosed" TextWrapping="Wrap" Text="拦炉门关" TextAlignment="Center"
-                     FontFamily="YouYuan" Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="18.667"
-                     BorderBrush="Blue" Background="#FF323232" Height="25" Width="95" Canvas.Left="678"
-                     Canvas.Top="132" FontWeight="Bold">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" />
-                </TextBox.Effect>
-            </TextBox>
-            <TextBox x:Name="txtTPingReady" TextWrapping="Wrap" Text="推平煤到位" TextAlignment="Center" FontFamily="YouYuan"
-                     Foreground="White" IsHitTestVisible="False" IsTabStop="False" FontSize="16" BorderBrush="Blue"
-                     Background="#FF323232" Height="25" Width="95" Canvas.Left="793" Canvas.Top="111" FontWeight="Bold">
-                <TextBox.Effect>
-                    <DropShadowEffect Direction="272" />
-                </TextBox.Effect>
-            </TextBox>
-            <Rectangle x:Name="rectLinkTPingReady" Fill="#FF323232" Stroke="White" Height="5" Width="20"
-                       Canvas.Left="773" Canvas.Top="116">
-                <Rectangle.Effect>
-                    <DropShadowEffect Direction="272" />
-                </Rectangle.Effect>
-            </Rectangle>
-            <Rectangle x:Name="rectLLinkAllowStoking" Fill="#FF323232" Stroke="White" Height="5" Width="145"
-                       Canvas.Left="773" Canvas.Top="142">
-                <Rectangle.Effect>
-                    <DropShadowEffect Direction="272" />
-                </Rectangle.Effect>
-            </Rectangle>
-            <Rectangle x:Name="rectTPingReadyLinkAllowStoking" Fill="Lime" Stroke="White" Height="5" Width="30" Canvas.Left="888"
-                       Canvas.Top="121">
-                <Rectangle.Effect>
-                    <DropShadowEffect Direction="272" />
-                </Rectangle.Effect>
-            </Rectangle>
         </Canvas>
     </Grid>
 </UserControl>

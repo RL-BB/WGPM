@@ -19,6 +19,7 @@
     <UserControl.Resources>
         <ct:PushCurConverter FstLevel="250"  x:Key="PcTC" ></ct:PushCurConverter>
         <ct:BurnTimeToColorConverter   DefaultColor="{x:Null}" x:Key="BTC" ></ct:BurnTimeToColorConverter>
+        <ct:BoolToLockConverter x:Key="b2l"/>
     </UserControl.Resources>
     <Grid x:Name="GridMain" Width="1024" HorizontalAlignment="Center">
         <Grid.Background>
@@ -95,13 +96,14 @@
             <TabItem Header="联锁信息">
                 <Grid Name="grdLock" Margin="0,0,0,0" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="52*"/>
-                        <RowDefinition Height="21*"/>
+                        <RowDefinition Height="471*"/>
+                        <RowDefinition Height="113*"/>
                     </Grid.RowDefinitions>
                     <Grid.Background>
                         <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
                     </Grid.Background>
-                    <DataGrid Name="dgLockInfo" Grid.Row="0" Grid.RowSpan="1" SelectionChanged="dgLockInfo_Selected" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" LoadingRow="LoadingRow" >
+                    <DataGrid Name="dgLockInfo" Grid.Row="0" Grid.RowSpan="1"  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" LoadingRow="LoadingRow" >
+                        <!--SelectionChanged="dgLockInfo_Selected"-->
                         <DataGrid.Background>
                             <ImageBrush ImageSource="/WGPM;component/R/image/Background/Sky.jpg"/>
                         </DataGrid.Background>
@@ -126,21 +128,21 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="日期" IsReadOnly="True" Binding="{Binding Date}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding Room}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="联锁" IsReadOnly="False" Binding="{Binding PushTogether,Converter={StaticResource b2l}}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="T炉号" IsReadOnly="False" Binding="{Binding TRoom}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="L炉号" IsReadOnly="False" Binding="{Binding LRoom}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="X炉号" IsReadOnly="False" Binding="{Binding XRoom}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto"  Header="车号" IsReadOnly="False" Binding="{Binding CarsNum,StringFormat='0-0-0'}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="T物理地址" IsReadOnly="False" Binding="{Binding TAddr}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="L物理地址" IsReadOnly="False" Binding="{Binding LAddr}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="X物理地址" IsReadOnly="False" Binding="{Binding XAddr}"/>
-                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间" IsReadOnly="True" Binding="{Binding PushTime}"/>
-                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际推焦时间" IsReadOnly="True" Binding="{Binding ActualPushTime}"/>
-                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际装煤时间" IsReadOnly="False" Binding="{Binding ActualStokingTime}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间" IsReadOnly="True" Binding="{Binding PushTime,StringFormat='MM-dd HH:mm'}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际推焦时间" IsReadOnly="True" Binding="{Binding ActualPushTime,StringFormat='MM-dd HH:mm'}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="时段" IsReadOnly="False" Binding="{Binding Period}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="班组" IsReadOnly="False" Binding="{Binding Group}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <l:TogetherForQuery x:Name="together" Grid.Row="1"/>
-
+                    <l:TogetherForQuery x:Name="together" Grid.Row="1" DataContext="{Binding ElementName=dgLockInfo,Path=SelectedItem}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="电流曲线">

@@ -24,8 +24,8 @@
             <Setter Property="VerticalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}" >
-                        <Grid SnapsToDevicePixels="true" Height="40" MinWidth="110" >
+                    <ControlTemplate TargetType="{x:Type TabItem}"  >
+                        <Grid SnapsToDevicePixels="true" Height="40" MinWidth="110"  >
                             <Path Margin="0 0 0 -12" x:Name="PATH" Visibility="Collapsed" Data="M0.5,0.5 L109.5,0.5 109.5,39.5 64,40 57,51 49,40 0.5,39.5 z" Fill="#FF0FAF46"  Height="51.5"  Stretch="Fill" Stroke="Transparent"  Width="110"/>
                             <Border x:Name="Bd" Background="#dfe9f6" Style="{StaticResource bdStyle}" BorderThickness="2" BorderBrush="LightBlue"  >
                                 <ContentPresenter Margin="5 0 5 0" x:Name="Content" ContentSource="Header" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -56,7 +56,7 @@
         <Canvas x:Name="CanvasMain" Margin="10,8,10,12">
             <!--CanUserAddRows的值决定DataGrid的最后一空白行有无-->
             <TabControl Height="723" BorderBrush="#FF58DC0D">
-                <TabItem x:Name="tabPush" Tag="0" Header="推焦计划"  IsSelected="True"  >
+                <TabItem x:Name="tabPush" Tag="0" Header="推焦计划"  IsSelected="True" >
                     <DataGrid x:Name="dgPlan" GotMouseCapture="dgPlan_GotMouseCapture" IsReadOnly="True" Canvas.Top="0" Width="720" Canvas.Left="0"  FontWeight="Bold" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" LoadingRow="DataGrid_LoadingRow">
                         <DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">

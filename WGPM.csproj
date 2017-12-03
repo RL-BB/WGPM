@@ -146,6 +146,7 @@
     <Compile Include="R\UI\BurnStatus.xaml.cs">
       <DependentUpon>BurnStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="R\UI\UIConverter\BoolToLockConverter.cs" />
     <Compile Include="R\UI\UIConverter\BurnTimeConverter.cs" />
     <Compile Include="R\UI\CarComm.xaml.cs">
       <DependentUpon>CarComm.xaml</DependentUpon>

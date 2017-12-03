@@ -488,8 +488,8 @@ namespace WGPM.R.UI
             together.txtSysTime.Text = helper.ActualPushTime != null ? Convert.ToDateTime(helper.ActualPushTime).ToString("t") : "00:00";
             together.txtPushPlanTime.Text = helper.PushTime != null ? Convert.ToDateTime(helper.PushTime).ToString("t") : "00:00";
             together.txtPushPlanRoomNum.Text = helper.Room != null ? helper.Room : "000";
-            together.txtStokingPlanRoomNum.Text = together.txtPushPlanRoomNum.Text;
-            together.txtStokingPlanTime.Text = helper.PushTime != null ? Convert.ToDateTime(helper.PushTime).AddMinutes(5).ToString("t") : "00:00";
+            //together.txtStokingPlanRoomNum.Text = together.txtPushPlanRoomNum.Text;
+            //together.txtStokingPlanTime.Text = helper.PushTime != null ? Convert.ToDateTime(helper.PushTime).AddMinutes(5).ToString("t") : "00:00";
         }
         private void RoomInfo(LockInfoHelper helper)
         {
@@ -497,7 +497,7 @@ namespace WGPM.R.UI
             together.txtTJobCar.Text = helper.TRoom != null ? (Convert.ToInt32(helper.TRoom) <= 55 ? 1 : 2) + area + "#" + helper.TRoom : "#000";
             together.txtLJobCar.Text = helper.LRoom != null ? (Convert.ToInt32(helper.LRoom) <= 55 ? 1 : 2) + area + "#" + helper.LRoom : "#000";
             together.txtXJobCar.Text = helper.XRoom != null ? (Convert.ToInt32(helper.XRoom) <= 55 ? 1 : 2) + area + "#" + helper.XRoom : "#000";
-            together.txtMJobCar.Text = helper.MRoom != null ? (Convert.ToInt32(helper.MRoom) <= 55 ? 1 : 2) + area + "#" + helper.MRoom : "#000";
+            //together.txtMJobCar.Text = helper.MRoom != null ? (Convert.ToInt32(helper.MRoom) <= 55 ? 1 : 2) + area + "#" + helper.MRoom : "#000";
         }
         private void ReadyInfo(LockInfoHelper helper)
         {
@@ -505,14 +505,12 @@ namespace WGPM.R.UI
         }
         private void GetAllJobCarArrows(LockInfoHelper helper)
         {
-            BlockArrow[] tArrows = { together.tArrow01, together.tArrow011, together.tArrow02, together.tArrow03, together.tArrow04, together.tArrow041 };
-            BlockArrow[] lArrows = { together.lArrow01, together.lArrow011, together.lArrow02, together.lArrow03, together.lArrow04, together.lArrow041 };
-            BlockArrow[] xArrows = { together.xArrow01, together.xArrow011, together.xArrow02, together.xArrow03, together.xArrow04, together.xArrow041 };
-            BlockArrow[] mArrows = { together.mArrow01, together.mArrow011, together.mArrow02, together.mArrow03, together.mArrow04, together.mArrow041 };
-            together.tReady.Fill = GetJobCarArrows(helper.Ready, 0, tArrows) ? Brushes.Red : Brushes.Gray;
-            together.lReady.Fill = GetJobCarArrows(helper.Ready, 1, lArrows) ? Brushes.Red : Brushes.Gray;
-            together.xReady.Fill = GetJobCarArrows(helper.Ready, 2, xArrows) ? Brushes.Red : Brushes.Gray;
-            together.mReady.Fill = GetJobCarArrows(helper.Ready, 3, mArrows) ? Brushes.Red : Brushes.Gray;
+            //BlockArrow[] tArrows = { together.tArrow01, together.tArrow011, together.tArrow02, together.tArrow03, together.tArrow04, together.tArrow041 };
+            //BlockArrow[] lArrows = { together.lArrow01, together.lArrow011, together.lArrow02, together.lArrow03, together.lArrow04, together.lArrow041 };
+            //BlockArrow[] xArrows = { together.xArrow01, together.xArrow011, together.xArrow02, together.xArrow03, together.xArrow04, together.xArrow041 };
+            //together.tReady.Fill = GetJobCarArrows(helper.Ready, 0, tArrows) ? Brushes.Red : Brushes.Gray;
+            //together.lReady.Fill = GetJobCarArrows(helper.Ready, 1, lArrows) ? Brushes.Red : Brushes.Gray;
+            //together.xReady.Fill = GetJobCarArrows(helper.Ready, 2, xArrows) ? Brushes.Red : Brushes.Gray;
         }
         private bool GetJobCarArrows(string arrow, int index, BlockArrow[] arrows)
         {
@@ -588,7 +586,7 @@ namespace WGPM.R.UI
         }
         private void LockInfo(LockInfoHelper helper)
         {
-            //DataWrite.cs  InfoToInt
+            //DataWrite.cs  InfoToInt 3 8 11 17 xx 9 12 18
             together.txtPushTogethor.Background = (helper.PushInfo & (int)Math.Pow(2, 1)) == Math.Pow(2, 1) ? Brushes.Red : Brushes.Gray;//联锁信息
             together.txtTjcDoorOpen.Background = (helper.PushInfo & (int)Math.Pow(2, 3)) == Math.Pow(2, 3) ? Brushes.Red : Brushes.Gray;//炉门已摘
             together.rectLinkTjcDoorOpen.Fill = together.txtTjcDoorOpen.Background;//
@@ -596,8 +594,8 @@ namespace WGPM.R.UI
             together.rectLinkLjcTrough.Fill = together.txtLjcTroughLocked.Background;//
             together.txtCanReady.Background = (helper.PushInfo & (int)Math.Pow(2, 11)) == Math.Pow(2, 11) ? Brushes.Red : Brushes.Gray;//焦罐旋转/车门关闭
             together.rectLinkXjcCan.Fill = together.txtCanReady.Background;
-            together.txtMcSleeve.Background = Brushes.Green;//导套到位
-            together.rectMLinkAllowPing.Fill = Brushes.Green;
+            //together.txtMcSleeve.Background = Brushes.Green;//导套到位
+            //together.rectMLinkAllowPing.Fill = Brushes.Green;
             together.txtFstAllow.Background = (helper.PushInfo & (int)Math.Pow(2, 17)) == Math.Pow(2, 17) ? Brushes.Red : Brushes.Gray;//一级允推
             together.rectTLinkFstAllow.Fill = together.txtFstAllow.Background;
             together.rectLLinkFstAllow.Fill = together.txtFstAllow.Background;
@@ -657,6 +655,4 @@ namespace WGPM.R.UI
 
         }
     }
-
-
 }

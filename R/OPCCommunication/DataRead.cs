@@ -175,7 +175,7 @@ namespace WGPM.R.OPCCommunication
 
         //用List<bool>的实例Porperties作为字段来对其他属性进行赋值
         public List<bool> ToDecodeTogetherInfo { get { return toDecodeTogetherInfo; } }
-        public List<bool> toDecodeTogetherInfo;
+        private List<bool> toDecodeTogetherInfo;
         public DecodeTogetherInfoDelegate DecodeTogetherInfo { get; set; }
         /// <summary>
         /// 解析联锁信息数据:把一个ushort型数据ConvertTo一个List<bool>的list

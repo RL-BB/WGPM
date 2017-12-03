@@ -5,19 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace WGPM.R.UI.UIConverter
 {
-    class ArrowsColorConverter : IValueConverter
+    class BoolToLockConverter : IValueConverter
     {
-        public Brush DefaultColor { get; set; }
-        public int Index { get; set; }
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int arrows = Convert.ToInt32(value);
-            bool flag = Convert.ToBoolean(arrows & (int)Math.Pow(2, Index));
-            return flag ? Brushes.Red : DefaultColor;
+            return (bool)value ? "联锁" : "解锁";
         }
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

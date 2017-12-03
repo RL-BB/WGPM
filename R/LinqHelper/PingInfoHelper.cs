@@ -35,7 +35,7 @@ namespace WGPM.R.LinqHelper
             }
             else
             {
-                ping = db.PingInfo.SingleOrDefault(p => p.T平煤炉号 == pInfo.TPRoom && p.Begin平煤时间 == pInfo.BeginTime);
+                ping = db.PingInfo.FirstOrDefault(p => p.T平煤炉号 == pInfo.TPRoom && p.Begin平煤时间 == pInfo.BeginTime);
                 if (ping == null)
                 {
                     BeginRec(ping);

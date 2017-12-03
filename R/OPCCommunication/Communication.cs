@@ -86,7 +86,7 @@ namespace WGPM.R.OPCCommunication
         /// index=1-8时，分别为T1，T2，L1，L2，X1，X2，M1，M2
         /// </summary>
         public static List<CommStatus> CommStatus { get; set; }
-        public static List<Vehicle> CarsInfo { get; set; }
+        public static List<Vehicle> CarsLst { get; set; }
         /// <summary>
         /// 四大工作车
         /// </summary>
@@ -166,15 +166,15 @@ namespace WGPM.R.OPCCommunication
         }
         private void InitCarsInfoList()
         {
-            CarsInfo = new List<Vehicle>();
-            CarsInfo.Add(T1);
-            CarsInfo.Add(T2);
-            CarsInfo.Add(L1);
-            CarsInfo.Add(L2);
-            CarsInfo.Add(X1);
-            CarsInfo.Add(X2);
-            CarsInfo.Add(M1);
-            CarsInfo.Add(M2);
+            CarsLst = new List<Vehicle>();
+            CarsLst.Add(T1);
+            CarsLst.Add(T2);
+            CarsLst.Add(L1);
+            CarsLst.Add(L2);
+            CarsLst.Add(X1);
+            CarsLst.Add(X2);
+            CarsLst.Add(M1);
+            CarsLst.Add(M2);
         }
         private bool GetDataRead(ushort[][] dataRead)
         {
@@ -205,16 +205,16 @@ namespace WGPM.R.OPCCommunication
                 if (recvDataRead[index] != null)
                 {
                     //接收到的DataRead数据赋值给每辆车的DataRead的接收数组
-                    CarsInfo[index].DataRead.ToDecodeProtocolData = recvDataRead[index];
+                    CarsLst[index].DataRead.ToDecodeProtocolData = recvDataRead[index];
                     //解析出包括TogetherInfo和其他公共DataRead(①物理地址;②读码器灯状态;③解码器计数;④PLC计数;⑤触摸屏计数),赋值给字段，之后就可以使用属性了
-                    CarsInfo[index].DataRead.DecodeDataReadValue(index);
+                    CarsLst[index].DataRead.DecodeDataReadValue(index);
                     //解析TogetherInfo：由ushort类型的一个数据得到List<bool> ，然后调用DecodeTogetherInfo();
-                    CarsInfo[index].DataRead.TogetherInfo.ConvertToBoolList();
-                    CarsInfo[index].DataRead.TogetherInfo.DecodeTogetherInfo();//可以访问联锁数据了                
-                    CarsInfo[index].CarNum = Convert.ToUInt16(index % 2 + 1);// 车号还是
+                    CarsLst[index].DataRead.TogetherInfo.ConvertToBoolList();
+                    CarsLst[index].DataRead.TogetherInfo.DecodeTogetherInfo();//可以访问联锁数据了                
+                    CarsLst[index].CarNum = Convert.ToUInt16(index % 2 + 1);// 车号还是
                     if (index == 0 || index == 1 || index == 6 || index == 7)
                     {//解析推焦车和装煤车特有的数据
-                        CarsInfo[index].DataRead.DecodeOtherDataRead(index);
+                        CarsLst[index].DataRead.DecodeOtherDataRead(index);
                     }
                 }
             }
@@ -226,18 +226,18 @@ namespace WGPM.R.OPCCommunication
         {
             for (int i = 0; i < 8; i++)
             {
-                if (CarsInfo[i].DataRead.ToDecodeProtocolData == null || CarsInfo[i].DataRead.MainPhysicalAddr == 0 || CarsInfo[i].DataRead.MainPhysicalAddr == 666)
+                if (CarsLst[i].DataRead.ToDecodeProtocolData == null || CarsLst[i].DataRead.MainPhysicalAddr == 0 || CarsLst[i].DataRead.MainPhysicalAddr == 666)
                 {//该车的接收数据为空时，或物理地址不来时，不处理炉号
                     continue;
                 }
                 if (i == 4 || i == 5)
                 {
-                    ((Xjc)CarsInfo[i]).GetRoomNum();
+                    ((Xjc)CarsLst[i]).GetRoomNum();
                 }
                 else
                 {
                     //if (i >= 6) continue;
-                    CarsInfo[i].GetRoomNum();
+                    CarsLst[i].GetRoomNum();
                 }
             }
         }
@@ -335,7 +335,7 @@ namespace WGPM.R.OPCCommunication
         {
             List<ushort> dw = new List<ushort>();
             dw.Add(DataWrite.SoftwareCount);//上位机计数[1]
-            ushort pingCur = (ushort)((TjcDataRead)(CarsInfo[index].JobCar ? MJobCarLst[0] : MNonJobCarLst[0]).DataRead).PingCur;
+            ushort pingCur = (ushort)((TjcDataRead)(CarsLst[index].JobCar ? MJobCarLst[0] : MNonJobCarLst[0]).DataRead).PingCur;
             pingCur = pingCur > 255 ? (byte)255 : pingCur;
             dw.Add(pingCur);//（工作推焦车）焦杆长度[2],20170920 把焦杆长度替换为平煤电流
             dw.Add(DataWrite.SysTime);//系统时间（时，分）[3]
@@ -357,7 +357,7 @@ namespace WGPM.R.OPCCommunication
             //displayRoom
             ushort displayRoom = (ushort)(planRoomNum + (Setting.AreaFlag ? 0 : 2000) + (planRoomNum <= 55 ? 1000 : 2000));
             dw.Add(displayRoom);//计划显示炉号[7]
-            dw.Add(CarsInfo[index].DisplayRoomNum);//当前车炉号[8]
+            dw.Add(CarsLst[index].DisplayRoomNum);//当前车炉号[8]
             //四大车工作车显示炉号。
             dw.AddRange(index < 6 ? GetAllJobCarRoomNumArr() : new List<ushort> { MJobCarLst[0].DisplayRoomNum, 0, 0, MJobCarLst[1].DisplayRoomNum });
             dw.AddRange(index <= 1 ? XjcPhysicalAddr() : (index >= 6 ? PlanTime() : new List<ushort> { 0, 0, 0, 0 }));//4个螺旋转速[13,14,15,16];20171113 推焦车-->熄焦车的物理地址；煤车--> 计划时间（推和装煤）
@@ -365,7 +365,7 @@ namespace WGPM.R.OPCCommunication
             dw.AddRange(index < 6 ? GetDwTogetherInfo(index) : GetDwMTogetherInfo(index));
             //推拦熄煤箭头[22]；20170924发送到煤车的箭头为 平煤杆到位的推焦车相对于装煤炉号的箭头
             dw.Add(GetJobCarDwArrows(index));
-            dw.Add(CarsInfo[index].Arrows);//当前车箭头[23]           
+            dw.Add(CarsLst[index].Arrows);//当前车箭头[23]           
             return dw;
         }
         /// <summary>
@@ -393,8 +393,8 @@ namespace WGPM.R.OPCCommunication
             }
             dw.Add(planTime);//计划时间[3]
             dw.Add(planRoomNum);//推焦计划炉号[4]
-            dw.Add(CarsInfo[index].DisplayRoomNum);//当前车炉号[5]
-            dw.Add((CarsInfo[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo).InfoToInt);//推焦联锁状态[6]
+            dw.Add(CarsLst[index].DisplayRoomNum);//当前车炉号[5]
+            dw.Add((CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo).InfoToInt);//推焦联锁状态[6]
             dw.Add(0);//焦杆长度/平煤电流[7]
             dw.Add(TJobCarLst[0].DataRead.PhysicalAddr);//四大工作车的物理地址[8,9,10,11]
             dw.Add(TJobCarLst[1].DataRead.PhysicalAddr);//四大工作车的物理地址[8,9,10,11]
@@ -411,7 +411,7 @@ namespace WGPM.R.OPCCommunication
             dw.Add(0);//螺旋计数，置零即可 无实际意义[19]， 
             dw.Add(0);//螺旋计数，置零即可 无实际意义[20]， 
             dw.Add(GetJobCarDwArrows(index));//推拦熄煤箭头指示[21]
-            dw.Add(CarsInfo[index].Arrows);//当前车箭头[22]           
+            dw.Add(CarsLst[index].Arrows);//当前车箭头[22]           
             dw.Add(0);//备用，置零即可 无实际意义[23]
             dw.Add(0);//备用，置零即可 无实际意义[24]
             dw.Add(0);//备用，置零即可 无实际意义[25]
@@ -426,8 +426,8 @@ namespace WGPM.R.OPCCommunication
         private List<ushort> XjcPhysicalAddr()
         {
             List<ushort> s = new List<ushort>();
-            s.AddRange(IntToUShortArr(CarsInfo[4].DataRead.PhysicalAddr));
-            s.AddRange(IntToUShortArr(CarsInfo[5].DataRead.PhysicalAddr));
+            s.AddRange(IntToUShortArr(CarsLst[4].DataRead.PhysicalAddr));
+            s.AddRange(IntToUShortArr(CarsLst[5].DataRead.PhysicalAddr));
             return s;
         }
         private List<ushort> PlanTime()
@@ -451,8 +451,8 @@ namespace WGPM.R.OPCCommunication
         {
             for (int i = 0; i < 8; i++)
             {
-                CarsInfo[i].GetArrows();
-                if (i < 2) ((Tjc)CarsInfo[i]).GetMArrows();
+                CarsLst[i].GetArrows();
+                if (i < 2) ((Tjc)CarsLst[i]).GetMArrows();
             }
         }
         public ushort GetJobCarDwArrows(int index)
@@ -514,16 +514,16 @@ namespace WGPM.R.OPCCommunication
             #endregion
 
             #region 20170919 考虑到装煤车联锁信息的下发 修改的处理方式
-            DwTogehterInfo = CarsInfo[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
-            DwTogehterInfo.IsReady = CarsInfo[index].IsReady;
+            DwTogehterInfo = CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
+            DwTogehterInfo.IsReady = CarsLst[index].IsReady;
             #endregion
             return DwTogehterInfo.GetDwUshortArr;
         }
         public ushort[] GetDwMTogetherInfo(int index)
         {
-            DwMTogetherInfo info = CarsInfo[index].JobCar ? MJobCarTogetherInfo : MNonJobCarTogetherInfo;
+            DwMTogetherInfo info = CarsLst[index].JobCar ? MJobCarTogetherInfo : MNonJobCarTogetherInfo;
             if (info == null) return new ushort[] { 0, 0 };
-            info.MReady = CarsInfo[index].IsReady;
+            info.MReady = CarsLst[index].IsReady;
             return info.GetDwUshortArr;
         }
         /// <summary>
@@ -588,30 +588,30 @@ namespace WGPM.R.OPCCommunication
         /// </summary>
         private void GetRoomDoorStatus()
         {
-            for (int i = 0; i < CarsInfo.Count; i++)
+            for (int i = 0; i < CarsLst.Count; i++)
             {
                 if (i < 2)
                 {
-                    if (CarsInfo[i].RoomNum > 0 && CarsInfo[i].RoomNum <= 110)
+                    if (CarsLst[i].RoomNum > 0 && CarsLst[i].RoomNum <= 110)
                     {
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].TDoorOpen = ((TjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).DoorOpen;
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].TMDoorOpen = ((TjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).PMDoorOpen;//小炉门
+                        CokeRoom.RoomDoorLst[CarsLst[i].RoomNum - 1].TDoorOpen = ((TjcTogetherInfo)CarsLst[i].DataRead.TogetherInfo).DoorOpen;
+                        CokeRoom.RoomDoorLst[CarsLst[i].RoomNum - 1].TMDoorOpen = ((TjcTogetherInfo)CarsLst[i].DataRead.TogetherInfo).PMDoorOpen;//小炉门
                         continue;
                     }
                 }
                 if (i < 4 && i >= 2)
                 {
-                    if (CarsInfo[i].RoomNum > 0 && CarsInfo[i].RoomNum <= 110)
+                    if (CarsLst[i].RoomNum > 0 && CarsLst[i].RoomNum <= 110)
                     {
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].LDoorOpen = ((LjcTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).DoorOpen;
+                        CokeRoom.RoomDoorLst[CarsLst[i].RoomNum - 1].LDoorOpen = ((LjcTogetherInfo)CarsLst[i].DataRead.TogetherInfo).DoorOpen;
                         continue;
                     }
                 }
                 if (i < 8 && i >= 6)
                 {
-                    if (CarsInfo[i].RoomNum > 0 && CarsInfo[i].RoomNum <= 110)
+                    if (CarsLst[i].RoomNum > 0 && CarsLst[i].RoomNum <= 110)
                     {
-                        CokeRoom.RoomDoorLst[CarsInfo[i].RoomNum - 1].LidOpen = ((McTogetherInfo)CarsInfo[i].DataRead.TogetherInfo).LidOpen;
+                        CokeRoom.RoomDoorLst[CarsLst[i].RoomNum - 1].LidOpen = ((McTogetherInfo)CarsLst[i].DataRead.TogetherInfo).LidOpen;
                         continue;
                     }
                 }
@@ -642,6 +642,10 @@ namespace WGPM.R.OPCCommunication
             //得到非工作车的联锁信息********
             GetCarTogetherInfo(NonJobCarTogetherInfo, false);
             GetMTogetherInfo(MNonJobCarTogetherInfo, false);
+            //20171203 增加UI界面熄焦车移动所需要的XjcMoveHelper信息(因为熄焦车的移动不单和炉号相关，还和罐号相关）
+            //仅为UI界面Xjc的移动服务；
+            X1.GetMoveHelper();
+            X2.GetMoveHelper();
         }
         /// <summary>
         /// 向各车发送数据
