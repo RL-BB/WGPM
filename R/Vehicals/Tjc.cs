@@ -27,7 +27,7 @@ namespace WGPM.R.Vehicles
     /// StokingTime:开始平煤的时间为平煤时间
     /// PushTime：推焦杆接触焦炳并且前进的时候即为推焦时间
     /// </summary>
-    class Tjc : Vehicle
+    class Tjc : Vehicle, IDisplayRoomNum, IVehicalDataCopy
     {
         public Tjc(ushort carNum)
         {
@@ -59,6 +59,24 @@ namespace WGPM.R.Vehicles
         /// 推焦数据的记录Helper ToPushInfoDB
         /// </summary>
         public PsInfo psInfo;
+        public ushort DisplayRoomNum
+        {
+            get
+            {
+                if (DataRead.PhysicalAddr <= 655000)
+                {
+                    return (ushort)(RoomNum + (Setting.AreaFlag && (RoomNum <= 60) ? 1000 : 3000));
+                }
+                else
+                {
+                    return (ushort)((Setting.AreaFlag ? 2000 : 4000) + RoomNum);
+                }
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
         /// <summary>
         /// 得到推焦车的箭头指示
         /// </summary>
@@ -319,7 +337,7 @@ namespace WGPM.R.Vehicles
                 Dispatcher.BeginInvoke(new Action(PushDataPart2), null);
                 DealPushPlan = JobCar ? new DealPushPlanDelegate(JobCarDealPushPlan) : new DealPushPlanDelegate(NonJobCarDealPushPlan);
                 Dispatcher.BeginInvoke(new Action(DealPushPlan), null);
-                
+
             }
         }
         /// <summary>
@@ -329,7 +347,7 @@ namespace WGPM.R.Vehicles
         {
             PushTime = DateTime.Now.ToString("G");
             PushPlanIndex = GetIndexOfPushPlan();
-            psInfo = new PsInfo(PushPlanIndex, PushTime, JobCar);
+            psInfo = new PsInfo(PushPlanIndex, PushTime, CarNum == 1 ? (Tjc)Communication.CarsLst[0] : (Tjc)Communication.CarsLst[1]);
             //记录到数据库：需注意工作车或非工作推焦车的Info
             PushInfoHelper push = new PushInfoHelper(new DbAppDataContext(Setting.ConnectionStr), psInfo, true);
             push.RecToDB();
@@ -646,6 +664,16 @@ namespace WGPM.R.Vehicles
             int s2 = Math.Abs(car2.DataRead.PhysicalAddr - Addrs.PRoomNumDic[CokeRoom.StokingPlan[0].RoomNum]);
             car1.PMJob = (s1 <= s2) ? true : false;
             car2.PMJob = !car1.PMJob;
+        }
+
+        public void GetCopy(Vehicle car)
+        {
+            RoomNum = car.RoomNum;
+            CarNum = car.CarNum;
+            DataRead = car.DataRead;
+            JobCar = car.JobCar;
+            Arrows = car.Arrows;
+            UIRoomNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "#" + DisplayRoomNum;
         }
     }
 }

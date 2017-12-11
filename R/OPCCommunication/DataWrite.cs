@@ -323,7 +323,7 @@ namespace WGPM.R.OPCCommunication
         //[20]平煤请求
         public bool PingRequest;
         //[21]当前车箭头指示
-        public bool IsReady;
+        public bool IsReady { get; set; }
         /// <summary>
         /// 联锁信息转换为一个int数值，方便转换为字节来发送
         /// </summary>
@@ -375,9 +375,9 @@ namespace WGPM.R.OPCCommunication
             }
         }
         public bool GetFstAllow()
-        {//推到位+推炉门已摘+拦到位+拦炉门已摘+焦槽锁闭+熄到位+熄焦罐ready
+        {//推到位+推炉门已摘+拦到位+拦炉门已摘+焦槽锁闭+熄到位+熄焦罐ready；20171205 去掉拦焦车炉门已摘
             return TJobCarReady && TRoomDoorOpen &&
-                LJobCarReady && LRoomDoorOpen && TroughLocked &&
+                LJobCarReady && TroughLocked &&
                 XJobCarReady && CanReady;
         }
         public bool GetSecAllow()

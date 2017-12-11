@@ -50,7 +50,6 @@ namespace WGPM.R.UI.UIConverter
             Thickness margin = new Thickness(0, 0, 0, 0);
             margin.Top = DefaultTop;
             int roomNum = (int)value;
-            if (CarNum == 0) CarNum = 1;
             if (roomNum == 0)
             {
                 margin.Left = DefalutLeft;
@@ -128,6 +127,90 @@ namespace WGPM.R.UI.UIConverter
     }
     class XjcMoveConverter : IValueConverter
     {
+        /// <summary>
+        /// Tjc  DefaultMargin.Left=28,938
+        /// Ljc  DefaultMargin.Left=28,938=84*2+770
+        /// 数字42是根据TjcBody的Width=56，pushPole.Margin.Left=42 作对比得到的
+        /// 数字889=42+84(煤塔.Width)+7*109(110#炭化室和1#炭化室的间隔数量)
+        /// </summary>
+        public double DefalutLeft { get; set; }
+        public double DefaultTop { get; set; }
+        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Thickness margin = new Thickness(0, 0, 0, 0);
+            margin.Top = DefaultTop;
+            XjcMoveHelper helper = (XjcMoveHelper)value;
+            if (helper.RoomNum == 0)
+            {
+                margin.Left = DefalutLeft;
+            }
+            else /*if (roomNum > 0 && roomNum <= 110)*/
+            {
+                if (helper.RoomNum <= 55)
+                {
+                    margin.Left = (helper.CarNum == 1 ? DefalutLeft : (DefalutLeft - 84 - 110 * 7 - 7)) + helper.RoomNum * 7;
+                }
+                else
+                {
+                    //MT\DT.Width=84,Room.Width=7, 7*55 即单个炉区在UI上的长度
+                    margin.Left = (helper.CarNum == 1 ? (DefalutLeft + 84 + 55 * 7) : (DefalutLeft - 7 - 55 * 7)) + (helper.RoomNum - 55) * 7;
+                }
+            }
+            margin.Left = helper.CanNum2() ? (margin.Left + helper.Deviation) : margin.Left;
+            return margin;
+        }
+
+        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+    class XjcMutiConverter : IMultiValueConverter
+    {
+        /// <summary>
+        /// Tjc  DefaultMargin.Left=28,938
+        /// Ljc  DefaultMargin.Left=28,938=84*2+770
+        /// 数字42是根据TjcBody的Width=56，pushPole.Margin.Left=42 作对比得到的
+        /// 数字889=42+84(煤塔.Width)+7*109(110#炭化室和1#炭化室的间隔数量)
+        /// </summary>
+        public double DefalutLeft { get; set; }
+        public double DefaultTop { get; set; }
+        public int Deviation { get; set; }
+        object IMultiValueConverter.Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            int RoomNum = (int)values[0];
+            int CarNum = (ushort)values[1];
+            bool CanNum = (bool)values[2];
+            int addr = (int)values[3];
+            Thickness margin = new Thickness(0, 0, 0, 0);
+            margin.Top = DefaultTop;
+            if (RoomNum == 0 || addr > 1845000)
+            {
+                margin.Left = DefalutLeft;
+            }
+            else /*if (roomNum > 0 && roomNum <= 110)*/
+            {
+                if (RoomNum <= 55)
+                {
+                    margin.Left = (CarNum == 1 ? DefalutLeft : (DefalutLeft - 84 - 110 * 7 - 7)) + RoomNum * 7;
+                }
+                else
+                {
+                    //MT\DT.Width=84,Room.Width=7, 7*55 即单个炉区在UI上的长度
+                    margin.Left = (CarNum == 1 ? (DefalutLeft + 84 + 55 * 7) : (DefalutLeft - 7 - 55 * 7)) + (RoomNum - 55) * 7;
+                }
+            }
+            margin.Left = (Setting.AreaFlag && CarNum == 1 && CanNum) || (CarNum == 2 && !Setting.AreaFlag) && !CanNum ? (margin.Left + Deviation) : margin.Left;
+            return margin;
+        }
+        object[] IMultiValueConverter.ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    class TjcMutiConverter : IMultiValueConverter
+    {
         public int CarNum { get; set; }
         /// <summary>
         /// Tjc  DefaultMargin.Left=28,938
@@ -137,47 +220,35 @@ namespace WGPM.R.UI.UIConverter
         /// </summary>
         public double DefalutLeft { get; set; }
         public double DefaultTop { get; set; }
-        /// <summary>
-        /// 干熄焦的焦罐 在车头的右侧
-        /// </summary>
-        public bool Right { get; set; }
-        /// <summary>
-        /// 电机车两个焦罐的偏差
-        /// 其中靠近车头的干焦罐 为1#焦罐 fstCan
-        /// </summary>
-        public double Deviation { get; set; }
-        public bool Dry { get; set; }
-        public bool CanNum { get; set; }
-        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        object IMultiValueConverter.Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            //DefaultMargin
             Thickness margin = new Thickness(0, 0, 0, 0);
             margin.Top = DefaultTop;
-            XjcMoveHelper helper = (XjcMoveHelper)value;
-            if (CarNum == 0) CarNum = 1;
-            if (helper.RoomNum == 0)
+            int roomNum = (int)values[0];
+            int addr = (int)values[1];
+            if (roomNum == 0)
             {
                 margin.Left = DefalutLeft;
             }
             else /*if (roomNum > 0 && roomNum <= 110)*/
             {
-                if (helper.RoomNum <= 55)
-                {
-                    margin.Left = (CarNum == 1 ? DefalutLeft : (DefalutLeft - 84 - 110 * 7 - 7)) + helper.RoomNum * 7;
+                if (addr <= 655000)
+                {//编码板65为推焦车在1#炉区所用的最大码牌
+                    margin.Left = (CarNum == 1 ? DefalutLeft : (DefalutLeft - 84 - 110 * 7 - 7)) + roomNum * 7;
                 }
                 else
                 {
                     //MT\DT.Width=84,Room.Width=7, 7*55 即单个炉区在UI上的长度
-                    margin.Left = (CarNum == 1 ? (DefalutLeft + 84 + 55 * 7) : (DefalutLeft - 7 - 55 * 7)) + (helper.RoomNum - 55) * 7;
+                    margin.Left = (CarNum == 1 ? (DefalutLeft + 84 + 55 * 7) : (DefalutLeft - 7 - 55 * 7)) + (roomNum - 55) * 7;
                 }
             }
-            margin.Left = helper.Dry && helper.CanNum ? (margin.Left + helper.Deviation) : margin.Left;
             return margin;
         }
 
-        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        object[] IMultiValueConverter.ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
-
     }
 }

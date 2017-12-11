@@ -44,10 +44,7 @@ namespace WGPM.R.UI
             InitializeComponent();
             Loaded += MainUI_Loaded;
             SetZIndex();
-            TjcBinding();
-            LjcBinding();
-            XjcBinding();
-            McBinding();
+            _Binding();
         }
 
         private void MainUI_Loaded(object sender, RoutedEventArgs e)
@@ -186,8 +183,8 @@ namespace WGPM.R.UI
             RoomNumBinding((Vehicles.Tjc)Communication.CarsLst[1], tjc2);
             //车辆的(左右)移动
             //35 推焦杆向左偏离1#炭化室一个单位距离(7)；938：推焦杆向右偏离110#炭化室一个单位距离(7)
-            MoveBinding((Vehicles.Tjc)Communication.CarsLst[0], tjc1, 35, 320);
-            MoveBinding((Vehicles.Tjc)Communication.CarsLst[1], tjc2, 896, 320);
+            TjcMoveBinding((Vehicles.Tjc)Communication.CarsLst[0], tjc1, 35, 320);
+            TjcMoveBinding((Vehicles.Tjc)Communication.CarsLst[1], tjc2, 896, 320);
             //推杆、平杆上下方向移动
             PoleMoveBinding(Communication.CarsLst[0], true, tjc1);
             PoleMoveBinding(Communication.CarsLst[0], false, tjc1);
@@ -357,15 +354,61 @@ namespace WGPM.R.UI
         }
         private void XjcMoveBinding(Vehicle car, UserControl control, double marginLeft, double defaultTop)
         {
-            Binding myBinding = new Binding();
-            myBinding.Source = car;
-            myBinding.Path = new PropertyPath("MoveHelper");
-            XjcMoveConverter move = new XjcMoveConverter();
+            MultiBinding binding = new MultiBinding();
+
+            Binding roomNum = new Binding("RoomNum");
+            roomNum.Source = car;
+
+            Binding carNum = new Binding("CarNum");
+            carNum.Source = car;
+
+            Binding canNum = new Binding("CanNum");
+            canNum.Source = car.DataRead.TogetherInfo;
+
+            Binding addr = new Binding("PhysicalAddr");
+            addr.Source = car.DataRead;
+
+            XjcMutiConverter converter = new XjcMutiConverter();
+            converter.DefalutLeft = marginLeft;
+            converter.DefaultTop = defaultTop;
+            converter.Deviation = car.CarNum == 1 ? (Setting.AreaFlag ? 49 : -98) : (Setting.AreaFlag ? 98 : -49);
+
+            binding.Bindings.Add(roomNum);
+            binding.Bindings.Add(carNum);
+            binding.Bindings.Add(canNum);
+            binding.Bindings.Add(addr);
+            binding.Converter = converter;
+
+            control.SetBinding(MarginProperty, binding);
+        }
+        private void TjcMoveBinding(Vehicle car, UserControl control, double marginLeft, double defaultTop)
+        {
+            MultiBinding binding = new MultiBinding();
+
+            Binding roomNum = new Binding();
+            roomNum.Source = car;
+            roomNum.Path = new PropertyPath("RoomNum");
+
+            Binding addr = new Binding("PhysicalAddr");
+            addr.Source = car.DataRead;
+
+            TjcMutiConverter move = new TjcMutiConverter();
             move.CarNum = car.CarNum;
             move.DefalutLeft = marginLeft;
             move.DefaultTop = defaultTop;
-            myBinding.Converter = move;
-            control.SetBinding(MarginProperty, myBinding);
+
+            binding.Bindings.Add(roomNum);
+            binding.Bindings.Add(addr);
+            binding.Converter = move;
+
+            control.SetBinding(MarginProperty, binding);
+        }
+        private void _Binding()
+        {
+            TjcBinding();
+            LjcBinding();
+            XjcBinding();
+            McBinding();
         }
 
     }

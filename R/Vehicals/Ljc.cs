@@ -6,10 +6,11 @@ using WGPM.R.OPCCommunication;
 using WGPM.R.RoomInfo;
 using WGPM.R.Parms;
 using System.Windows;
+using WGPM.R.UI;
 
 namespace WGPM.R.Vehicles
 {
-    class Ljc : Vehicle
+    class Ljc : Vehicle, IDisplayRoomNum, IVehicalDataCopy
     {
         public Ljc(ushort carNum)
         {
@@ -21,6 +22,27 @@ namespace WGPM.R.Vehicles
             DataRead.TogetherInfo = new LjcTogetherInfo(TogetherInfoCount);
             DataRead.TogetherInfo.DecodeTogetherInfo = ((LjcTogetherInfo)DataRead.TogetherInfo).DecodeTogetherInfoValue;
         }
+
+        public ushort DisplayRoomNum
+        {
+            get
+            {
+                if (RoomNum <= 55)
+                {
+                    return (ushort)(RoomNum + (Setting.AreaFlag ? 1000 : 3000));
+                }
+                else
+                {
+                    return (ushort)((Setting.AreaFlag ? 2000 : 4000) + RoomNum);
+                }
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public ushort GetLArrows()
         {
             if (CokeRoom.PushPlan.Count != 0)
@@ -52,6 +74,15 @@ namespace WGPM.R.Vehicles
             return Arrows;
         }
 
+        public void GetCopy(Vehicle car)
+        {
+            RoomNum = car.RoomNum;
+            CarNum = car.CarNum;
+            DataRead = car.DataRead;
+            JobCar = car.JobCar;
+            Arrows = car.Arrows;
+            UIRoomNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "#" + DisplayRoomNum;
+        }
     }
     class LjcDataRead : DataRead
     {

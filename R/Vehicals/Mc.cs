@@ -6,11 +6,13 @@ using System.Windows;
 using WGPM.R.OPCCommunication;
 using WGPM.R.Parms;
 using WGPM.R.RoomInfo;
+using WGPM.R.UI;
 
 namespace WGPM.R.Vehicles
 {
-    class Mc : Vehicle
+    class Mc : Vehicle, IDisplayRoomNum,IVehicalDataCopy
     {
+
         public Mc(ushort carNum)
         {
             base.CarNum = carNum;
@@ -21,6 +23,25 @@ namespace WGPM.R.Vehicles
             DataRead.TogetherInfo = new McTogetherInfo(TogetherInfoCount);
             DataRead.TogetherInfo.DecodeTogetherInfo = ((McTogetherInfo)DataRead.TogetherInfo).DecodeTogetherInfoValue;
             addrDic = Addrs.MAddrDic;
+        }
+        public ushort DisplayRoomNum
+        {
+            get
+            {
+                if (RoomNum <= 55)
+                {
+                    return (ushort)(RoomNum + (Setting.AreaFlag ? 1000 : 3000));
+                }
+                else
+                {
+                    return (ushort)((Setting.AreaFlag ? 2000 : 4000) + RoomNum);
+                }
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
         public Vehicle GetJobCar(Mc car1, Mc car2)
         {
@@ -91,6 +112,16 @@ namespace WGPM.R.Vehicles
                 Arrows = 12;
             }
             return Arrows;
+        }
+
+        public void GetCopy(Vehicle car)
+        {
+            RoomNum = car.RoomNum;
+            CarNum = car.CarNum;
+            DataRead = car.DataRead;
+            JobCar = car.JobCar;
+            Arrows = car.Arrows;
+            UIRoomNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "#" + DisplayRoomNum;
         }
     }
     class McDataRead : DataRead

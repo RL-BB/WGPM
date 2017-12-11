@@ -533,17 +533,17 @@ namespace WGPM.R.LinqHelper
         /// </summary>
         /// <param name="index"></param>
         /// <param name="pushTime"> 开始推焦时间</param>
-        /// <param name="job">是否为工作车</param>
-        public PsInfo(int index, string pushTime, bool job)
+        /// <param name="tjc">是否为工作车</param>
+        public PsInfo(int index, string pushTime, Tjc tjc)
         {
-            List<Vehicle> lstVehical = job ? Communication.TJobCarLst : Communication.NonJobCarLst;
+            List<Vehicle> lstVehical = tjc.JobCar ? Communication.TJobCarLst : Communication.NonJobCarLst;
             bool valid = index >= 0 ? true : false;
             DateTime invalidTime = Convert.ToDateTime("2012-04-03 13:14");
             TPushPlan pNull = new TPushPlan(1, 1, 1, invalidTime);
             TPushPlan p = new TPushPlan();
             p = valid ? CokeRoom.PushPlan[index] : (CokeRoom.PushPlan.Count > 0 ? new TPushPlan(CokeRoom.PushPlan[0]) : pNull);//20170923 PushPlan.Count==0时如何处理？
             PlanRoom = p.RoomNum;//计划炉号
-            ActualRoom = (byte)lstVehical[0].RoomNum;//pInfo.实际炉号 = (byte)lst[0].RoomNum;
+            ActualRoom = (byte)tjc.RoomNum;//pInfo.实际炉号 = (byte)lst[0].RoomNum;
             //pInfo.实际推焦时间 = Convert.ToDateTime(now);
             ActualPushTime = Convert.ToDateTime(pushTime);
             //pInfo.预定出焦时间 = p.PushTime;
@@ -560,7 +560,7 @@ namespace WGPM.R.LinqHelper
             Period = (byte)p.Period;
             //pInfo.班组 = (byte)p.Group;
             Group = (byte)p.Group;
-            DwTogetherInfo tInfo = job ? Communication.JobCarTogetherInfo : Communication.NonJobCarTogetherInfo;
+            DwTogetherInfo tInfo = tjc.JobCar ? Communication.JobCarTogetherInfo : Communication.NonJobCarTogetherInfo;
             //pInfo.Push联锁信息 = tInfo.InfoToInt;
             LockInfo = tInfo.InfoToInt;
             //pInfo.联锁 = tInfo.PushTogether ? (byte?)1 : 0;

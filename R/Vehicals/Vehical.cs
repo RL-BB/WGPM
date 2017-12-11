@@ -67,35 +67,34 @@ namespace WGPM.R.Vehicles
         /// <summary>
         /// 当前显示车炉号
         /// </summary>
-        public ushort DisplayRoomNum
-        {
-            get
-            {
-                if (RoomNum <= 55)
-                {
-                    return (ushort)(RoomNum + (Setting.AreaFlag ? 1000 : 3000));
-                }
-                else
-                {
-                    return (ushort)((Setting.AreaFlag ? 2000 : 4000) + RoomNum);
-                }
-            }
-        }
+        //public ushort DisplayRoomNum
+        //{
+        //    get
+        //    {
+        //        if (RoomNum <= 55)
+        //        {
+        //            return (ushort)(RoomNum + (Setting.AreaFlag ? 1000 : 3000));
+        //        }
+        //        else
+        //        {
+        //            return (ushort)((Setting.AreaFlag ? 2000 : 4000) + RoomNum);
+        //        }
+        //    }
+        //}
         /// <summary>
         /// 软件上联锁信息的显示炉号，如1#TJC在2#炉区的56孔
         /// 显示为：1#2056
         /// </summary>
-        public string SoftwareDisplayRoomNum
-        {
-            get
-            {
-                return CarNum + "#" + DisplayRoomNum.ToString("0000");
-            }
-        }
+        //public string SoftwareDisplayRoomNum
+        //{
+        //    get
+        //    {
+        //        return CarNum + "#" + DisplayRoomNum.ToString("0000");
+        //    }
+        //}
         /// <summary>
         /// 当前车的箭头显示
         /// </summary>
-
         public ushort Arrows
         {
             get { return (ushort)GetValue(ArrowsProperty); }
@@ -160,22 +159,22 @@ namespace WGPM.R.Vehicles
                 RoomNum = AddrDic[DataRead.MainPhysicalAddr].RoomNum;
             }
         }
-        public void GetCopy(Vehicle car)
-        {
-            RoomNum = car.RoomNum;
-            CarNum = car.CarNum;
-            DataRead = car.DataRead;
-            JobCar = car.JobCar;
-            Arrows = car.Arrows;
-            UIRoomNum = GetUIRoomNum();
-        }
-        public string GetUIRoomNum()
-        {
-            string strCarNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "#";
-            int room = RoomNum;
-            room = (room <= 55 ? 1000 : 2000) + (Setting.AreaFlag ? 0 : 2000) + room;
-            return strCarNum + room;
-        }
+        //public void GetCopy(Vehicle car)
+        //{
+        //    RoomNum = car.RoomNum;
+        //    CarNum = car.CarNum;
+        //    DataRead = car.DataRead;
+        //    JobCar = car.JobCar;
+        //    Arrows = car.Arrows;
+        //    UIRoomNum = GetUIRoomNum();
+        //}
+        //public string GetUIRoomNum()
+        //{
+        //    string strCarNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "# ";
+        //    int room = RoomNum;
+        //    //room = (room <= 55 ? 1000 : 2000) + (Setting.AreaFlag ? 0 : 2000) + room;//20171211 界面显示为"1# 001"不加
+        //    return strCarNum + room;
+        //}
         #region 得到当前车的箭头指示；不通用，因为每种车的对中要求不一致（已被注释掉，留备用）
         /// <summary>
         /// 得到当前车的箭头指示。对中指示在相应车中作判断，因为对中要求不一致
@@ -279,5 +278,12 @@ namespace WGPM.R.Vehicles
         #endregion
 
     }
-
+    interface IDisplayRoomNum
+    {
+        ushort DisplayRoomNum { get; set; }
+    }
+    interface IVehicalDataCopy
+    {
+        void GetCopy(Vehicle car);
+    }
 }

@@ -126,7 +126,6 @@ namespace WGPM.R.OPCCommunication
         public int TogetherInfoIndex { get { return 11; } }
         public OPC OPCInfo { get; set; }
         public DataWrite DataWrite { get; set; }
-        public DwTogetherInfo DwTogehterInfo { get; set; }
         /// <summary>
         /// MainTogether联锁信息 界面颜色显示
         /// </summary>
@@ -307,7 +306,7 @@ namespace WGPM.R.OPCCommunication
             List<ushort> list = new List<ushort>();
             for (int i = 0; i < TJobCarLst.Count + 1; i++)
             {
-                list.Add(i < TJobCarLst.Count ? TJobCarLst[i].DisplayRoomNum : MJobCarLst[1].DisplayRoomNum);
+                list.Add(i < TJobCarLst.Count ? ((IDisplayRoomNum)TJobCarLst[i]).DisplayRoomNum : ((IDisplayRoomNum)MJobCarLst[1]).DisplayRoomNum);
             }
             return list;
         }
@@ -357,9 +356,9 @@ namespace WGPM.R.OPCCommunication
             //displayRoom
             ushort displayRoom = (ushort)(planRoomNum + (Setting.AreaFlag ? 0 : 2000) + (planRoomNum <= 55 ? 1000 : 2000));
             dw.Add(displayRoom);//计划显示炉号[7]
-            dw.Add(CarsLst[index].DisplayRoomNum);//当前车炉号[8]
+            dw.Add(index <= 1 ? ((ushort)((IDisplayRoomNum)CarsLst[index]).DisplayRoomNum) : ((IDisplayRoomNum)CarsLst[index]).DisplayRoomNum);//当前车炉号[8]  
             //四大车工作车显示炉号。
-            dw.AddRange(index < 6 ? GetAllJobCarRoomNumArr() : new List<ushort> { MJobCarLst[0].DisplayRoomNum, 0, 0, MJobCarLst[1].DisplayRoomNum });
+            dw.AddRange(index < 6 ? GetAllJobCarRoomNumArr() : new List<ushort> { ((IDisplayRoomNum)MJobCarLst[0]).DisplayRoomNum, 0, 0, ((IDisplayRoomNum)MJobCarLst[1]).DisplayRoomNum });
             dw.AddRange(index <= 1 ? XjcPhysicalAddr() : (index >= 6 ? PlanTime() : new List<ushort> { 0, 0, 0, 0 }));//4个螺旋转速[13,14,15,16];20171113 推焦车-->熄焦车的物理地址；煤车--> 计划时间（推和装煤）
             dw.AddRange(GetAllJobCarPhysicalAddr(index));//四大工作车的物理地址[17,18,19,20];20171027装煤时，工作推焦车和工作装煤车的物理地址未处理
             dw.AddRange(index < 6 ? GetDwTogetherInfo(index) : GetDwMTogetherInfo(index));
@@ -393,17 +392,17 @@ namespace WGPM.R.OPCCommunication
             }
             dw.Add(planTime);//计划时间[3]
             dw.Add(planRoomNum);//推焦计划炉号[4]
-            dw.Add(CarsLst[index].DisplayRoomNum);//当前车炉号[5]
-            dw.Add((CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo).InfoToInt);//推焦联锁状态[6]
+            dw.Add(((IDisplayRoomNum)CarsLst[index]).DisplayRoomNum);//当前车炉号[5]
+            dw.Add(GetABDwTogetherInfo(index));//推焦联锁状态[6]
             dw.Add(0);//焦杆长度/平煤电流[7]
             dw.Add(TJobCarLst[0].DataRead.PhysicalAddr);//四大工作车的物理地址[8,9,10,11]
             dw.Add(TJobCarLst[1].DataRead.PhysicalAddr);//四大工作车的物理地址[8,9,10,11]
             dw.Add(TJobCarLst[2].DataRead.PhysicalAddr);//四大工作车的物理地址[8,9,10,11]
             dw.Add(MJobCarLst[1].DataRead.PhysicalAddr);//四大工作车的物理地址[8,9,10,11]
-            dw.Add(TJobCarLst[0].DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
-            dw.Add(TJobCarLst[1].DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
-            dw.Add(TJobCarLst[2].DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
-            dw.Add(MJobCarLst[1].DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
+            dw.Add(((IDisplayRoomNum)TJobCarLst[0]).DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
+            dw.Add(((IDisplayRoomNum)TJobCarLst[1]).DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
+            dw.Add(((IDisplayRoomNum)TJobCarLst[2]).DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
+            dw.Add(((IDisplayRoomNum)MJobCarLst[1]).DisplayRoomNum);//四大工作车的显示炉号[12,13,14,15]
             //[16]->[20]的数据为20171112 新增 ，为服务器使用
             dw.Add(0);//系统时间秒，置零即可 无实际意义[16], 
             dw.Add(0);//螺旋计数，置零即可 无实际意义[17]， 
@@ -512,12 +511,20 @@ namespace WGPM.R.OPCCommunication
             ////当前车对中指示
             //DwTogehterInfo.IsReady = CarsInfo[index].IsReady;
             #endregion
-
+            DwTogetherInfo info = new DwTogetherInfo();
             #region 20170919 考虑到装煤车联锁信息的下发 修改的处理方式
-            DwTogehterInfo = CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
-            DwTogehterInfo.IsReady = CarsLst[index].IsReady;
+            info = CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
+            info.IsReady = (index == 4 || index == 5) && CarsLst[index].DataRead.PhysicalAddr > 1845000 ? CarsLst[index].IsReady : false;
             #endregion
-            return DwTogehterInfo.GetDwUshortArr;
+            return info.GetDwUshortArr;
+        }
+        public int GetABDwTogetherInfo(int index)
+        {
+            DwTogetherInfo info = new DwTogetherInfo();
+            info = CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
+            info.IsReady = (index == 4 || index == 5) && CarsLst[index].DataRead.PhysicalAddr > 1845000 ? CarsLst[index].IsReady : false;
+            //info.IsReady = CarsLst[index].IsReady;
+            return info.InfoToInt;
         }
         public ushort[] GetDwMTogetherInfo(int index)
         {
@@ -530,39 +537,40 @@ namespace WGPM.R.OPCCommunication
         /// 
         /// </summary>
         public void GetCarTogetherInfo(DwTogetherInfo tInfo, bool job)
-        {
+        {//没有处理平煤请求 应为默认值
             //推焦车
-            tInfo.PushRequest = false;//推焦请求
+            tInfo.PushRequest = false;//推焦请求1
             Vehicle T = job ? TJobCarLst[0] : NonJobCarLst[0];
-            tInfo.PushTogether = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushTogether;//推焦联锁
-            tInfo.TJobCarReady = T.IsReady;//推到位
-            tInfo.TRoomDoorOpen = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).DoorOpen;//炉门已摘
-            tInfo.PushBegin = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushBegin;
-            tInfo.PushEnd = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushEnd;
+            tInfo.PushTogether = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushTogether;//推焦联锁2
+            tInfo.TJobCarReady = T.IsReady;//推到位3
+            tInfo.TRoomDoorOpen = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).DoorOpen;//炉门已摘4
+            tInfo.PushBegin = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushBegin;//5
+            tInfo.PushEnd = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushEnd;//6
             //拦焦车：拦到位，拦炉门已摘，焦槽锁闭，人工允推
             Vehicle L = job ? TJobCarLst[1] : NonJobCarLst[1];
-            tInfo.LJobCarReady = L.IsReady;
-            tInfo.LRoomDoorOpen = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).DoorOpen;
-            tInfo.TroughLocked = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).TroughLocked;
-            tInfo.LAllowPush = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).AllowPush;
+            tInfo.LJobCarReady = L.IsReady;//7
+            tInfo.LRoomDoorOpen = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).DoorOpen;//8
+            tInfo.TroughLocked = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).TroughLocked;//9
+            tInfo.LAllowPush = ((LjcTogetherInfo)(L.DataRead.TogetherInfo)).AllowPush;//10
             //熄焦车：熄到位，焦罐旋转/车门关闭，人工允推，水熄/干熄，焦罐号，1#罐有无，2#罐有无
             Vehicle X = job ? TJobCarLst[2] : NonJobCarLst[2];
-            tInfo.XJobCarReady = X.IsReady;
-            tInfo.CanReady = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).CanReady;
-            tInfo.XAllowPush = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).AllowPush;
-            tInfo.Dry = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).Dry;
+            tInfo.XJobCarReady = X.IsReady;//11
+            tInfo.CanReady = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).CanReady;//12
+            tInfo.XAllowPush = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).AllowPush;//13
+            tInfo.Dry = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).Dry;//14
             bool carNum = X.CarNum == 1 ? false : true;
             if (tInfo.CarNum != carNum)
             {
                 tInfo.CarNum = carNum;
             }
-            tInfo.CanNum = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).CanNum;
-            tInfo.TimeAllow = tInfo.IsTimeAllow();
-            tInfo.FstCan = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).FstCan;
-            tInfo.SecCan = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).SecCan;
+            tInfo.CanNum = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).CanNum;//15
+            tInfo.TimeAllow = tInfo.IsTimeAllow();//
+            tInfo.FstCan = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).FstCan;//16
+            tInfo.SecCan = ((XjcTogetherInfo)(X.DataRead.TogetherInfo)).SecCan;//17
+            //tInfo.IsReady = X.IsReady;//21 20171206 当前车队中指示;20171207 此对中信号指的是工作车的对中信号；不应置于联锁信息中
             //一级允推，二级允推，平煤请求
-            tInfo.FstAllow = tInfo.GetFstAllow();
-            tInfo.SecAllow = tInfo.GetSecAllow();
+            tInfo.FstAllow = tInfo.GetFstAllow();//18
+            tInfo.SecAllow = tInfo.GetSecAllow();//19
         }
         public void GetMTogetherInfo(DwMTogetherInfo info, bool job)
         {
@@ -642,10 +650,6 @@ namespace WGPM.R.OPCCommunication
             //得到非工作车的联锁信息********
             GetCarTogetherInfo(NonJobCarTogetherInfo, false);
             GetMTogetherInfo(MNonJobCarTogetherInfo, false);
-            //20171203 增加UI界面熄焦车移动所需要的XjcMoveHelper信息(因为熄焦车的移动不单和炉号相关，还和罐号相关）
-            //仅为UI界面Xjc的移动服务；
-            X1.GetMoveHelper();
-            X2.GetMoveHelper();
         }
         /// <summary>
         /// 向各车发送数据
