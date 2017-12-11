@@ -365,10 +365,7 @@ namespace WGPM.R.UI
             Binding canNum = new Binding("CanNum");
             canNum.Source = car.DataRead.TogetherInfo;
 
-            Binding addr = new Binding("PhysicalAddr");
-            addr.Source = car.DataRead;
-
-            XjcMutiConverter converter = new XjcMutiConverter();
+            XjcMoveMutiConverter converter = new XjcMoveMutiConverter();
             converter.DefalutLeft = marginLeft;
             converter.DefaultTop = defaultTop;
             converter.Deviation = car.CarNum == 1 ? (Setting.AreaFlag ? 49 : -98) : (Setting.AreaFlag ? 98 : -49);
@@ -376,7 +373,6 @@ namespace WGPM.R.UI
             binding.Bindings.Add(roomNum);
             binding.Bindings.Add(carNum);
             binding.Bindings.Add(canNum);
-            binding.Bindings.Add(addr);
             binding.Converter = converter;
 
             control.SetBinding(MarginProperty, binding);

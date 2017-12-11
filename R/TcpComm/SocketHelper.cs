@@ -97,7 +97,7 @@ namespace WGPM.R.TcpComm
                 if (bytesRead > 0 && state.buffer[5] == 15 && state.buffer[6] == 255)
                 {
                     int addr = BitConverter.ToInt32(new byte[] { state.buffer[14], state.buffer[13], state.buffer[16], state.buffer[15] }, 0);
-                    bool validData = (addr >= 35000 && addr <= 895000) || (addr >= 985000 && addr <= 1845000);
+                    bool validData = (addr >= 35000 && addr <= 895000) || (addr >= 985000 && addr <= 1905000);
                     if (handler.RemoteEndPoint.ToString().Split(':')[0] == "192.168.0.154")
                     {//3# 熄焦车
                         Addr1 = validData ? addr : Addr1;

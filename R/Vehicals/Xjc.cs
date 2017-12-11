@@ -10,7 +10,7 @@ using WGPM.R.UI;
 
 namespace WGPM.R.Vehicles
 {
-    class Xjc : Vehicle, IDisplayRoomNum,IVehicalDataCopy
+    class Xjc : Vehicle, IDisplayRoomNum, IVehicalDataCopy
     {
         public Xjc(ushort carNum)
         {
@@ -23,6 +23,23 @@ namespace WGPM.R.Vehicles
             DataRead.TogetherInfo = new XjcTogetherInfo(TogetherInfoCount);
             DataRead.TogetherInfo.DecodeTogetherInfo = ((XjcTogetherInfo)DataRead.TogetherInfo).DecodeTogetherInfoValue;
         }
+        public Dictionary<int, ProtocolAddr> XAddrDic
+        {
+            get
+            {
+                //20171103 不能使用单纯使用车号而应根据是否为水熄焦、干熄焦、焦罐号等联锁点来选择物理地址对应炉号的字典
+                //20171104 xjc的联锁信息中 可靠的是罐号  在用罐号；水熄干熄这个点不可靠
+                XjcTogetherInfo info = (XjcTogetherInfo)DataRead.TogetherInfo;
+                //addrDic = Setting.AreaFlag ? (CarNum==1?(info.CanNum ? Addrs.X1SecCanAddrDic : Addrs.XFstCanAddrDic) :(info.Dry ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic))
+                //    : (CarNum==1?(info.Dry ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic) :(info.CanNum ? Addrs.X1SecCanAddrDic : Addrs.XFstCanAddrDic));
+                //20171004 靠近熄焦车的第一个干熄焦焦罐为1#焦罐（水熄焦焦罐为2#焦罐）：这种定义的用途->用来选择物理地址对应炉号的地址字典；
+                //20171104  1、2#炉区的电机车  CanNum=0（false），对应1#焦罐；3、4#炉区的CanNum=1（true）对应1#焦罐；3、4#炉区的司机师傅认为靠近车头的为2#焦罐，这一点和软件上对罐号的认定恰好相反
+                bool area = Setting.AreaFlag;
+                return CarNum == 1 ? (area ? (info.CanNum ? Addrs.X1SecCanAddrDic : Addrs.XFstCanAddrDic) : (info.Dry ? Addrs.XFstCanAddrDic : Addrs.X1SecCanAddrDic))
+                : (area ? (info.Dry ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic) : (info.CanNum ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic));
+            }
+        }
+
         public Dictionary<int, int> RoomNumDic
         {
             get
@@ -39,20 +56,9 @@ namespace WGPM.R.Vehicles
         /// </summary>
         public new void GetRoomNum()
         {
-            //20171103 不能使用单纯使用车号而应根据是否为水熄焦、干熄焦、焦罐号等联锁点来选择物理地址对应炉号的字典
-            //20171104 xjc的联锁信息中 可靠的是罐号  在用罐号；水熄干熄这个点不可靠
-            XjcTogetherInfo info = (XjcTogetherInfo)DataRead.TogetherInfo;
-            //addrDic = Setting.AreaFlag ? (CarNum==1?(info.CanNum ? Addrs.X1SecCanAddrDic : Addrs.XFstCanAddrDic) :(info.Dry ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic))
-            //    : (CarNum==1?(info.Dry ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic) :(info.CanNum ? Addrs.X1SecCanAddrDic : Addrs.XFstCanAddrDic));
-            //20171004 靠近熄焦车的第一个干熄焦焦罐为1#焦罐（水熄焦焦罐为2#焦罐）：这种定义的用途->用来选择物理地址对应炉号的地址字典；
-            //20171104  1、2#炉区的电机车  CanNum=0（false），对应1#焦罐；3、4#炉区的CanNum=1（true）对应1#焦罐；3、4#炉区的司机师傅认为靠近车头的为2#焦罐，这一点和软件上对罐号的认定恰好相反
-            bool area = Setting.AreaFlag;
-            addrDic = CarNum == 1 ? (area ? (info.CanNum ? Addrs.X1SecCanAddrDic : Addrs.XFstCanAddrDic) : (info.Dry ? Addrs.XFstCanAddrDic : Addrs.X1SecCanAddrDic))
-                : (area ? (info.Dry ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic) : (info.CanNum ? Addrs.XFstCanAddrDic : Addrs.X2SecCanAddrDic));
-
-            if (addrDic.ContainsKey(DataRead.MainPhysicalAddr))
+            if (XAddrDic.ContainsKey(DataRead.MainPhysicalAddr))
             {
-                RoomNum = addrDic[DataRead.MainPhysicalAddr].RoomNum;
+                RoomNum = XAddrDic[DataRead.MainPhysicalAddr].RoomNum;
             }
         }
         public XjcMoveHelper MoveHelper { get; set; }
@@ -61,7 +67,9 @@ namespace WGPM.R.Vehicles
         {
             get
             {
-                if (DataRead.PhysicalAddr > 1845000) return (ushort)RoomNum;
+                //20171211 定义1#焦罐显示为801；2#焦罐显示为802
+                //此处200的意义，考虑到之后可能会增加虚拟炉号，虚拟炉号应该不会超过200；
+                if (RoomNum > 200) return (ushort)RoomNum;
                 if (RoomNum <= 55)
                 {
                     return (ushort)(RoomNum + (Setting.AreaFlag ? 1000 : 3000));
@@ -148,7 +156,7 @@ namespace WGPM.R.Vehicles
             DataRead = car.DataRead;
             JobCar = car.JobCar;
             Arrows = car.Arrows;
-            UIRoomNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "#" + DisplayRoomNum;
+            UIRoomNum = (CarNum + (Setting.AreaFlag ? 0 : 2)) + "#" + DisplayRoomNum.ToString("0000");
         }
     }
     class XjcDataRead : DataRead
