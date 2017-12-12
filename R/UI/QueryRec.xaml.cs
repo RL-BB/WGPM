@@ -82,31 +82,6 @@ namespace WGPM.R.UI
                 return s;
             }
         }
-
-        private bool Lock
-        {
-            get { return chkLock.IsChecked.Value; }
-        }
-        private bool Unlock
-        {
-            get { return chkUnlock.IsChecked.Value; }
-        }
-        private byte LockStatus
-        {
-            get
-            {
-                int l = 0;
-                if (Lock && !Unlock)
-                {
-                    l = 1;
-                }
-                else if (!Lock && Unlock)
-                {
-                    l = 2;
-                }
-                return (byte)l;
-            }
-        }
         DataTable queryTable = new DataTable();
         DataTable prdTable = new System.Data.DataTable();
         DataTable grpTable = new System.Data.DataTable();
@@ -276,21 +251,8 @@ namespace WGPM.R.UI
         {
             cboGroup.SelectedIndex = 0;
             if (!(bool)rbtnSum.IsChecked) cboPeriod.SelectedIndex = 0;
-            chkLock.IsChecked = false;
-            chkUnlock.IsChecked = false;
-        }
-        private void cbo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (rbtnPlan == null) return;
-            ComboBox cbo = sender as ComboBox;
-            if (cbo == null) return;
-            DataTable table = new DataTable();
-            //通过不同表的不同列数来判断是否为统计表，如果是，return；
-            //rbtnPlan.IsChecked;
-            DataTable dt = rbtnPlan.IsChecked.Value ? queryTable : GetTableByLockStatus(queryTable);
-            table = cbo.Name == "cboGroup" ? GetTableByGroup(GetTableByPeriod(dt)) : GetTableByPeriod(GetTableByGroup(dt));
-            dgQuery.ItemsSource = null;
-            dgQuery.ItemsSource = table.DefaultView;
+            //chkLock.IsChecked = false;
+            //chkUnlock.IsChecked = false;
         }
         private DataTable GetTableByPeriod(DataTable dt)
         {
@@ -336,37 +298,15 @@ namespace WGPM.R.UI
             }
             return table;
         }
-        private DataTable GetTableByLockStatus(DataTable dt)
-        {
-            DataTable table = new DataTable();
-            if (LockStatus == 1)
-            {
-                table = dt.Copy();
-            }
-            else
-            {
-                table = dt.Clone();
-                foreach (DataRow row in dt.Rows)
-                {
-                    DataRow r = table.NewRow();
-                    if (((byte)row[5]) == LockStatus)
-                    {
-                        r.ItemArray = row.ItemArray;
-                        table.Rows.Add(r);
-                    }
-                }
-            }
-            return table;
-        }
         private void chk_Checked(object sender, RoutedEventArgs e)
         {//联锁，解锁
             //根据queryTable的Columns（列数）来判断DataGrid显示的为哪个！如果是Plan，则return；
-            CheckBox chk = sender as CheckBox;
-            if (queryTable.Rows.Count == 0) return;//还未查询
-            if (queryTable.Columns.Count != 13) return;
-            DataTable table = GetTableByLockStatus(GetTableByGroup(GetTableByPeriod(queryTable)));
-            dgQuery.ItemsSource = null;
-            dgQuery.ItemsSource = table.DefaultView;
+            //CheckBox chk = sender as CheckBox;
+            //if (queryTable.Rows.Count == 0) return;//还未查询
+            //if (queryTable.Columns.Count != 13) return;
+            //DataTable table = GetTableByLockStatus(GetTableByGroup(GetTableByPeriod(queryTable)));
+            //dgQuery.ItemsSource = null;
+            //dgQuery.ItemsSource = table.DefaultView;
         }
         private void rbtn_Checked(object sender, RoutedEventArgs e)
         {

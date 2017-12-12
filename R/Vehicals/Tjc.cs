@@ -509,6 +509,7 @@ namespace WGPM.R.Vehicles
             OperateConfig config = new OperateConfig(@"Config\RoomPlanInfo.config");
             if (PushPlanIndex >= 0)
             {
+                if (RoomNum != CokeRoom.PushPlan[PushPlanIndex].RoomNum) PushPlanIndex = GetIndexOfPushPlan();//20171212 交叉作业：两辆车同时推焦时，计划索引有可能发生变化；
                 for (int i = 0; i < PushPlanIndex + 1; i++)
                 {
                     TPushPlan p = CokeRoom.PushPlan[i];
@@ -531,6 +532,7 @@ namespace WGPM.R.Vehicles
             OperateConfig config = new OperateConfig(@"Config\RoomPlanInfo.config");
             if (PushPlanIndex >= 0)
             {
+                if (RoomNum != CokeRoom.PushPlan[PushPlanIndex].RoomNum) PushPlanIndex = GetIndexOfPushPlan();//20171212 交叉作业：两辆车同时推焦时，计划索引有可能发生变化；
                 TPushPlan p = CokeRoom.PushPlan[PushPlanIndex];
                 int room = p.RoomNum;
                 config.XmlNodeList[room - 1].Attributes["PushTime"].Value = PushTime;

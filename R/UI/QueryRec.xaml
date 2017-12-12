@@ -201,7 +201,7 @@
                         <ComboBoxItem Content="丙班"/>
                         <ComboBoxItem Content="丁班"/>
                     </ComboBox>
-                    <CheckBox x:Name="chkRoom" Margin="5,0" Content="炉号" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="24" FontSize="16" Width="52"/>
+                    <CheckBox x:Name="chkRoom" Margin="5,0" Content="炉号" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="24" FontSize="18" Width="59"/>
                     <TextBox x:Name="txtRoom" Margin="5,0" HorizontalAlignment="Center" Height="28"  TextWrapping="Wrap" Text="000" VerticalAlignment="Center" Width="68" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" PreviewMouseUp="txtRoom_PreviewMouseUp"/>
 
                 </WrapPanel>
@@ -215,7 +215,7 @@
                     <RadioButton x:Name="rbtnSum" Margin="8,0" Tag="3" Content="生产统计" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked"  Height="28" Width="85" BorderBrush="#FF54B21F"/>
                     <RadioButton x:Name="rbtnLogIn" Margin="8,0" Tag="5" Content="登陆信息" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked"  Height="28" Width="87" BorderBrush="#FF5FC525"/>
                     <RadioButton x:Name="rbtnCur" Margin="8,0" Tag="7" Content="电流数据" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked"  Height="28" Width="86"/>
-                    <Button Content="查询" Margin="178,0,1,0" Grid.Column="1" Grid.ColumnSpan="1" FontSize="18.667" Height="35" x:Name="btnQuery" Width="68" FontWeight="Bold" Click="btnQuery_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Button Content="查询" Margin="186,0,1,0" Grid.Column="1" Grid.ColumnSpan="1" FontSize="18.667" Height="35" x:Name="btnQuery" Width="68" FontWeight="Bold" Click="btnQuery_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </WrapPanel>
 
                 <!--<Button Content="打印" FontSize="18.667" Height="32" x:Name="btnPrint" Width="64" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="897,49,59,32" Click="btnPrint_Click" Visibility="Hidden"/>-->
