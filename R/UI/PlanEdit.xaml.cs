@@ -408,11 +408,7 @@ namespace WGPM.R.UI
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (BanEdit())
-            {
-                MessageBox.Show("接班的第一分钟内禁止编辑计划！");
-                return;
-            }
+
             if (cboPeriod.SelectedIndex == 0)
             {
                 MessageBox.Show("请正确设置“时段”！", "提示", MessageBoxButton.OK);
@@ -425,7 +421,7 @@ namespace WGPM.R.UI
                 EnableControlDuringEdit(true);
                 int index = cboGroup.SelectedIndex;
                 // 开始编辑：判断时段和班组是否选择正确 ,如果班组选择错误，则下一条的赋值语句:cboGroup.SelectedIndex的改变会触发ComboBox的SelectionChanged事件
-                cboGroup.SelectedIndex = Setting.NowPeriod == cboPeriod.SelectedIndex ? Setting.NowGroup : Setting.NextGroup;
+                cboGroup.SelectedIndex = Setting.NowPeriod == cboPeriod.SelectedIndex ? Setting.GetNowGroup() : Setting.NextGroup;
                 if (index == cboGroup.SelectedIndex)
                 {//编辑计划时，如果班组已经选好，则不会触发 ComboBox的SelectionChanged事件 
                     #region 处于编辑状态时 dgPlan的ItemsSouce=PushPlan ，方便删除重复计划 20170921
@@ -554,7 +550,7 @@ namespace WGPM.R.UI
                     return;
                 }
                 //20171124 使用异步委托BeginInvoke，目的是不影响UI的效果
-                Dispatcher.BeginInvoke(new Action(Save), null);
+                Dispatcher.BeginInvoke(new Action(SavePlan), null);
                 #endregion
             }
         }
@@ -1053,7 +1049,10 @@ namespace WGPM.R.UI
             }
         }
         #endregion
-        private void Save()
+        /// <summary>
+        /// 计划保存逻辑
+        /// </summary>
+        private void SavePlan()
         {
             EnableControlDuringEdit(false);
             CokeRoom.SaveToPlan(editingTPlan);

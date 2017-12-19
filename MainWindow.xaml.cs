@@ -74,13 +74,7 @@ namespace WGPM
             {//单击的为当前窗口
                 return;
             }
-            if (SysParms.UITag != 7 && Setting.ScheduleFlag)
-            {
-                MessageBox.Show("请确定“时段班组”组中的“时段”和“班组”已正确设置后，点击“保存”按钮！");
-                SysParms.UITag = 7;
-                UITag = 7;
-                return;
-            }
+
             if (SysParms.UITag == 8)
             {//退出时 如推焦车推焦杆和平煤杆正在动，即处于生产状态时，禁止；
                 //bool yes = false;

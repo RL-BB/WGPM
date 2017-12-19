@@ -387,7 +387,7 @@ namespace WGPM.R.OPCCommunication
         public bool IsTimeAllow()
         {
             if (CokeRoom.PushPlan.Count == 0) return false;
-            return DateTime.Now.Subtract(CokeRoom.PushPlan[0].PushTime).TotalMinutes >= -5 ? true : false;
+            return DateTime.Now.Subtract(CokeRoom.PushPlan[0].PushTime).TotalMinutes >= -10 ? true : false;
         }
     }
     class DwMTogetherInfo : DependencyObject, ITogetherInfo

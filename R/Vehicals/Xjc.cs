@@ -79,7 +79,6 @@ namespace WGPM.R.Vehicles
                     return (ushort)((Setting.AreaFlag ? 2000 : 4000) + RoomNum);
                 }
             }
-
             set
             {
                 throw new NotImplementedException();

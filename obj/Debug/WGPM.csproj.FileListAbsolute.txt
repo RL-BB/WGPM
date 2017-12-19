@@ -402,7 +402,6 @@ C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\UIVehicals\Xjc\W_Xjc2.baml
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\LogIn.g.cs
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\LogIn.baml
 C:\Users\Administrator\Desktop\WGPM\bin\Debug\DynamicDataDisplay.dll
-C:\Users\Administrator\Desktop\WGPM\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Users\Administrator\Desktop\WGPM\bin\Debug\R\Config\MainAddr\LAddr.config
 C:\Users\Administrator\Desktop\WGPM1\bin\Debug\WGPM.exe.config
 C:\Users\Administrator\Desktop\WGPM1\obj\Debug\WGPM.csproj.ResolveComReference.cache

@@ -55,34 +55,22 @@ namespace WGPM.R.UI
         private void Setting_Loaded(object sender, RoutedEventArgs e)
         {
             #region 加载界面时，使班组和按钮处于可修改状态
-            ScheduleFlag = true;
             burnTimeFlag = true;
-            btnSchedule.IsEnabled = true;
-            btnBurnTime.IsEnabled = true;
+            btnSchedule.IsEnabled = false;
+            btnBurnTime.IsEnabled = false;
             #endregion
             //引入班组Lst
             scheduleLst = CokeRoom.ScheduleLst;
-            #region 根据推焦计划PushPlan得到当前班组,
+            #region 根据推焦计划PushPlan得到当前班组；20171219 (白班，甲班)
             BurnTime = 19 * 60;//程序启动时默认规定结焦时间为19:00
             txtMins.Text = BurnTime.ToString();
             txtHour.Text = Hour.ToString("00");
             txtMin.Text = Min.ToString("00");
             int h = DateTime.Now.Hour;
             bool b1 = (h >= 8 && h < 20) ? true : false;//白班为true
-            if (CokeRoom.PushPlan.Count > 0)
-            {
-                for (int i = 0; i < CokeRoom.PushPlan.Count; i++)
-                {
-                    bool b2 = (CokeRoom.PushPlan[i].PushTime.Hour >= 8 && CokeRoom.PushPlan[i].PushTime.Hour < 20) ? true : false;
-                    if (b1 == b2)
-                    {
-                        cboGroup.SelectedIndex = CokeRoom.PushPlan[i].Group - 1;
-                        cboPeriod.SelectedIndex = CokeRoom.PushPlan[i].Period - 1;
-                        NowGroup = CokeRoom.PushPlan[i].Group;
-                        break;
-                    }
-                }
-            }
+            NowGroup = GetNowGroup();
+            cboGroup.SelectedIndex = NowGroup - 1;
+            cboPeriod.SelectedIndex = b1 ? 0 : 1;
             #endregion
             #region 设置bool变量day 、night
             int h1 = DateTime.Now.Hour;
@@ -91,15 +79,16 @@ namespace WGPM.R.UI
             night = !day;
             #endregion
             #region 班组自动更新计时器
-            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Interval = TimeSpan.FromMinutes(1);
             timer.Tick += Timer_Tick;
-            timer.Start();
+            //timer.Start();
             #endregion
             ConnectionStr = AreaFlag ? conn.WGPM_CokeArea12 : conn.WGPM_CokeArea34;
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
             int h = DateTime.Now.Hour;
+            if (h != 8 && h != 20) return;
             int min = DateTime.Now.Minute;
             //if (h != 8 && h != 20 || (h == 8 || h == 20 && min >= 3)) return;//本条语句似乎能提升效率？20170912
             if (h == 8 && min < 2 && day)
@@ -156,13 +145,14 @@ namespace WGPM.R.UI
         {
             get
             {
-                int index = CokeRoom.ScheduleLst.FindIndex(x => x.period == NowPeriod && x.group == NowGroup);
+                NowGroup = GetNowGroup();
+                int index = CokeRoom.ScheduleLst.FindIndex(x => x.period == NowPeriod && x.Group == NowGroup);
                 if (index < 0) return -1;
                 index = index < 7 ? index + 1 : 0;
                 return CokeRoom.ScheduleLst[index].Group;
             }
         }
-        public static String StrGroup
+        public static string StrGroup
         {
             get
             {
@@ -171,15 +161,7 @@ namespace WGPM.R.UI
         }
         private void btnSchedule_Click(object sender, RoutedEventArgs e)
         {
-            if (!ScheduleFlag)
-            {
-                return;
-            }
-            else
-            {
-                ScheduleFlag = false;
-                btnSchedule.IsEnabled = false;
-            }
+            btnSchedule.IsEnabled = false;
             if (IsPeriodRight())
             {
                 NowGroup = Group + 1;
@@ -197,7 +179,7 @@ namespace WGPM.R.UI
                     NowGroup = scheduleLst[7].Group;
                 }
             }
-            MessageBox.Show("当前班次已保存！", "提示", MessageBoxButton.OK);
+            MessageBox.Show("当前班次已更新！", "提示", MessageBoxButton.OK);
         }
         /// <summary>
         /// 判断修改Schedule时的时间和所选的时段是否相符
@@ -221,7 +203,6 @@ namespace WGPM.R.UI
             {
                 if (btn.Name == "btnChangeSchedule")
                 {
-                    ScheduleFlag = true;
                     btnSchedule.IsEnabled = true;
                 }
                 else
@@ -237,7 +218,6 @@ namespace WGPM.R.UI
             TextBox txt = sender as TextBox;
             if (txt != null) txt.SelectAll();
         }
-
         private new void KeyUp(object sender, KeyEventArgs e)
         {
             if (!burnTimeFlag) return;
@@ -265,6 +245,34 @@ namespace WGPM.R.UI
             if (btn == null) return;
             burnTimeFlag = false;
             MessageBox.Show("结焦时间为：" + Hour.ToString("00") + ":" + Min.ToString("00"), "提示", MessageBoxButton.OK);
+        }
+
+        public static int GetNowGroup()
+        {
+            //每天分为三个阶段：hour<8 为前一天的夜班；hour>=20 为当天的夜班；其他时间为当天的白班；
+            //(夜丁,白甲,夜乙：7,0,1)->(夜乙,白丙,夜甲：1,2,3,)->(夜甲,白丁,夜丙：3,4,5)->(夜丙,白乙,夜丁：5,6,7)->(夜丁,白甲,夜乙：7,0,1)
+            DateTime startTime = Convert.ToDateTime("2017-12-19 00:00");
+            int h = DateTime.Now.Hour;
+            int days = (DateTime.Now - startTime).Days;
+            int dIndex = days % 4;
+            int index = 0;
+            if (dIndex == 0)
+            {
+                index = h < 8 ? 7 : (h >= 20 ? 1 : 0);
+            }
+            else if (dIndex == 1)
+            {
+                index = h < 8 ? 1 : (h >= 20 ? 3 : 2);
+            }
+            else if (dIndex == 2)
+            {
+                index = h < 8 ? 3 : (h >= 20 ? 5 : 4);
+            }
+            else
+            {
+                index = h < 8 ? 5 : (h >= 20 ? 7 : 6);
+            }
+            return CokeRoom.ScheduleLst[index].Group;
         }
     }
 }

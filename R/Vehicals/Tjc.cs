@@ -345,6 +345,7 @@ namespace WGPM.R.Vehicles
         /// </summary>
         private void PushDataPart1()
         {
+            GetJobCar(Communication.CarsLst[0], Communication.CarsLst[1], Addrs.TRoomNumDic);
             PushTime = DateTime.Now.ToString("G");
             PushPlanIndex = GetIndexOfPushPlan();
             psInfo = new PsInfo(PushPlanIndex, PushTime, CarNum == 1 ? (Tjc)Communication.CarsLst[0] : (Tjc)Communication.CarsLst[1]);

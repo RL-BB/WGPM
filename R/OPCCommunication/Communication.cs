@@ -45,9 +45,7 @@ namespace WGPM.R.OPCCommunication
             GetMTogetherInfo(MNonJobCarTogetherInfo, false);
             DataWrite = new DataWrite();
             CommStatus = new List<OPCCommunication.CommStatus>();
-            commTimer.Tick += CommTimer_Tick;
-            commTimer.Interval = TimeSpan.FromMilliseconds(200);
-            commTimer.Start();
+            IniTimer();
             //测试用方法 正式编译前应注释掉 20171021
             //_BindingTest();
 
@@ -75,6 +73,27 @@ namespace WGPM.R.OPCCommunication
         public static SysTime UITime { get; set; }
         private SocketHelper CommHelper { get; set; }
         private DispatcherTimer commTimer = new DispatcherTimer();
+        private DispatcherTimer GCCollectTimer = new DispatcherTimer();
+        /// <summary>
+        /// 垃圾回收Flag
+        /// </summary>
+        private bool CollectHandle { get; set; }
+        private void IniTimer()
+        {
+            commTimer.Tick += CommTimer_Tick;
+            commTimer.Interval = TimeSpan.FromMilliseconds(200);
+            commTimer.Start();
+
+            GCCollectTimer.Interval = TimeSpan.FromHours(1);
+            GCCollectTimer.Tick += GCCollectTimer_Tick;
+            GCCollectTimer.Start();
+        }
+        private void GCCollectTimer_Tick(object sender, EventArgs e)
+        {
+            int h = DateTime.Now.Hour;
+            if (h == 2) GC.Collect();
+        }
+
         /// <summary>
         /// 各车设备的通讯状态
         /// </summary>
@@ -150,14 +169,14 @@ namespace WGPM.R.OPCCommunication
         /// </summary>
         private void InitCars()
         {
-            T1 = new Tjc(1);
-            T2 = new Tjc(2);
-            L1 = new Ljc(1);
-            L2 = new Ljc(2);
-            X1 = new Xjc(1);
-            X2 = new Xjc(2);
-            M1 = new Mc(1);
-            M2 = new Mc(2);
+            //T1 = new Tjc(1);
+            //T2 = new Tjc(2);
+            //L1 = new Ljc(1);
+            //L2 = new Ljc(2);
+            //X1 = new Xjc(1);
+            //X2 = new Xjc(2);
+            //M1 = new Mc(1);
+            //M2 = new Mc(2);
             InitCarsInfoList();//得到存放CarInfo的List
             IniJobAndNonJobCar();
             //**得到装煤工作车和非工作车
@@ -166,14 +185,23 @@ namespace WGPM.R.OPCCommunication
         private void InitCarsInfoList()
         {
             CarsLst = new List<Vehicle>();
-            CarsLst.Add(T1);
-            CarsLst.Add(T2);
-            CarsLst.Add(L1);
-            CarsLst.Add(L2);
-            CarsLst.Add(X1);
-            CarsLst.Add(X2);
-            CarsLst.Add(M1);
-            CarsLst.Add(M2);
+            CarsLst.Add(new Tjc(1));
+            CarsLst.Add(new Tjc(2));
+            CarsLst.Add(new Ljc(1));
+            CarsLst.Add(new Ljc(2));
+            CarsLst.Add(new Xjc(1));
+            CarsLst.Add(new Xjc(2));
+            CarsLst.Add(new Mc(1));
+            CarsLst.Add(new Mc(2));
+            int index = 0;
+            T1 = (Tjc)CarsLst[index++];
+            T2 = (Tjc)CarsLst[index++];
+            L1 = (Ljc)CarsLst[index++];
+            L2 = (Ljc)CarsLst[index++];
+            X1 = (Xjc)CarsLst[index++];
+            X2 = (Xjc)CarsLst[index++];
+            M1 = (Mc)CarsLst[index++];
+            M2 = (Mc)CarsLst[index];
         }
         private bool GetDataRead(ushort[][] dataRead)
         {
@@ -270,9 +298,9 @@ namespace WGPM.R.OPCCommunication
         /// </summary>
         public void GetAllJobAndNonJobCar()
         {
-            TJob.GetCopy((Tjc)T1.GetJobCar(T1, T2, Addrs.TRoomNumDic));
-            LJob.GetCopy((Ljc)L1.GetJobCar(L1, L2, Addrs.LRoomNumDic));
-            XJob.GetCopy((Xjc)X1.GetJobCar(X1, X2));
+            TJob.GetCopy((Tjc)T1.GetJobCar(CarsLst[0], CarsLst[1], Addrs.TRoomNumDic));
+            LJob.GetCopy((Ljc)L1.GetJobCar(CarsLst[2], CarsLst[3], Addrs.LRoomNumDic));
+            XJob.GetCopy((Xjc)X1.GetJobCar((Xjc)CarsLst[4], (Xjc)CarsLst[5]));
             //20171124 得到平煤的工作推焦车
             TNonJob.GetCopy(TJob.CarNum == 1 ? T2 : T1);
             LNonJob.GetCopy(LJob.CarNum == 1 ? L2 : L1);
@@ -514,7 +542,13 @@ namespace WGPM.R.OPCCommunication
             DwTogetherInfo info = new DwTogetherInfo();
             #region 20170919 考虑到装煤车联锁信息的下发 修改的处理方式
             info = CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
-            info.IsReady = (index == 4 || index == 5) && CarsLst[index].DataRead.PhysicalAddr > 1845000 ? CarsLst[index].IsReady : false;
+            info.IsReady = CarsLst[index].IsReady;
+            //增加熄焦车的虚拟炉号20171211
+            if ((index == 4 || index == 5) && CarsLst[index].DataRead.PhysicalAddr > 1845000)
+            {
+                info.FstAllow = false;
+                info.SecAllow = false;
+            }
             #endregion
             return info.GetDwUshortArr;
         }
@@ -522,7 +556,13 @@ namespace WGPM.R.OPCCommunication
         {
             DwTogetherInfo info = new DwTogetherInfo();
             info = CarsLst[index].JobCar ? JobCarTogetherInfo : NonJobCarTogetherInfo;
-            info.IsReady = (index == 4 || index == 5) && CarsLst[index].DataRead.PhysicalAddr > 1845000 ? CarsLst[index].IsReady : false;
+            info.IsReady = CarsLst[index].IsReady;
+            //增加熄焦车的虚拟炉号20171211
+            if ((index == 4 || index == 5) && CarsLst[index].DataRead.PhysicalAddr > 1845000)
+            {
+                info.FstAllow = false;
+                info.SecAllow = false;
+            }
             //info.IsReady = CarsLst[index].IsReady;
             return info.InfoToInt;
         }
@@ -539,8 +579,8 @@ namespace WGPM.R.OPCCommunication
         public void GetCarTogetherInfo(DwTogetherInfo tInfo, bool job)
         {//没有处理平煤请求 应为默认值
             //推焦车
-            tInfo.PushRequest = false;//推焦请求1
             Vehicle T = job ? TJobCarLst[0] : NonJobCarLst[0];
+            tInfo.PushRequest = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushRequest;//推焦请求1
             tInfo.PushTogether = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).PushTogether;//推焦联锁2
             tInfo.TJobCarReady = T.IsReady;//推到位3
             tInfo.TRoomDoorOpen = ((TjcTogetherInfo)(T.DataRead.TogetherInfo)).DoorOpen;//炉门已摘4

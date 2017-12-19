@@ -134,8 +134,8 @@ namespace WGPM.R.Vehicles
                 //1#车和推焦计划炉号的间隔
                 int s1 = Math.Abs(car1.DataRead.PhysicalAddr - roomNumDic[CokeRoom.PushPlan[0].RoomNum]);
                 int s2 = Math.Abs(car2.DataRead.PhysicalAddr - roomNumDic[CokeRoom.PushPlan[0].RoomNum]);
-                car1.JobCar = (s1 <= s2) ? true : false;
-                car2.JobCar = (s2 < s1) ? true : false;
+                car1.JobCar = s1 <= s2 ? true : false;
+                car2.JobCar = car1.JobCar ? false : true;
             }
             Vehicle car = car1.JobCar ? car1 : car2;
             return car;
