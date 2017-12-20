@@ -53,6 +53,7 @@ namespace WGPM.R.UI
         private void PlanEdit_Loaded(object sender, RoutedEventArgs e)
         {
             dpDate.SelectedDate = DateTime.Now.Date;
+            LastPrintTime = DateTime.Now;
             BindingDataContext(dgPlan);
             string[] content = Setting.AreaFlag ? new string[] { "1-2#炉区", "1#炉区", "2#炉区" } : new string[] { "3-4#炉区", "3#炉区", "4#炉区" };
             ComboBoxItem cbo = new ComboBoxItem() { Content = content[0], IsSelected = true, HorizontalContentAlignment = System.Windows.HorizontalAlignment.Left, VerticalContentAlignment = System.Windows.VerticalAlignment.Center };
@@ -337,31 +338,39 @@ namespace WGPM.R.UI
                 return;
             }
         }
+        private DateTime LastPrintTime { get; set; }
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
             //btnPrint.IsEnabled = false;
             List<TPushPlan> printPlan = GetItemsSource(cboPrintArea.SelectedIndex, (short)cboPrintPeriod.SelectedIndex, isEditing);
             if (printPlan.Count >= 40)
             {
-                MessageBox.Show("计划条目超过40！！");
+                MessageBox.Show("计划数目过长，建议使用“预览打印”模式进行打印！");
                 return;
             }
             try
             {
                 WrtPlanToExcel(printPlan);
+
                 if (!rbtnDirect.IsChecked.Value)
                 {//预览打印
                     PrintNotDirect(printPlan[0]);
                 }
                 else
                 {//直接打印
+                    if ((DateTime.Now - LastPrintTime).TotalMinutes <= 1)
+                    {//20171220 直接打印时，连续两次打印间隔时间较短时，会导致打印机出现问题。所以控制间隔时间超过一分钟
+                        MessageBox.Show("直接打印的间隔时间需要超过一分钟！请等待一分钟或选择“预览打印”进行打印。");
+                        return;
+                    }
                     PrintDirect();
+                    LastPrintTime = DateTime.Now;
                 }
             }
             catch (Exception err)
             {
                 Logger.Log.LogErr.Info("打印错误：PlanEdit.cs类，btnPrint_Click事件；" + err.ToString());
-                MessageBox.Show("请检查打印计划的表格是否已关闭！若没有关闭，请尝试关闭之后重新打印。");
+                MessageBox.Show("计划打印出现错误！请检查是否没有关闭Excel，请尝试关闭之后重新打印。");
                 return;
             }
         }

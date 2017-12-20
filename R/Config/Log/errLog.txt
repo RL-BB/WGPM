@@ -527,3 +527,614 @@
 2017-11-02 13:59:04,911 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-2 13:59
 2017-11-02 17:05:04,428 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-2 17:05
 2017-11-03 08:46:42,079 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 08:46
+2017-11-03 09:41:33,817 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 09:41
+2017-11-03 10:19:35,621 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 10:19
+2017-11-03 10:32:31,061 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-3 10:32
+2017-11-03 11:26:24,100 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:26
+2017-11-03 11:27:19,768 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:27
+2017-11-03 11:28:12,108 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:28
+2017-11-03 11:31:06,056 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:31
+2017-11-03 11:31:50,908 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:31
+2017-11-03 11:32:18,359 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:32
+2017-11-03 11:37:26,769 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 11:37
+2017-11-03 12:03:07,443 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 12:03
+2017-11-03 12:21:59,528 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-3 12:21
+2017-11-03 12:28:02,707 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 12:28
+2017-11-03 13:29:09,751 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 13:29
+2017-11-03 13:30:51,037 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 13:30
+2017-11-03 13:45:20,644 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-03 13:45
+2017-11-03 13:56:25,523 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-03 13:56
+2017-11-03 14:11:30,391 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-03 14:11
+2017-11-03 14:23:01,373 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-03 14:23
+2017-11-03 14:23:13,781 [11] INFO  Log_Err [(null)] - 类：Tjc 方法：UpdateStokingInfoConfig；System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WGPM.R.Vehicles.Tjc.UpdateStokingInfoConfig() 位置 C:\Users\Administrator\Desktop\WGPM\R\Vehicals\Tjc.cs:行号 510
+2017-11-03 14:55:57,893 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-03 14:55
+2017-11-03 15:20:54,095 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-03 15:20
+2017-11-03 15:22:38,806 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-03 15:22
+2017-11-03 15:25:09,610 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-03 15:25
+2017-11-03 16:29:15,062 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 16:29
+2017-11-03 16:31:14,481 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-3 16:31
+2017-11-04 11:16:00,421 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-4 11:16
+2017-11-04 14:31:20,813 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-04 14:31
+2017-11-04 14:53:58,129 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-04 14:53
+2017-11-04 16:10:39,906 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-04 16:10
+2017-11-04 17:43:53,976 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-04 17:43
+2017-11-04 17:48:27,491 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-04 17:48
+2017-11-05 17:51:38,114 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-05 17:51
+2017-11-05 17:53:41,607 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-05 17:53
+2017-11-05 18:28:05,168 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:28
+2017-11-05 18:47:28,345 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:47
+2017-11-05 18:49:06,111 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:49
+2017-11-05 18:50:38,819 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:50
+2017-11-05 18:53:28,358 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:53
+2017-11-05 18:54:29,130 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:54
+2017-11-05 18:57:05,379 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-05 18:57
+2017-11-05 19:07:20,359 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-05 19:07
+2017-11-05 19:26:39,251 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:f1e76032-8d65-4c8b-a188-1d8927be31db
+Error Number:8152,State:14,Class:16
+2017-11-05 19:34:23,330 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:f1e76032-8d65-4c8b-a188-1d8927be31db
+Error Number:8152,State:14,Class:16
+2017-11-06 09:00:36,461 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:00
+2017-11-06 09:04:39,927 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:04
+2017-11-06 09:05:13,684 [12] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:05
+2017-11-06 09:22:22,891 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:22
+2017-11-06 09:23:27,695 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:23
+2017-11-06 09:27:42,211 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:27
+2017-11-06 09:31:11,947 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:31
+2017-11-06 09:40:52,265 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-06 09:40
+2017-11-06 10:43:04,380 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-06 10:43
+2017-11-06 12:22:16,357 [9] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:6986f7ae-79a6-4c67-a4b6-fc2b2aee488e
+Error Number:8152,State:14,Class:16
+2017-11-06 12:35:28,841 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-06 12:35
+2017-11-06 15:57:51,141 [1] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:0ba3886b-1a3b-481a-9b10-019eb489b358
+Error Number:8152,State:14,Class:16
+2017-11-06 16:42:48,071 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-06 16:42
+2017-11-06 16:45:40,048 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-06 16:45
+2017-11-06 17:01:02,818 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-06 17:01
+2017-11-08 10:41:15,450 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-8 10:41
+2017-11-12 20:12:48,597 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:12
+2017-11-12 20:17:54,118 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:17
+2017-11-12 20:21:30,286 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:21
+2017-11-12 20:28:45,372 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:28
+2017-11-12 20:29:13,072 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:29
+2017-11-12 20:46:12,420 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:46
+2017-11-12 20:47:11,526 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:47
+2017-11-12 20:49:34,388 [12] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:49
+2017-11-12 20:53:45,619 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 20:53
+2017-11-12 21:02:58,733 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 21:02
+2017-11-12 21:05:12,156 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-12 21:05
+2017-11-13 15:20:20,258 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-13 15:20
+2017-11-13 15:46:08,947 [10] INFO  Log_Err [(null)] - 类：PushInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PushInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PushInfoHelper.cs:行号 186
+ClientConnectionId:23196e1c-a88f-43de-b31d-de9418b05295
+Error Number:8152,State:14,Class:16
+2017-11-15 15:27:41,648 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-15 15:27
+2017-11-15 15:37:17,087 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-15 15:37
+2017-11-16 10:24:49,632 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-16 10:24
+2017-11-16 10:26:41,828 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-16 10:26
+2017-11-16 15:41:24,602 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:e4c3fb55-4990-4026-a7a3-a4d135cf6731
+Error Number:8152,State:14,Class:16
+2017-11-16 18:43:33,930 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:589ba316-9ec1-4d50-8ffc-73676346d9a9
+Error Number:8152,State:14,Class:16
+2017-11-16 19:05:50,196 [10] INFO  Log_Err [(null)] - 类：PushInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PushInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PushInfoHelper.cs:行号 186
+ClientConnectionId:e04fe54c-d8aa-469f-a517-f4bf2d278418
+Error Number:8152,State:14,Class:16
+2017-11-16 19:09:55,961 [22] INFO  Log_Err [(null)] - 远程主机强迫关闭了一个现有的连接。
+System.Net.Sockets.SocketException (0x80004005): 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.EndReceive(IAsyncResult asyncResult)
+   在 WGPM.R.TcpComm.SocketHelper.ReadCallback(IAsyncResult ar) 位置 C:\Users\Administrator\Desktop\WGPM\R\TcpComm\SocketHelper.cs:行号 96
+2017-11-16 19:10:48,031 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-16 19:10
+2017-11-16 19:12:46,364 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-16 19:12
+2017-11-16 19:34:40,580 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 59
+ClientConnectionId:cce44a6b-22a1-423e-9a4a-88d91675bd6c
+Error Number:8152,State:14,Class:16
+2017-11-22 14:24:22,143 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 14:24
+2017-11-22 14:25:43,448 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 14:25
+2017-11-22 14:28:39,929 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-22 14:28
+2017-11-22 14:32:06,228 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 14:32
+2017-11-22 14:33:41,002 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 14:33
+2017-11-22 16:19:29,021 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 16:19
+2017-11-22 16:20:38,029 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-22 16:20
+2017-11-22 16:30:54,511 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-22 16:30
+2017-11-22 16:40:37,650 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-22 16:40
+2017-11-22 16:49:47,486 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 16:49
+2017-11-22 16:51:52,506 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 16:51
+2017-11-22 17:09:28,208 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 55
+ClientConnectionId:96b397c7-2677-49fc-86e5-2ff2bcc6a6d6
+Error Number:8152,State:14,Class:16
+2017-11-22 18:12:24,441 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 18:12
+2017-11-22 18:14:01,548 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-22 18:14
+2017-11-22 18:15:38,591 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-22 18:15
+2017-11-23 09:36:06,204 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-23 09:36
+2017-11-24 16:20:49,755 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:20
+2017-11-24 16:25:38,884 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:25
+2017-11-24 16:26:20,085 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:26
+2017-11-24 16:30:08,903 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:30
+2017-11-24 16:38:09,513 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:38
+2017-11-24 16:39:45,208 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:39
+2017-11-24 16:43:31,751 [11] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 54
+ClientConnectionId:2ee3a392-75bf-4242-a12c-eb0d7648fad0
+Error Number:8152,State:14,Class:16
+2017-11-24 16:50:55,176 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:50
+2017-11-24 16:51:39,672 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-24 16:51
+2017-11-25 15:11:54,210 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-25 15:11
+2017-11-25 15:17:36,942 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:cbced496-da5c-4826-bfc9-9a2cb00cb50e
+Error Number:8152,State:14,Class:16
+2017-11-25 15:19:22,752 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-25 15:19
+2017-11-25 15:22:12,869 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-25 15:22
+2017-11-25 15:31:17,659 [1] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:748e72bc-32a9-4bf1-8977-06c5a07a1a5f
+Error Number:8152,State:14,Class:16
+2017-11-25 15:46:17,924 [1] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:ab5ff6a8-9d7c-4590-9d53-408ae59f7155
+Error Number:8152,State:14,Class:16
+2017-11-25 15:52:23,952 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-25 15:52
+2017-11-25 15:58:00,378 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:82bbd91c-f60b-40f8-a25e-e4b2f89de4a7
+Error Number:8152,State:14,Class:16
+2017-11-25 16:23:03,459 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:82bbd91c-f60b-40f8-a25e-e4b2f89de4a7
+Error Number:8152,State:14,Class:16
+2017-11-25 16:30:55,225 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:82bbd91c-f60b-40f8-a25e-e4b2f89de4a7
+Error Number:8152,State:14,Class:16
+2017-11-25 17:00:41,397 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:acb1d298-831a-4866-b09d-766c2bc0ff54
+Error Number:8152,State:14,Class:16
+2017-11-25 17:11:32,459 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:9a3d1dbb-36e6-4ee6-afb0-bd34602b231d
+Error Number:8152,State:14,Class:16
+2017-11-25 17:21:06,897 [10] INFO  Log_Err [(null)] - 类：PingInfoHelper.cs，方法：RECToDB()；System.Data.SqlClient.SqlException (0x80131904): 将截断字符串或二进制数据。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 System.Data.Linq.SqlClient.SqlProvider.Execute(Expression query, QueryInfo queryInfo, IObjectReaderFactory factory, Object[] parentArgs, Object[] userArgs, ICompiledSubQuery[] subQueries, Object lastResult)
+   在 System.Data.Linq.SqlClient.SqlProvider.ExecuteAll(Expression query, QueryInfo[] queryInfos, IObjectReaderFactory factory, Object[] userArguments, ICompiledSubQuery[] subQueries)
+   在 System.Data.Linq.SqlClient.SqlProvider.System.Data.Linq.Provider.IProvider.Execute(Expression query)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.DynamicUpdate(TrackedObject item)
+   在 System.Data.Linq.ChangeDirector.StandardChangeDirector.Update(TrackedObject item)
+   在 System.Data.Linq.ChangeProcessor.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges(ConflictMode failureMode)
+   在 System.Data.Linq.DataContext.SubmitChanges()
+   在 WGPM.R.LinqHelper.PingInfoHelper.RecToDB() 位置 C:\Users\Administrator\Desktop\WGPM\R\LinqHelper\PingInfoHelper.cs:行号 53
+ClientConnectionId:723d0d6b-cad3-4be6-9207-4834786f639e
+Error Number:8152,State:14,Class:16
+2017-11-25 17:26:05,914 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-25 17:26
+2017-11-25 17:30:11,130 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-25 17:30
+2017-11-25 19:05:47,824 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-25 19:05
+2017-11-25 19:35:15,611 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-25 19:35
+2017-11-25 19:36:55,833 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-25 19:36
+2017-11-25 19:38:26,760 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-25 19:38
+2017-11-26 15:17:29,840 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-26 15:17
+2017-11-26 15:19:05,144 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-26 15:19
+2017-11-26 15:21:46,949 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-26 15:21
+2017-11-26 15:25:38,330 [1] INFO  Log_Err [(null)] - 启动时间：2017-11-26 15:25
+2017-11-26 15:27:44,005 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-26 15:27
+2017-11-26 15:30:29,275 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-26 15:30
+2017-11-27 16:53:37,962 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-27 16:53
+2017-11-27 16:54:39,429 [12] INFO  Log_Err [(null)] - 启动时间：2017-11-27 16:54
+2017-11-27 17:36:29,097 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-27 17:36
+2017-11-27 17:46:04,825 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-27 17:46
+2017-11-27 17:47:31,869 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-27 17:47
+2017-11-27 17:55:39,452 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-27 17:55
+2017-11-27 18:04:17,763 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-27 18:04
+2017-11-27 18:14:05,208 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-27 18:14
+2017-11-27 18:30:42,811 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-27 18:30
+2017-11-27 18:37:33,239 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-27 18:37
+2017-11-28 14:16:11,373 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-28 14:16
+2017-11-28 14:26:46,621 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-28 14:26
+2017-11-28 14:31:03,401 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-28 14:31
+2017-11-28 16:40:08,025 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-28 16:40
+2017-11-29 14:16:58,536 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-29 14:16
+2017-11-30 15:54:50,281 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-30 15:54
+2017-11-30 15:57:11,508 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-30 15:57
+2017-11-30 15:58:30,915 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-30 15:58
+2017-11-30 16:00:02,201 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-30 16:00
+2017-11-30 16:08:33,430 [11] INFO  Log_Err [(null)] - 启动时间：2017-11-30 16:08
+2017-11-30 16:22:10,765 [12] INFO  Log_Err [(null)] - 启动时间：2017-11-30 16:22
+2017-11-30 17:09:22,143 [9] INFO  Log_Err [(null)] - 启动时间：2017-11-30 17:09
+2017-11-30 17:20:40,264 [10] INFO  Log_Err [(null)] - 启动时间：2017-11-30 17:20
+2017-12-03 15:52:24,722 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-3 15:52
+2017-12-05 18:09:29,008 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-05 18:09
+2017-12-05 18:10:37,645 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-05 18:10
+2017-12-05 18:11:58,951 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-05 18:11
+2017-12-05 18:34:09,745 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-05 18:34
+2017-12-06 14:02:56,708 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-06 14:02
+2017-12-07 14:06:38,444 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-07 14:06
+2017-12-07 14:26:23,157 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-07 14:26
+2017-12-10 17:25:39,158 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-10 17:25
+2017-12-10 17:27:18,090 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-10 17:27
+2017-12-11 15:13:32,972 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:13
+2017-12-11 15:25:47,051 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:25
+2017-12-11 15:40:48,073 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:40
+2017-12-11 15:41:44,517 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:41
+2017-12-11 15:42:43,663 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:42
+2017-12-11 15:53:28,604 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:53
+2017-12-11 15:57:04,660 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-11 15:57
+2017-12-11 16:51:40,341 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-11 16:51
+2017-12-11 16:52:29,951 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-11 16:52
+2017-12-11 16:59:28,916 [12] INFO  Log_Err [(null)] - 启动时间：2017-12-11 16:59
+2017-12-12 14:25:55,113 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-12 14:25
+2017-12-19 13:57:36,162 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-19 13:57
+2017-12-19 13:58:23,989 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-19 13:58
+2017-12-19 14:19:29,176 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-19 14:19
+2017-12-19 16:27:06,854 [11] INFO  Log_Err [(null)] - 启动时间：2017-12-19 16:27
+2017-12-19 16:28:16,589 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-19 16:28
+2017-12-19 16:29:28,948 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-19 16:29
+2017-12-21 08:04:47,286 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-21 08:04
+2017-12-19 08:05:43,923 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-19 08:05
+2017-12-19 13:08:45,432 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-19 13:08

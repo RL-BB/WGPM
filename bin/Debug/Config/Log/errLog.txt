@@ -1138,3 +1138,302 @@ Error Number:8152,State:14,Class:16
 2017-12-21 08:04:47,286 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-21 08:04
 2017-12-19 08:05:43,923 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-19 08:05
 2017-12-19 13:08:45,432 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-19 13:08
+2017-12-20 13:48:16,495 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 13:48
+2017-12-20 13:48:58,581 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 13:49:12,032 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 13:49:16,374 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 13:50:31,696 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 13:51:38,458 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 13:56:20,555 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 13:57:57,087 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 14:02:35,426 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 14:02
+2017-12-20 14:03:42,256 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 14:04:56,221 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.FileNotFoundException: 未能加载文件或程序集“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73”
+   在 NPOI.OpenXml4Net.OPC.ZipPackage..ctor(Stream filestream, PackageAccess access)
+   在 NPOI.OpenXml4Net.OPC.OPCPackage.Open(Stream in1)
+   在 NPOI.Util.PackageHelper.Open(Stream is1)
+   在 NPOI.XSSF.UserModel.XSSFWorkbook..ctor(Stream is1)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1037
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+
+=== 预绑定状态信息 ===
+日志: DisplayName = ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+ (Fully-specified)
+日志: Appbase = file:///C:/Users/Administrator/Desktop/WGPM/bin/Debug/
+日志: 初始 PrivatePath = NULL
+调用程序集: NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.vshost.exe.Config
+日志: 使用主机配置文件: 
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 策略后引用: ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73
+日志: 相同的绑定已出现过，因 hr = 0x80070002 而失败。
+
+2017-12-20 14:56:23,849 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 14:56
+2017-12-20 15:07:04,264 [8] INFO  Log_Err [(null)] - 启动时间：2017-12-20 15:07
+2017-12-20 15:07:49,913 [8] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 WGPM.R.Sys.PlanPrintHelper.CreateThickLine(TPushPlan p1, TPushPlan p2, IRow row, Int32[] arr) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 186
+   在 WGPM.R.Sys.PlanPrintHelper.GetDetailData(List`1 plan, Int32 add) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 122
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 160
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1040
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 351
+2017-12-20 15:14:27,071 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 15:14
+2017-12-20 15:17:13,858 [8] INFO  Log_Err [(null)] - 启动时间：2017-12-20 15:17
+2017-12-20 15:41:47,916 [8] INFO  Log_Err [(null)] - 启动时间：2017-12-20 15:41
+2017-12-20 16:26:01,061 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 16:26
+2017-12-20 16:28:55,361 [10] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:34:40,666 [10] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:36:52,194 [10] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:38:25,645 [10] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:39:56,492 [10] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:41:43,220 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 16:41
+2017-12-20 16:42:06,463 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:42:33,534 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 WGPM.R.Sys.PlanPrintHelper.CreateDottedCell(IRow[] rows) 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 209
+   在 WGPM.R.Sys.PlanPrintHelper.GetToPrintedExcel() 位置 C:\Users\Administrator\Desktop\WGPM\R\Sys\ExcelHelper.cs:行号 165
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1049
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 16:45:37,152 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 16:45
+2017-12-20 16:56:21,435 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 16:56
+2017-12-20 18:15:57,022 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:15
+2017-12-20 18:16:09,218 [10] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.IOException: 文件“C:\Users\Administrator\Desktop\WGPM\PlanModel.xlsx”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1044
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 18:20:54,631 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:20
+2017-12-20 18:24:31,246 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:24
+2017-12-20 18:25:49,975 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:25
+2017-12-20 18:28:27,073 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:28
+2017-12-20 18:28:36,745 [9] INFO  Log_Err [(null)] - 打印错误：PlanEdit.cs类，btnPrint_Click事件；System.IO.IOException: 文件“C:\Users\Administrator\Desktop\WGPM\PushPlan.xlsx”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.File.InternalDelete(String path, Boolean checkHost)
+   在 System.IO.File.Delete(String path)
+   在 WGPM.R.UI.PlanEdit.WrtPlanToExcel(List`1 printPlan) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 1052
+   在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
+2017-12-20 18:33:12,255 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:33
+2017-12-20 18:35:26,305 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:35

@@ -14,7 +14,7 @@ namespace WGPM.R.Sys
     /// 计划打印
     /// </summary>
     class PlanPrintHelper
-    { 
+    {
         public PlanPrintHelper(XSSFWorkbook workbook, List<TPushPlan> plan, int area)
         {
             this.workbook = workbook;
@@ -22,7 +22,9 @@ namespace WGPM.R.Sys
             this.plan = plan;
             this.area = area;
             //SplitPlanByArea();
-            CreateCellStyle();
+            flagStyle = CreateNormalStyle(true);
+            normalStyle = CreateNormalStyle(false);
+            dottedStyle = CreateDottedStyle();
         }
         public int area;
         public XSSFWorkbook workbook;
@@ -30,7 +32,9 @@ namespace WGPM.R.Sys
         public List<TPushPlan> plan;
         //public List<TPushPlan> plan1;
         //public List<TPushPlan> plan2;
-        public ICellStyle style;
+        public ICellStyle flagStyle;
+        public ICellStyle normalStyle;
+        public ICellStyle dottedStyle;
         private void SplitPlanByArea()
         {
             //plan1 = new List<TPushPlan>();
@@ -104,21 +108,15 @@ namespace WGPM.R.Sys
             IRow row4 = sheet.GetRow(3);
             //IRow row56 = sheet.GetRow(4 + 48);
         }
-        public void GetDetailData(List<TPushPlan> plan, int add)
+        public IRow[] GetDetailData(List<TPushPlan> plan, int add)
         {
-            IRow[] rows = new IRow[plan.Count];
+            IRow[] rows = CreateRowsAndNormalCellStyle();
             for (int j = 0; j < 2; j++)
             {//2个大表
                 int index = 1;
                 for (int i = 0; i < plan.Count; i++)
                 {//单个表单的内容
                     int columnIndex = 0;
-                    rows[i] = sheet.GetRow(4 + add + i);
-                    if (i > 0)
-                    {//上下两炉出焦的间隔时间大于30min，则用粗下划线标记出来
-                        int[] arr = new int[] { 0 + j * 9, 6 + j * 9 };
-                        CreateThickLine(plan[i], plan[i - 1], rows[i - 1], arr);
-                    }
                     rows[i].GetCell(9 * j + columnIndex++).SetCellValue(index++.ToString());
                     rows[i].GetCell(9 * j + columnIndex++).SetCellValue(plan[i].RoomNum);
                     rows[i].GetCell(9 * j + columnIndex++).SetCellValue(plan[i].BurnTimeToString());
@@ -129,17 +127,13 @@ namespace WGPM.R.Sys
             {
                 int index = 1;
                 for (int i = 0; i < plan.Count; i++)
-                {//单个表单的内容
-                    if (i > 0)
-                    {//上下两炉出焦的间隔时间大于30min，则用粗下划线标记出来
-                        int[] arr = new int[] { 18 + j * 5, 20 + j * 5 };
-                        CreateThickLine(plan[i], plan[i - 1], rows[i - 1], arr);
-                    }
-                    rows[i].GetCell(18 + 5 * j).SetCellValue(index++.ToString());
+                {//单个表单的内容(三个小表)
+                    rows[i].GetCell(18 + 0 + 5 * j).SetCellValue(index++.ToString());
                     rows[i].GetCell(18 + 1 + 5 * j).SetCellValue(plan[i].RoomNum);
                     rows[i].GetCell(18 + 2 + 5 * j).SetCellValue(plan[i].PushTime.ToString("t"));
                 }
             }
+            return rows;
         }
         /// <summary>
         /// 生成用于打印的Excel表格
@@ -153,13 +147,19 @@ namespace WGPM.R.Sys
             GetSchedule(0);
             //GetSchedule(48);
             GetTitle();
-            GetDetailData(plan, 0);
+            IRow[] rows = GetDetailData(plan, 0);
             //GetDetailData(plan2, 48);
         }
-        private void CreateCellStyle()
+        /// <summary>
+        /// 为包含有效数据内容（计划信息）的行设置Style
+        /// </summary>
+        /// <param name="flag">用以判断是否需要作特殊标识的</param>
+        /// <returns>设置了单元格格式的行</returns>
+        private ICellStyle CreateNormalStyle(bool flag)
         {
+            ICellStyle style = workbook.CreateCellStyle();
             style = workbook.CreateCellStyle();
-            style.BorderBottom = BorderStyle.Medium;
+            style.BorderBottom = flag ? BorderStyle.Medium : BorderStyle.Thin;
             style.BorderTop = BorderStyle.Thin;
             style.BorderLeft = BorderStyle.Thin;
             style.BorderRight = BorderStyle.Thin;
@@ -167,21 +167,63 @@ namespace WGPM.R.Sys
             style.VerticalAlignment = VerticalAlignment.Center;
             //字体待设置
             IFont font = workbook.CreateFont();
-            font.IsBold = true;
-            font.FontHeightInPoints = 15;
+            font.IsBold = flag;
+            font.FontHeightInPoints = flag ? (short)15 : (short)14;
             style.SetFont(font);
+            return style;
         }
-        private void CreateThickLine(TPushPlan p1, TPushPlan p2, IRow row, int[] arr)
+        private ICellStyle CreateDottedStyle()
         {
-            if ((p1.PushTime - p2.PushTime).TotalMinutes >= 30)
+            ICellStyle style = workbook.CreateCellStyle();
+            style.BorderRight = BorderStyle.MediumDashDot;
+            return style;
+        }
+        /// <summary>
+        /// 设置单元格格式：①正常格式；②第二趟笺的上一行加粗以作区分；③两个表单之间加虚线；
+        /// </summary>
+        /// <param name="breakFlag">和上一条计划的间隔时间是否过长（boundary：30min）</param>
+        /// <param name="row">待设置的行</param>
+        private void CreateThickLine(bool breakFlag, IRow row)
+        {
+            for (int i = 0; i < 31; i++)//20171220 数字31的意义：从PlanModel.xlsx中可得知每一行的有效单元格数量为31；
             {
-                for (int i = arr[0]; i < arr[1] + 1; i++)
+                if (row.Cells.Count <= i) return;
+                //20171220：数字7,8,16,17...时为为单元格左虚线；
+                if (i == 7 || i == 8 || i == 16 || i == 17 || i == 21 || i == 22 || i == 26 || i == 27)
                 {
-                    if (row.Cells.Count <= i) return;
-                    ICell cell = row.Cells[i];
-                    cell.CellStyle = style;
+                    CreateDottedCell(row);
+                    continue;
                 }
+                row.Cells[i].CellStyle = breakFlag ? flagStyle : normalStyle;
             }
+        }
+        private void CreateDottedCell(IRow row)
+        {
+            row.Cells[7].CellStyle = dottedStyle;
+            row.Cells[16].CellStyle = dottedStyle;
+            row.Cells[21].CellStyle = dottedStyle;
+            row.Cells[26].CellStyle = dottedStyle;
+        }
+        private IRow[] CreateRowsAndNormalCellStyle()
+        {
+            IRow[] rows = new IRow[plan.Count];
+            for (int i = 0; i < plan.Count; i++)
+            {
+                rows[i] = sheet.CreateRow(4 + i);
+                for (int j = 0; j < 31; j++)//20171220 数字31的意义：从PlanModel.xlsx中可得知每一行的有效单元格数量为31；
+                {
+                    rows[i].CreateCell(j);
+                }
+                if (i == 0)
+                {
+                    CreateThickLine(false, rows[i]);
+                    continue;
+                }
+                bool breakFlag = (plan[i].PushTime - plan[i - 1].PushTime).TotalMinutes > 30;
+                CreateThickLine(breakFlag, rows[i - 1]);
+                if (i == plan.Count - 1) CreateThickLine(false, rows[i]);
+            }
+            return rows;
         }
     }
     /// <summary>

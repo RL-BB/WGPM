@@ -124,7 +124,6 @@ C:\Users\Administrator\Desktop\WGPMPRO\obj\Debug\WGPM.exe.manifest
 C:\Users\Administrator\Desktop\WGPMPRO\obj\Debug\WGPM.application
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\PlanEdit.baml
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\R\UI\PlanEdit.g.cs
-C:\Users\Administrator\Desktop\WGPM\bin\Debug\R\Config\RoomInfo.config
 C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.exe.manifest
 C:\Users\Administrator\Desktop\WGPM\bin\Debug\WGPM.application
 C:\Users\Administrator\Desktop\WGPM\obj\Debug\WGPM.exe.manifest
