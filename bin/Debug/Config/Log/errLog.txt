@@ -1437,3 +1437,5 @@ Error Number:8152,State:14,Class:16
    在 WGPM.R.UI.PlanEdit.btnPrint_Click(Object sender, RoutedEventArgs e) 位置 C:\Users\Administrator\Desktop\WGPM\R\UI\PlanEdit.xaml.cs:行号 353
 2017-12-20 18:33:12,255 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:33
 2017-12-20 18:35:26,305 [9] INFO  Log_Err [(null)] - 启动时间：2017-12-20 18:35
+2017-12-21 14:53:17,104 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-21 14:53
+2017-12-21 14:55:42,274 [10] INFO  Log_Err [(null)] - 启动时间：2017-12-21 14:55

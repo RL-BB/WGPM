@@ -129,7 +129,7 @@ namespace WGPM.R.Vehicles
         /// <param name="cr">获得推焦计划</param>
         public Vehicle GetJobCar(Vehicle car1, Vehicle car2, Dictionary<int, int> roomNumDic)
         {
-            if (CokeRoom.PushPlan.Count != 0)
+            if (CokeRoom.PushPlan.Count > 0)
             {
                 //1#车和推焦计划炉号的间隔
                 int s1 = Math.Abs(car1.DataRead.PhysicalAddr - roomNumDic[CokeRoom.PushPlan[0].RoomNum]);

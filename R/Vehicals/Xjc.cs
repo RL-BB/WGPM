@@ -14,7 +14,7 @@ namespace WGPM.R.Vehicles
     {
         public Xjc(ushort carNum)
         {
-            base.CarNum = carNum;
+            CarNum = carNum;
             GetArrows = GetXArrows;//给委托赋值
             //熄焦车物理地址对应炉号的字典有四个
             togetherInfoCount = 7;

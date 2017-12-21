@@ -58,12 +58,15 @@ namespace WGPM.R.OPCCommunication
         private void CommTimer_Tick(object sender, EventArgs e)
         {
             //系统时间
-            UITime.DateTime = DateTime.Now;
-            GetCurrentPlan();
-            GetVehicalInfo();
-            GetRoomDoorStatus();
-            WrtOpc();
-            UpdatePlan();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                UITime.DateTime = DateTime.Now;
+                GetCurrentPlan();
+                GetVehicalInfo();
+                GetRoomDoorStatus();
+                WrtOpc();
+                UpdatePlan();
+            }), null);
             //测试用方法 正式编译前应注释掉 20171021
             //_BindingTest();
         }
@@ -203,20 +206,16 @@ namespace WGPM.R.OPCCommunication
             M1 = (Mc)CarsLst[index++];
             M2 = (Mc)CarsLst[index];
         }
-        private bool GetDataRead(ushort[][] dataRead)
+        private void GetDataRead(ushort[][] dataRead)
         {
-            bool hasData = false;
             //每辆车的DataRead是一个byte数组，8辆车的是个二维数组
             for (int i = 0; i < dataRead.Length; i++)
             {
                 if (dataRead[i] != null)
                 {
                     recvDataRead[i] = dataRead[i];
-                    //FstRecvData = i == (dataRead.Length - 1) ? true : false;
-                    hasData = true;
                 }
             }
-            return hasData;
         }
         /// <summary>
         /// 解析所有车的DataRead(包括联锁信息)
@@ -238,7 +237,7 @@ namespace WGPM.R.OPCCommunication
                     //解析TogetherInfo：由ushort类型的一个数据得到List<bool> ，然后调用DecodeTogetherInfo();
                     CarsLst[index].DataRead.TogetherInfo.ConvertToBoolList();
                     CarsLst[index].DataRead.TogetherInfo.DecodeTogetherInfo();//可以访问联锁数据了                
-                    CarsLst[index].CarNum = Convert.ToUInt16(index % 2 + 1);// 车号还是
+                    //CarsLst[index].CarNum = Convert.ToUInt16(index % 2 + 1);// 20171221 注释掉，无意义：车号在车作为对象初始化时就已经赋值，不会发生更改
                     if (index == 0 || index == 1 || index == 6 || index == 7)
                     {//解析推焦车和装煤车特有的数据
                         CarsLst[index].DataRead.DecodeOtherDataRead(index);
@@ -318,10 +317,10 @@ namespace WGPM.R.OPCCommunication
             }
             else
             {
-                TMJob = T1;
-                TMNonJob = T2;
-                MJob = M1;
-                MNonJob = M2;
+                TMJob.GetCopy(T1);
+                TMNonJob.GetCopy(T2);
+                MJob.GetCopy(M1);
+                MNonJob.GetCopy(M2);
             }
         }
         /// <summary>

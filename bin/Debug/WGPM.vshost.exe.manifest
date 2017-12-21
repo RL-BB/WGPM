@@ -55,6 +55,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ICSharpCode.SharpZipLib.dll" size="200704">
+      <assemblyIdentity name="ICSharpCode.SharpZipLib" version="0.86.0.518" publicKeyToken="1B03E6ACF1164F73" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>QLPVkPlRkfPjPl0A5TT6QPgj2bG7Kpr+BfE5xOCjr40=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="log4net.dll" size="286720">
       <assemblyIdentity name="log4net" version="1.2.11.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -235,14 +247,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WGPM.exe" size="2421760">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WGPM.exe" size="2422272">
       <assemblyIdentity name="WGPM" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gI0uu0pJhhPYKoT7KQsg0C8ut532qQ6hx9/0LyB6M1U=</dsig:DigestValue>
+        <dsig:DigestValue>C1W1Jqt+bffTvIlonrFEqP+j65b+g62c6pD2lMOC6dc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

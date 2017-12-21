@@ -7,14 +7,14 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="WGPM.exe.manifest" size="15172">
+    <dependentAssembly dependencyType="install" codebase="WGPM.exe.manifest" size="15874">
       <assemblyIdentity name="WGPM.exe" version="1.0.0.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>E1aOI3vJmoDflB1dctVlNp5q/Njy3Lm5N8MA0BgoZMQ=</dsig:DigestValue>
+        <dsig:DigestValue>FLgX4jV2yWT4AVajn1ZWYvOh/DAULUhxTN68dlggkdQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

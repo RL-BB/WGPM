@@ -26,10 +26,10 @@ namespace WGPM.R.UI.VehicalsData
         public CarsData()
         {
             InitializeComponent();
-            Loaded += CarsData_Loaded;
+            _Binding();
         }
 
-        private void CarsData_Loaded(object sender, RoutedEventArgs e)
+        private void _Binding()
         {
             CarsTitles();
             TBinding();
@@ -86,6 +86,12 @@ namespace WGPM.R.UI.VehicalsData
             IntTogetherInfoBinding(node.car1, path, car1);
             IntTogetherInfoBinding(node.car2, path, car2);
         }
+        /// <summary>
+        /// Binding公共信息：车号，炉号，物理地址，灯状态，三个计数，联锁信息value
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="car1"></param>
+        /// <param name="car2"></param>
         private void UnitBinding(CommonTitle main, Vehicle car1, Vehicle car2)
         {
             CarCellBinding(main.CarNum, "CarNum", car1, car2);

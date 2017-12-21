@@ -343,11 +343,6 @@ namespace WGPM.R.UI
         {
             //btnPrint.IsEnabled = false;
             List<TPushPlan> printPlan = GetItemsSource(cboPrintArea.SelectedIndex, (short)cboPrintPeriod.SelectedIndex, isEditing);
-            if (printPlan.Count >= 40)
-            {
-                MessageBox.Show("计划数目过长，建议使用“预览打印”模式进行打印！");
-                return;
-            }
             try
             {
                 WrtPlanToExcel(printPlan);
