@@ -23,16 +23,19 @@ namespace WGPM.R.OPCCommunication
         public Communication()
         {
             //加载错误日志记录帮助,20170924
-            Log.LogErr.Info("启动时间：" + DateTime.Now.ToString("g"));
+            Log.LogSys.Info("启动时间：" + DateTime.Now.ToString("g"));
             CommLst = new List<CommExamine>();
             UITime = new SysTime();
             //初始地址字典，对应炉号的各生产时间
             Room = new CokeRoom();
             PushPlan = new TPushPlan();
             StokingPlan = new MStokingPlan();
-            //开启TCP/IP通讯
-            CommHelper = new SocketHelper();
-            CommHelper.StartListening();
+            //开启TCP/IP通讯;20180115 服务器端不用开启
+            if (!Setting.IsServer)
+            {
+                CommHelper = new SocketHelper();
+                CommHelper.StartListening();
+            }
             OPCInfo = new OPC();
             //初始化8辆车
             InitCars();
@@ -44,8 +47,9 @@ namespace WGPM.R.OPCCommunication
             GetCarTogetherInfo(NonJobCarTogetherInfo, false);
             GetMTogetherInfo(MNonJobCarTogetherInfo, false);
             DataWrite = new DataWrite();
-            CommStatus = new List<OPCCommunication.CommStatus>();
+            CommStatus = new List<CommStatus>();
             IniTimer();
+            if (Setting.IsServer) PushAndStokingPlan();//20180115 服务器端处理计划推焦和计划装煤炉号
             //测试用方法 正式编译前应注释掉 20171021
             //_BindingTest();
 
@@ -61,9 +65,11 @@ namespace WGPM.R.OPCCommunication
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 UITime.DateTime = DateTime.Now;
+                if (Setting.IsServer) PushAndStokingPlan();//20180115 服务器端处理计划推焦和计划装煤炉号
                 GetCurrentPlan();
                 GetVehicalInfo();
                 GetRoomDoorStatus();
+                if (Setting.IsServer) return;//20180115 如果为服务器端则写OPC和处理推、装ing的动作不执行
                 WrtOpc();
                 UpdatePlan();
             }), null);
@@ -367,7 +373,7 @@ namespace WGPM.R.OPCCommunication
             dw.Add(DataWrite.SysTime);//系统时间（时，分）[3]
             dw.Add(DataWrite.SysTimeSec);//系统时间（秒）[4]
             ushort planTime = 0;
-            ushort planRoomNum = 0;
+            ushort planRoomNum = 1;
             if (index < 6 && CokeRoom.PushPlan.Count > 0)
             {
                 planTime = (ushort)(CokeRoom.PushPlan[0].PushTime.Hour * 100 + CokeRoom.PushPlan[0].PushTime.Minute);
@@ -386,7 +392,7 @@ namespace WGPM.R.OPCCommunication
             dw.Add(index <= 1 ? ((ushort)((IDisplayRoomNum)CarsLst[index]).DisplayRoomNum) : ((IDisplayRoomNum)CarsLst[index]).DisplayRoomNum);//当前车炉号[8]  
             //四大车工作车显示炉号。
             dw.AddRange(index < 6 ? GetAllJobCarRoomNumArr() : new List<ushort> { ((IDisplayRoomNum)MJobCarLst[0]).DisplayRoomNum, 0, 0, ((IDisplayRoomNum)MJobCarLst[1]).DisplayRoomNum });
-            dw.AddRange(index <= 1 ? XjcPhysicalAddr() : (index >= 6 ? PlanTime() : new List<ushort> { 0, 0, 0, 0 }));//4个螺旋转速[13,14,15,16];20171113 推焦车-->熄焦车的物理地址；煤车--> 计划时间（推和装煤）
+            dw.AddRange(index <= 1 ? XjcPhysicalAddr() : (index >= 6 ? PlanTime() : new List<ushort> { 0, 0, 0, 0 }));//4个螺旋转速[13,14,15,16];20171113服务器端 推焦车-->熄焦车的物理地址；煤车--> 计划时间（推和装煤）
             dw.AddRange(GetAllJobCarPhysicalAddr(index));//四大工作车的物理地址[17,18,19,20];20171027装煤时，工作推焦车和工作装煤车的物理地址未处理
             dw.AddRange(index < 6 ? GetDwTogetherInfo(index) : GetDwMTogetherInfo(index));
             //推拦熄煤箭头[22]；20170924发送到煤车的箭头为 平煤杆到位的推焦车相对于装煤炉号的箭头
@@ -710,12 +716,19 @@ namespace WGPM.R.OPCCommunication
         /// </summary>
         private void UpdatePlan()
         {
-            //**更新计划炉号
-            T1.ProcessingPushInfo();
-            T2.ProcessingPushInfo();
-            //**记录装煤时间（更新到RoomPlanInfo中）
-            T1.ProcessingStokingInfo();
-            T2.ProcessingStokingInfo();
+            try
+            {
+                //**更新计划炉号
+                T1.ProcessingPushInfo();
+                T2.ProcessingPushInfo();
+                //**记录装煤时间（更新到RoomPlanInfo中）
+                T1.ProcessingStokingInfo();
+                T2.ProcessingStokingInfo();
+            }
+            catch (Exception err)
+            {
+                Log.LogErr.Info("Tjc.ProccessXX()方法\n" + err.Message);
+            }
         }
         /// <summary>
         /// 更新用于UI界面的PushPlan和StokingPlan显示信息：炉号，生产时间
@@ -729,6 +742,40 @@ namespace WGPM.R.OPCCommunication
         {
             byte[] bArr = BitConverter.GetBytes(intValue);
             return new ushort[] { BitConverter.ToUInt16(bArr, 0), BitConverter.ToUInt16(bArr, 2) };
+        }
+        /// <summary>
+        /// 20180115 服务器端获得最新的出焦、装煤计划
+        /// </summary>
+        private void PushAndStokingPlan()
+        {
+            TPushPlan p = new TPushPlan(OPC.Server.TRoomNum, 1, 1, OPC.Server.PushTime);
+            MStokingPlan s = new MStokingPlan(OPC.Server.MRoomNum, OPC.Server.StokingTime, 1, 1);
+            if (CokeRoom.PushPlan.Count == 0)
+            {
+                CokeRoom.PushPlan.Add(p);
+            }
+            else
+            {
+                bool flag = CokeRoom.PushPlan[0].RoomNum != p.RoomNum;
+                if (flag)
+                {
+                    CokeRoom.PushPlan.RemoveAt(0);
+                    CokeRoom.PushPlan.Add(p);
+                }
+            }
+            if (CokeRoom.StokingPlan.Count == 0)
+            {
+                CokeRoom.StokingPlan.Add(s);
+            }
+            else
+            {
+                bool flag = CokeRoom.StokingPlan[0].RoomNum != s.RoomNum;
+                if (flag)
+                {
+                    CokeRoom.StokingPlan.RemoveAt(0);
+                    CokeRoom.StokingPlan.Add(s);
+                }
+            }
         }
         #region Test
         Random r = new Random();

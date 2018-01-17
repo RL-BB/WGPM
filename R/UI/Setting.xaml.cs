@@ -33,6 +33,7 @@ namespace WGPM.R.UI
         /// true 表示1/2#炉区在用；false表示3/4#炉区在用
         /// </summary>
         public static bool AreaFlag { get; set; }
+        public static bool IsServer { get; set; }
         //public static bool AreaFlag { get { return false; } }
         Settings conn = new Settings();
         public static string ConnectionStr { get; set; }

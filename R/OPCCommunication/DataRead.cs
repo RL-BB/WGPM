@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Threading;
 using System.Windows;
 using WGPM.R.TcpComm;
+using WGPM.R.UI;
+using WGPM.R.KepServer;
 /// <summary>
 /// 码牌：006
 /// 当码牌离开6靠近7时，解码器给出的地址为65000
@@ -125,7 +127,7 @@ namespace WGPM.R.OPCCommunication
         public void DecodeXjcDataRead(int index)
         {
             TogetherInfo.TogetherInfoValue = ToDecodeProtocolData[0];
-            PhysicalAddr = index == 4 ? SocketHelper.Addr1 : SocketHelper.Addr2;//物理地址，20170924：TCP/IP -Helper类 接收物理地址传递至此处
+            PhysicalAddr = index == 4 ? (!Setting.IsServer ? SocketHelper.Addr1 : OPC.Server.X1Addr) : (!Setting.IsServer ? SocketHelper.Addr2 : OPC.Server.X2Addr);//物理地址，20170924：TCP/IP -Helper类 接收物理地址传递至此处
             LightStatus = "000000";
             DecodeCount = 0;
             PLCCount = ToDecodeProtocolData[1];

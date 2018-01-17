@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using WGPM.R.XML;
 using System.Xml;
+using WGPM.R.UI;
 
 namespace WGPM.R.RoomInfo
 {
@@ -22,8 +23,8 @@ namespace WGPM.R.RoomInfo
         public CokeRoom()
         {
             BurnStatus = new Dictionary<int, BurnTime>();
-            BurnStatus = GetRoomsBurnStatus(0);
-            PushPlan = GetPushPlan(0);
+            BurnStatus = GetRoomsBurnStatus();
+            PushPlan = GetPushPlan();
             StokingPlan = new List<MStokingPlan>();
             StokingPlan = GetStokingPlan(PushPlan);
             //StokingPlan12.Add(new MStokingPlan(88, Convert.ToDateTime("2017-09-21 15:38"), 1, 1));
@@ -53,9 +54,10 @@ namespace WGPM.R.RoomInfo
         /// </summary>
         /// <param name="stokingPlan">装煤计划</param>
         /// <returns>推焦计划</returns>
-        private List<TPushPlan> GetPushPlan(int area)
+        private List<TPushPlan> GetPushPlan()
         {
             List<TPushPlan> plan = new List<TPushPlan>();
+            //if (Setting.IsServer) return plan;
             TPushPlan currentTPlan;
             Dictionary<int, BurnTime> dic = BurnStatus;
             string path = @"Config\RoomPlanInfo.config";
@@ -100,7 +102,7 @@ namespace WGPM.R.RoomInfo
         /// 得到一比率，用来描述结焦状态
         /// </summary>
         /// <returns></returns>
-        private Dictionary<int, BurnTime> GetRoomsBurnStatus(int area)
+        private Dictionary<int, BurnTime> GetRoomsBurnStatus()
         {
             //规定结焦时间
             Dictionary<int, BurnTime> burnStatus = new Dictionary<int, BurnTime>();

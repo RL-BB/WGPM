@@ -327,12 +327,19 @@ namespace WGPM.R.LinqHelper
             }
         }
         #region 统计相关
-        public List<SumHelper> QuerySumInfo(DateTime start, int period)
+        /// <summary>
+        /// 计算得到K系数
+        /// </summary>
+        /// <param name="start"> 起始时间</param>
+        /// <param name="period"> 时段</param>
+        /// <param name="_12H">决定24H分为白中夜三班，还是白夜两班 </param>
+        /// <returns></returns>
+        public List<SumHelper> QuerySumInfo(DateTime start, int period,bool _12H)
         {
             using (db = new DbAppDataContext(Setting.ConnectionStr))
             {
                 if (!db.DatabaseExists()) return null;
-                DateTime[] time = PeriodToTime(start, period);
+                DateTime[] time = PeriodToTime(start, period,_12H);
                 var recs = from rec in db.PushInfo
                            from rec1 in db.PingInfo
                            where rec.预定出焦时间 >= time[0] && rec.预定出焦时间 < time[1]
@@ -378,7 +385,7 @@ namespace WGPM.R.LinqHelper
                 return dt;
             }
         }
-        private DateTime[] PeriodToTime(DateTime start, int period)
+        private DateTime[] PeriodToTime(DateTime start, int period,bool _12H)
         {
             DateTime s = DateTime.Now;//时段对应的开始时间
             DateTime e = DateTime.Now;//时段对应的结束时间
@@ -386,11 +393,11 @@ namespace WGPM.R.LinqHelper
             {
                 case 0:
                     s = start;
-                    e = start.AddHours(8);
+                    e = start.AddHours(_12H?12:8);
                     break;
                 case 1:
-                    s = start.AddHours(8);
-                    e = start.AddHours(16);
+                    s = start.AddHours(_12H ? 12 : 8);
+                    e = start.AddHours(_12H ? 24 : 16);
                     break;
                 case 2:
                     s = start.AddHours(16);
@@ -398,7 +405,7 @@ namespace WGPM.R.LinqHelper
                     break;
                 default:
                     s = start;
-                    e = start.AddHours(8);
+                    e = start.AddHours(_12H?12:8);
                     break;
             }
             return new DateTime[] { s, e };

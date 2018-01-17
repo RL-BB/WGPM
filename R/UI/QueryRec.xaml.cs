@@ -155,23 +155,24 @@ namespace WGPM.R.UI
         private void ResultDataTable()
         {
             DataTable table = QueryItems();
+            dgQuery.ItemsSource = null;
             if (table != null)
             {
-                dgQuery.ItemsSource = null;
                 dgQuery.ItemsSource = table.DefaultView;
             }
             else
             {
-                dgQuery.ItemsSource = null;
                 MessageBox.Show("查询结果为空");
             }
         }
         private void ResultSumData()
         {
             PushInfoHelper helper = new PushInfoHelper();
-            List<SumHelper> lst = helper.QuerySumInfo(Start, cboPeriod.SelectedIndex);
+            List<SumHelper> lst = helper.QuerySumInfo(Start, cboPeriod.SelectedIndex, chkSchedule.IsChecked.Value);
+            dgSum.ItemsSource = null;
             dgSum.ItemsSource = lst;
             if (lst == null || lst.Count == 0) return;
+            dgSum1.ItemsSource = null;
             dgSum1.ItemsSource = helper.AddLastRow(lst).DefaultView;
         }
         private DataTable QueryPushInfo()
@@ -182,7 +183,7 @@ namespace WGPM.R.UI
         private DataTable QuerySumInfo()
         {
             PushInfoHelper helper = new PushInfoHelper();
-            sumHelper = helper.QuerySumInfo(Start, cboPeriod.SelectedIndex);
+            sumHelper = helper.QuerySumInfo(Start, cboPeriod.SelectedIndex, chkSchedule.IsChecked.Value);
             return helper.ListToDataTable(sumHelper);
         }
         private DataTable QueryPingInfo()
@@ -540,7 +541,7 @@ namespace WGPM.R.UI
             together.rectTLinkFstAllow.Fill = together.txtFstAllow.Background;
             together.rectLLinkFstAllow.Fill = together.txtFstAllow.Background;
             together.rectXLinkFstAllow.Fill = together.txtFstAllow.Background;
-            together.txtTimeAllow.Background = (int)(Convert.ToDateTime(helper.ActualPushTime) - Convert.ToDateTime(helper.PushTime)).TotalMinutes >= -5 ? Brushes.Red : Brushes.Gray;//时间允许
+            together.txtTimeAllow.Background = (int)(Convert.ToDateTime(helper.ActualPushTime) - Convert.ToDateTime(helper.PushTime)).TotalMinutes >= -10 ? Brushes.Red : Brushes.Gray;//时间允许
             together.txtLjcAllowPush.Background = (helper.PushInfo & (int)Math.Pow(2, 9)) == Math.Pow(2, 9) ? Brushes.Red : Brushes.Gray;//拦人工允推
             together.txtXjcAllowPush.Background = (helper.PushInfo & (int)Math.Pow(2, 12)) == Math.Pow(2, 12) ? Brushes.Red : Brushes.Gray;//熄人工允推
             together.txtSecAllow.Background = (helper.PushInfo & (int)Math.Pow(2, 18)) == Math.Pow(2, 18) ? Brushes.Red : Brushes.Gray;//二级允推
@@ -585,14 +586,28 @@ namespace WGPM.R.UI
 
         }
 
-        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        private void dgSum_LoadingRow(object sender, DataGridRowEventArgs e)
         {
 
         }
 
-        private void dgSum_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void chkSchedule_Checked(object sender, RoutedEventArgs e)
         {
-
+            CheckBox chk = sender as CheckBox;
+            if (chk == null) return;
+            if (chk.IsChecked.Value)
+            {
+                cboPeriod.Items.Clear();
+                cboPeriod.Items.Add(new ComboBoxItem { Content = "白班", IsSelected = true });
+                cboPeriod.Items.Add(new ComboBoxItem { Content = "夜班" });
+            }
+            else
+            {
+                cboPeriod.Items.Clear();
+                cboPeriod.Items.Add(new ComboBoxItem { Content = "白班", IsSelected = true });
+                cboPeriod.Items.Add(new ComboBoxItem { Content = "中班" });
+                cboPeriod.Items.Add(new ComboBoxItem { Content = "夜班" });
+            }
         }
     }
 }

@@ -155,6 +155,7 @@
       <DependentUpon>BurnStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="R\UI\UIConverter\BoolToLockConverter.cs" />
+    <Compile Include="R\UI\UIConverter\BoolToVisibilityConverter.cs" />
     <Compile Include="R\UI\UIConverter\BurnTimeConverter.cs" />
     <Compile Include="R\UI\CarComm.xaml.cs">
       <DependentUpon>CarComm.xaml</DependentUpon>

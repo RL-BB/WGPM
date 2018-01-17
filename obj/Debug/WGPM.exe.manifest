@@ -247,14 +247,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WGPM.exe" size="2422272">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WGPM.exe" size="2426880">
       <assemblyIdentity name="WGPM" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7SuzxtBBC5A3RCHKKx1/++dGWAgfYHvuU2wznWyigpY=</dsig:DigestValue>
+        <dsig:DigestValue>sNKTe8vbOJawVHrbQ5c3xe89jp4yMf+0JeGXc05D1jY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

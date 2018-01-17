@@ -10,7 +10,7 @@ using WGPM.R.UI;
 
 namespace WGPM.R.Vehicles
 {
-    class Mc : Vehicle, IDisplayRoomNum,IVehicalDataCopy
+    class Mc : Vehicle, IDisplayRoomNum, IVehicalDataCopy
     {
 
         public Mc(ushort carNum)
@@ -88,7 +88,9 @@ namespace WGPM.R.Vehicles
         {
             if (CokeRoom.StokingPlan.Count == 0) return 0;
             //计划炉号的中心地址
-            int middle = Addrs.MRoomNumDic[CokeRoom.StokingPlan[0].RoomNum];
+            int room = CokeRoom.StokingPlan[0].RoomNum;
+            room = room > 0 ? room : 1;
+            int middle = Addrs.MRoomNumDic[room];
             int actual = DataRead.PhysicalAddr;
             //计划炉号的中心地址，二进制从右向左 为低位到高位
             if (middle - actual > StaticParms.ZFstArrow)

@@ -627,7 +627,9 @@ namespace WGPM.R.Vehicles
                 return;
             }
             //计划炉号的中心地址
-            int middle = Addrs.PRoomNumDic[CokeRoom.StokingPlan[0].RoomNum];
+            int room = CokeRoom.StokingPlan[0].RoomNum;
+            room = room > 0 ? room : 1;
+            int middle = Addrs.PRoomNumDic[room];
             int actual = DataRead.PhysicalAddr;
             if (middle - actual > StaticParms.TFstArrow)
             {//左俩箭头:0011

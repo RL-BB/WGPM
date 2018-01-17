@@ -20,12 +20,13 @@
             <RowDefinition Height="41*"/>
             <RowDefinition Height="147*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" FontSize="18" Content="客户端选择：" HorizontalAlignment="Right" Height="37" VerticalAlignment="Center" Width="129" Grid.Row="1" BorderBrush="#FF18D3E6" BorderThickness="2" Background="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label x:Name="label" FontSize="18" Content="选择炉区：" HorizontalAlignment="Right" Height="37" VerticalAlignment="Center" Width="129" Grid.Row="1" BorderBrush="#FF18D3E6" BorderThickness="2" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <ComboBox x:Name="cboCokeArea" Grid.Column="1" HorizontalAlignment="Center" Height="37" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="125" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" BorderThickness="2" Foreground="#FF1E198F">
             <ComboBoxItem Content="1、2#炉区" IsSelected="True"/>
             <ComboBoxItem Content="3、4#炉区"/>
         </ComboBox>
         <Button x:Name="button" Content="确定" Grid.Column="1" HorizontalAlignment="Center" Height="38" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="125" Click="button_Click" Background="{x:Null}" BorderThickness="1" BorderBrush="Black" Foreground="#FF1437D3"/>
+        <CheckBox x:Name="chkServer" Content="服务器端" HorizontalAlignment="Left" Height="37" Margin="45,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="129" FontSize="18" BorderBrush="#FF18D3E6" BorderThickness="2" Background="{x:Null}" Visibility="Hidden"/>
 
     </Grid>
 </Window>

@@ -20,6 +20,7 @@
         <ct:PushCurConverter FstLevel="250"  x:Key="PcTC" ></ct:PushCurConverter>
         <ct:BurnTimeToColorConverter   DefaultColor="{x:Null}" x:Key="BTC" ></ct:BurnTimeToColorConverter>
         <ct:BoolToLockConverter x:Key="b2l"/>
+        <ct:BoolToVisibilityConverter x:Key="b2v"/>
     </UserControl.Resources>
     <Grid x:Name="GridMain" Width="1024" HorizontalAlignment="Center">
         <Grid.Background>
@@ -57,7 +58,7 @@
                         </DataGrid.Background>
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉数" IsReadOnly="True" Binding="{Binding Num}"/>
-                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding RoomNum}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding RoomNum,StringFormat='000'}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="预定出焦时间" IsReadOnly="True" Binding="{Binding StrPushTime}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际推焦时间" IsReadOnly="True" Binding="{Binding StrActualPushTime}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="实际装煤时间" IsReadOnly="True" Binding="{Binding StrActualStokingTime}"/>
@@ -127,7 +128,7 @@
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="日期" IsReadOnly="True" Binding="{Binding Date}"/>
-                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding Room}"/>
+                            <DataGridTextColumn CanUserSort="False" Width="auto" Header="炉号" IsReadOnly="True" Binding="{Binding Room,StringFormat='000'}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="联锁" IsReadOnly="False" Binding="{Binding PushTogether,Converter={StaticResource b2l}}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="T炉号" IsReadOnly="False" Binding="{Binding TRoom}"/>
                             <DataGridTextColumn CanUserSort="False" Width="auto" Header="L炉号" IsReadOnly="False" Binding="{Binding LRoom}"/>
@@ -215,7 +216,8 @@
                     <RadioButton x:Name="rbtnRec" Margin="8,0" Tag="6" Content="联锁信息" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="rbtn_Checked"  Height="28" Width="97"/>
                     <RadioButton x:Name="rbtnSum" Margin="8,0" Tag="3" Content="生产统计" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked"  Height="28" Width="85" BorderBrush="#FF54B21F"/>
                     <RadioButton x:Name="rbtnCur" Margin="8,0" Tag="7" Content="电流数据" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="rbtn_Checked"  Height="28" Width="86"/>
-                    <Button Content="查询" Margin="186,0,1,0" Grid.Column="1" Grid.ColumnSpan="1" FontSize="18.667" Height="35" x:Name="btnQuery" Width="68" FontWeight="Bold" Click="btnQuery_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <CheckBox x:Name="chkSchedule" Checked="chkSchedule_Checked" Unchecked="chkSchedule_Checked" Visibility="{Binding ElementName=rbtnSum,Path=IsChecked,Converter={StaticResource b2v}}" IsChecked="False" Margin="8,0" FontSize="20" Content="12小时" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FFF10B4A" BorderThickness="2" />
+                    <Button Content="查询" Margin="88,0,1,0" Grid.Column="1" Grid.ColumnSpan="1" FontSize="18.667" Height="35" x:Name="btnQuery" Width="68" FontWeight="Bold" Click="btnQuery_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </WrapPanel>
 
                 <!--<Button Content="打印" FontSize="18.667" Height="32" x:Name="btnPrint" Width="64" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="897,49,59,32" Click="btnPrint_Click" Visibility="Hidden"/>-->

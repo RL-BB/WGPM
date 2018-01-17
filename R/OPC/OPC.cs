@@ -36,11 +36,13 @@ namespace WGPM.R.KepServer
         #endregion
         //计时器用来AsyncWrite到PLC
         private readonly DispatcherTimer _timerOpc = new DispatcherTimer();
+        public static ServerHelper Server { get; set; }
         //开始连接
         public OPC()
         {
             try
             {
+                Server = new ServerHelper();
                 GetLocalServer();
             }
             catch (Exception err)
@@ -57,7 +59,7 @@ namespace WGPM.R.KepServer
                 opcConnected = true;
                 _timerOpc.Tick += TimerOpc_Tick;
                 _timerOpc.Interval = TimeSpan.FromMilliseconds(200);
-                _timerOpc.Start();
+                if (!Setting.IsServer) _timerOpc.Start();//20180115 非服务器端 写数据的计时器开始
                 //RecurBrowse(KepServer.CreateBrowser());
                 //if (!CreateGroup())//R 20170308这条语句存在的意义似乎就是为了执行CreateGroup()方法，使用if语句的意义看不到；
                 //{
@@ -196,19 +198,42 @@ namespace WGPM.R.KepServer
                 for (int index = 1; index <= numItems; index++)
                 {
                     byte temp = Convert.ToByte(clientHandles.GetValue(index));
+                    if (Setting.IsServer && temp > 9 && temp < 14) continue;
+                    if ((!Setting.IsServer) && temp > 8) continue;
                     //if (temp > 7) continue;//R20170323 定义0-7位Read，8-15为写，name当temp=8时，应该break？！
-                    if (temp <= 7)
+                    int[] data = (int[])itemValues.GetValue(index);
+                    ushort[] uData = new ushort[data.Length];
+                    for (int i = 0; i < data.Length; i++)
                     {
-                        int[] data = (int[])itemValues.GetValue(index);
-                        ushort[] uData = new ushort[data.Length];
-                        for (int i = 0; i < data.Length; i++)
-                        {
-                            uData[i] = (ushort)data[i];
-                        }
-                        if (uData == null) continue;
-                        KepDataRead[temp] = uData;
-                        IsGetData = true;
+                        uData[i] = (ushort)data[i];
                     }
+                    if (uData == null) continue;
+                    if (temp <= 7) KepDataRead[temp] = uData;
+                    #region 解析服务器用数据  20171114需要测试车断电时接收到的数据啥样；20180115 断电后PLC发送过来的数据保持为最后一次发送的数据
+                    if (Setting.IsServer)
+                    {
+                        if (temp == 8 || temp == 9)
+                        {
+                            int room = (int)uData[5];
+                            room = room > 0 ? room : 1;
+                            int addr1 = Server.UShortToInt(uData[12], uData[13]);
+                            int addr2 = Server.UShortToInt(uData[14], uData[15]);
+                            Server.TRoomNum = Server.TRoomNum != room ? room : Server.TRoomNum;
+                            Server.X1Addr = Server.X1Addr != addr1 ? addr1 : Server.X1Addr;
+                            Server.X2Addr = Server.X2Addr != addr2 ? addr2 : Server.X2Addr;
+                        }
+                        if (temp == 14 || temp == 15)
+                        {
+                            int room = (int)uData[5];
+                            room = room > 0 ? room : 1;
+                            DateTime t1 = Server.ToDateTime(Server.UShortToInt(uData[12], uData[13]));
+                            DateTime t2 = Server.ToDateTime(Server.UShortToInt(uData[14], uData[15]));
+                            Server.MRoomNum = Server.MRoomNum != room ? room : Server.MRoomNum;
+                            Server.PushTime = Server.PushTime != t1 ? t1 : Server.PushTime;
+                            Server.StokingTime = Server.StokingTime != t2 ? t2 : Server.StokingTime;
+                        }
+                    }
+                    #endregion
                 }
             }
             catch (Exception err)
@@ -261,5 +286,51 @@ namespace WGPM.R.KepServer
         {
         }
 
+    }
+    class ServerHelper
+    {
+        public ServerHelper()
+        {
+            X1Addr = 0;
+            X2Addr = 0;
+            TRoomNum = 1;
+            PushTime = DateTime.Now;
+            MRoomNum = 1;
+            StokingTime = PushTime.AddMinutes(5);
+        }
+        public int X1Addr { get; set; }
+        public int X2Addr { get; set; }
+        /// <summary>
+        /// 推焦计划炉号
+        /// </summary>
+        public int TRoomNum { get; set; }
+        /// <summary>
+        /// 装煤计划炉号
+        /// </summary>
+        public int MRoomNum { get; set; }
+        /// <summary>
+        /// 计划推焦时间
+        /// </summary>
+        public DateTime PushTime { get; set; }
+        /// <summary>
+        /// 计划装煤时间
+        /// </summary>
+        public DateTime StokingTime { get; set; }
+        public DateTime ToDateTime(int s)
+        {
+            int day = s / 10000;
+            int hour = (s - day * 10000) / 100;
+            int min = s - day * 10000 - hour * 100;
+            return DateTime.Now.AddDays(-DateTime.Now.Day + day).AddHours(-DateTime.Now.Hour + hour).AddMinutes(-DateTime.Now.Minute + min);
+        }
+        public int UShortToInt(ushort u1, ushort u2)
+        {
+            List<byte> list = new List<byte>();
+            byte[] s1 = BitConverter.GetBytes(u1);
+            byte[] s2 = BitConverter.GetBytes(u2);
+            list.AddRange(s1);
+            list.AddRange(s2);
+            return BitConverter.ToInt32(list.ToArray(), 0);
+        }
     }
 }

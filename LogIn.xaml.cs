@@ -39,17 +39,44 @@ namespace WGPM
             {//字符4的意义：ip地址的最后一位 
                 cboCokeArea.SelectedIndex = 1;
             }
-            //cboCokeArea.SelectedIndex = IpLocal == IpArea34 ? 1 : 0;
+            else if (ipLetter == '3')
+            {
+                cboCokeArea.SelectedIndex = 0;
+            }
+            else
+            {
+                cboCokeArea.SelectedIndex = -1;
+            }
+            if (cboCokeArea.SelectedIndex < 0)
+            {
+                chkServer.Visibility = Visibility.Visible;
+                chkServer.IsEnabled = false;
+                Setting.IsServer =true;
+                chkServer.IsChecked = true;
+                cboCokeArea.SelectedIndex = 0;
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             Setting.AreaFlag = cboCokeArea.SelectedIndex == 0 ? true : false;
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            if (Setting.IsServer)
+            {
+                MessageBoxResult result = MessageBox.Show("!!!注意!!!\n先确认是否已更改KepServer软件中对应炉区的opcFile!\n回到桌面打开KEPServerEx软件，选中对应炉区的OpcFile；\n然后点击按钮“是”，进入对应炉区的服务器端！", "OpcFile", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    MainWindow mw = new MainWindow();
+                    mw.Show();
+                }
+            }
+            else
+            {
+                MainWindow mw = new MainWindow();
+                mw.Show();
+            }
             this.Close();
         }
-       
+
         private string GetLocalIP()
         {
             string ip = string.Empty;
